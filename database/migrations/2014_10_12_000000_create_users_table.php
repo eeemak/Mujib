@@ -15,11 +15,11 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fullname');
+            $table->renameColumn('name', 'fullname');
             $table->string('username');
-            $table->integer('districts_id');
-            $table->integer('thanas_id');
-            $table->integer('policeStations_id');
+            $table->bigInteger('district_id')->unsigned();
+            $table->bigInteger('thana_id')->unsigned();
+            $table->bigInteger('police_station_id')->unsigned();
             $table->string('parmanentAddress')->nullable();
             $table->string('presentAddress')->nullable();
             $table->string('aboutSelf')->nullable();
@@ -28,9 +28,9 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->foreign('districts_id')->references('id')->on('districts')->onDelete('cascade');
-            $table->foreign('thanas_id')->references('id')->on('thanas')->onDelete('cascade');
-            $table->foreign('policeStations_id')->references('id')->on('police_stations')->onDelete('cascade');
+            $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
+            $table->foreign('thana_id')->references('id')->on('thanas')->onDelete('cascade');
+            $table->foreign('police_station_id')->references('id')->on('police_stations')->onDelete('cascade');
             $table->string('addedFromIp')->nullable();
             $table->timestamps();
         });
