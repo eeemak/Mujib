@@ -54,7 +54,7 @@
                                         <div class="col-md-6 col-xs-12">
                                             <div>
                                                 <img ng-if="imageSrc===null" src="~/Images/default.jpg" class="profileImage" />
-                                                <img ng-if="imageSrc !=null" id="uploadImageSrc" ng-src="{{imageSrc}}" style="border: 1px solid; height: 200px !important; width: 200px !important;" />
+                                                <img ng-if="imageSrc !=null" id="uploadImageSrc" ng-src="@{{imageSrc}}" style="border: 1px solid; height: 200px !important; width: 200px !important;" />
                                             </div>
                                             <input type="file" id="uploadImage" title="Upload Image" ng-file-select="onFileSelect($files)" class="upload fileinput btn-primary" file-upload multiple />
                                         </div>
@@ -79,7 +79,7 @@
                                     <div class="row">
                                         <div class="form-horizontal">
                                             <div class="col-md-12">
-                                                <span>Total Post: </span> <i class="badge badge-success">{{addvertiseListSearchParameters.Total_Count}}</i>
+                                                <span>Total Post: </span> <i class="badge badge-success">@{{addvertiseListSearchParameters.Total_Count}}</i>
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
@@ -97,12 +97,12 @@
                                                             <td>
                                                                 <div>
                                                                     <img ng-if="x.TempSrc===null || x.TempSrc===''" src="~/Images/default.jpg" class=" image img-thumbnail img-circle" style="width:11%" />
-                                                                    <img ng-if="x.TempSrc !=''" id="uploadImageSrc" ng-src="{{x.TempSrc}}" class=" image img-thumbnail img-circle" style="width:11%" alt="{{x.Title}}" />
+                                                                    <img ng-if="x.TempSrc !=''" id="uploadImageSrc" ng-src="@{{x.TempSrc}}" class=" image img-thumbnail img-circle" style="width:11%" alt="@{{x.Title}}" />
                                                                 </div>
                                                             </td>
-                                                            <td>{{x.Title}}</td>
-                                                            <td>{{x.Description}}</td>
-                                                            <td>{{x.AddvertiseCategoryName}}</td>
+                                                            <td>@{{x.Title}}</td>
+                                                            <td>@{{x.Description}}</td>
+                                                            <td>@{{x.AddvertiseCategoryName}}</td>
                                                             <td><a href="#" ng-click="postDetail(x)" class="btn single-small-btn btn-primary">Detail</a></td>
                                                             <td><a href="#" ng-click="getEditData(x)" class="btn single-small-btn btn-primary">Edit</a></td>
                                                             <td><a href="#" ng-click="deleteAdd($index,x.Id)" class="btn single-small-btn btn-primary">Delete</a></td>
@@ -147,10 +147,10 @@
                         <div class="col-md-12">
                             <div class="post-item">
                                 <div class="post-title">
-                                    {{postDetailOb.Title}}
+                                    @{{postDetailOb.Title}}
                                 </div>
                                 <div class="post-text">
-                                    <img src="{{postDetailOb.TempSrc}}" class="img-responsive img-text" style="height:225px" />
+                                    <img src="@{{postDetailOb.TempSrc}}" class="img-responsive img-text" style="height:225px" />
                                     <p compile="postDetailOb.Description"></p>
                                 </div>
                             </div>
@@ -216,7 +216,7 @@
                                         <div class="col-md-6 col-xs-12">
                                             <div>
                                                 <img ng-if="postDataForEdit.imageSrc===null" src="~/Images/default.jpg" class="profileImage" />
-                                                <img ng-if="postDataForEdit.imageSrc !=null" id="uploadImageSrc" ng-src="{{postDataForEdit.imageSrc}}" style=" border: 1px solid; height: 200px; width: 200px;" />
+                                                <img ng-if="postDataForEdit.imageSrc !=null" id="uploadImageSrc" ng-src="@{{postDataForEdit.imageSrc}}" style=" border: 1px solid; height: 200px; width: 200px;" />
                                             </div>
                                             <input type="file" id="uploadImage" title="Upload Image" ng-file-select="onFileSelect($files)" class="upload fileinput btn-primary" file-upload multiple />
                                         </div>
