@@ -32,4 +32,7 @@ class HomeController extends Controller
     public function viewProfile(){
         return view('panel.profile.view_profile');
     }
+    public function viewUpload(){
+        return view('panel.upload.view_upload');
+    }
 }
