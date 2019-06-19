@@ -93,18 +93,19 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
     $scope.getDistrict = function () {
         $http({
             method: 'GET',
-            url: '/Home/GetDistrict'
+            url: 'api/GetDistrict'
         }).then(function successCallback(response) {
             $scope.districtList = response.data;
             $scope.getThana();
         })
     }
+    $scope.getDistrict();
     $scope.thanaList = [];
     $scope.getThana = function () {
         if ($scope.editUserProfile.DistrictId !== null) {
             $http({
                 method: 'GET',
-                url: '/Home/GetThana?districtId=' + $scope.editUserProfile.DistrictId
+                url: '/api/GetThana?districtId=' + $scope.editUserProfile.DistrictId
             }).then(function successCallback(response) {
                 $scope.thanaList = response.data;
                 $scope.getPoliceStation();
@@ -115,7 +116,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
     $scope.getPoliceStation = function () {
         $http({
             method: 'GET',
-            url: '/Home/GetPoliceStation?thanaId=' + $scope.editUserProfile.ThanaId + '&districtId=' + $scope.editUserProfile.DistrictId
+            url: '/api/GetPoliceStation?thanaId=' + $scope.editUserProfile.ThanaId + '&districtId=' + $scope.editUserProfile.DistrictId
         }).then(function successCallback(response) {
             $scope.policeStationList = response.data;
             $scope.getVillage();

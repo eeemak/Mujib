@@ -67,7 +67,7 @@
                                         <label class="col-md-3 col-xs-12 control-label">District</label>
                                         <div class="col-md-6 col-xs-12">
                                             <select class="form-control select" ng-model="editUserProfile.DistrictId"
-                                                    ng-options="item.Value as item.Text for item in districtList" id="DistrictId"
+                                                    ng-options="item.id as item.name for item in districtList" id="DistrictId"
                                                     name="District" ng-change="getThana()">
                                                 <option value="">Select One</option>
                                             </select>
@@ -77,7 +77,7 @@
                                         <label class="col-md-3 col-xs-12 control-label">Thana</label>
                                         <div class="col-md-6 col-xs-12">
                                             <select class="form-control select" ng-model="editUserProfile.ThanaId"
-                                                    ng-options="item.Value as item.Text for item in thanaList" id="ThanaId"
+                                                    ng-options="item.id as item.name for item in thanaList" id="ThanaId"
                                                     name="Thana" ng-change="getPoliceStation()">
                                                 <option value="">Select One</option>
                                             </select>
@@ -87,7 +87,7 @@
                                         <label class="col-md-3 col-xs-12 control-label">Union</label>
                                         <div class="col-md-6 col-xs-12">
                                             <select class="form-control select" ng-model="editUserProfile.PoliceStationId"
-                                                    ng-options="item.Value as item.Text for item in policeStationList" id="PoliceStationId"
+                                                    ng-options="item.id as item.name for item in policeStationList" id="PoliceStationId"
                                                     name="Thana" ng-change="getVillage()">
                                                 <option value="">Select One</option>
                                             </select>

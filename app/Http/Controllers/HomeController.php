@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Session;
+use App\Model\District;
+use App\Model\Thana;
 
 class HomeController extends Controller
 {
@@ -34,15 +36,18 @@ class HomeController extends Controller
     }
     public function GetDistrict()
     {
-        return [];
+        $districts = District::all();
+        return response()->json($districts);
     }
-    public function GetThana($districtId)
+    public function GetThana(Request $request)
     {
-        return [];
+        $thanas = Thana::where('district_id', $request->districtId)->get();
+        return response()->json($thanas);
     }
-    public function GetPoliceStation($thanaId, $districtId)
+    public function GetPoliceStation(Request $request)
     {
-        return [];
+        $policestations = Thana::where('thana_id', $request->thanaId)->get();
+        return response()->json($policestations);
     }
 
     public function GetVillage($policeStationId, $thanaId, $districtId)
