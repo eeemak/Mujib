@@ -89,6 +89,16 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
     $scope.getProfessionType();
 
     //**************AdvanceSearch****************/
+    $scope.test = [];
+    $scope.getTest = function () {
+        $http({
+            method: 'GET',
+            url: '/AdminDashboardHome/getBooks'
+        }).then(function successCallback(response) {
+            $scope.test = response.data;
+        })
+    }
+    $scope.getTest();
     $scope.districtList = [];
     $scope.getDistrict = function () {
         $http({
