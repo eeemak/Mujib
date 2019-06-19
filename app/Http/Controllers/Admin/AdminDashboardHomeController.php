@@ -13,15 +13,15 @@ class AdminDashboardHomeController extends Controller
         return redirect()->route('dashboard');
     }
     public function dashboard(){
-        $view = view('panel.layout.dashboard');
+        $view = view('panel.layout.adminDashboard.dashboard');
         $view->with('ControllerName', "EmployeeController");
         return $view;
     }
 
     public function viewProfile(){
-        return view('panel.profile.view_profile');
+        return view('panel.layout.adminDashboard.profile.view_profile');
     }
     public function viewUpload(){
-        return view('panel.upload.view_upload');
+        return view('panel.layout.adminDashboard.upload.view_upload');
     }
 }

@@ -1,4 +1,4 @@
-@extends('panel.layout.AdminDashboard.master')
+@extends('panel.layout.adminDashboard.master')
 @section('content')
-    Dashboard Works! {{$controller}}
+    Dashboard Works! {{$ControllerName}}
 @endsection

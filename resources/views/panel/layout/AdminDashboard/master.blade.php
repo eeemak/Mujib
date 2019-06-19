@@ -20,14 +20,14 @@
         <div class="page-container">
             
             <!-- START PAGE SIDEBAR -->
-            @include('panel.layout.sidebar')
+            @include('panel.layout.adminDashboard.sidebar')
             <!-- END PAGE SIDEBAR -->
             
             <!-- PAGE CONTENT -->
             <div class="page-content">
                 
                 <!-- START X-NAVIGATION VERTICAL -->
-                @include('panel.layout.header')
+                @include('panel.layout.adminDashboard.header')
                 <!-- END X-NAVIGATION VERTICAL -->                   
                 
                 @yield('content')
