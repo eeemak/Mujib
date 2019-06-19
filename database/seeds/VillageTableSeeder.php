@@ -11,6 +11,6 @@ class VillageTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        PoliceStation::create(['id'=>'2','district_id'=>'','thana_id'=>'','police_stations_id'=>'','name' => '']);
     }
 }
