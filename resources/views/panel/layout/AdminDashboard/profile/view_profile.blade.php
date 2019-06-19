@@ -42,7 +42,7 @@
                                     <div class="col-md-6 col-xs-12">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                            <input type="text" class="form-control" ng-model="editUserProfile.FullName" placeholder="Input your name" />
+                                            <input type="text" class="form-control" value="{{ $user->full_name }}" placeholder="Input your name" />
                                         </div>
                                     </div>
                                     <span class="text-danger"><i class="fa fa-star"></i></span>
@@ -50,7 +50,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 col-xs-12 control-label">Parmanent Address</label>
                                     <div class="col-md-6 col-xs-12">
-                                        <textarea class="form-control" rows="5" ng-model="editUserProfile.PermanentAddress" readonly></textarea>
+                                        <textarea class="form-control" rows="5"  value="{{ $user->parmanentAddress }}" readonly></textarea>
                                     </div>
                                     <span class="text-danger"><i class="fa fa-star"></i></span>
                                 </div>

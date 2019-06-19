@@ -21,6 +21,8 @@ class AdminDashboardHomeController extends Controller
     public function viewProfile(){
         $view = view('panel.layout.adminDashboard.profile.view_profile');
         $view->with('ControllerName','AdminDashboardController');
+        $user = Auth::user();
+        $view->with('user', $user);
         return $view;
     }
     public function viewUpload(){
