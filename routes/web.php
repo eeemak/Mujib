@@ -18,7 +18,7 @@ Route::group(['middleware' => 'guest'], function () {
 });
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/logout', ['as' => 'logout', 'uses' => 'HomeController@logout']);
-    Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'HomeController@dashboard']);
-    Route::get('profile', ['as' => 'profile', 'uses' => 'HomeController@viewProfile']);
-    Route::get('upload', ['as' => 'upload', 'uses' => 'HomeController@viewUpload']);
+    Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'AdminDashboardHomeController@dashboard']);
+    Route::get('profile', ['as' => 'profile', 'uses' => 'AdminDashboardHomeController@viewProfile']);
+    Route::get('upload', ['as' => 'upload', 'uses' => 'AdminDashboardHomeController@viewUpload']);
 });

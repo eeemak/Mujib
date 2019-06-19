@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="adminPanelApp">
     <head>        
         <!-- META SECTION -->
         <title>NetaBD</title>            
@@ -12,9 +12,10 @@
                         
         <!-- CSS INCLUDE -->        
         <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/css/theme-default.css')}}"/>
+            <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/css/dashBoardCustom.css')}}"/>
         <!-- EOF CSS INCLUDE -->                 
     </head>
-    <body>
+    <body id="page-top" ng-controller="{{$ControllerName}}">
         <!-- START PAGE CONTAINER -->
         <div class="page-container">
             
@@ -69,6 +70,17 @@
         <script type="text/javascript" src="{{asset('assets/js/plugins.js')}}"></script>        
         <script type="text/javascript" src="{{asset('assets/js/actions.js')}}"></script>        
         <!-- END TEMPLATE -->
+        <!--Start Angular Ctrl-->
+    <script  type="text/javascript" src="{{asset('assets/js/angular-route.min.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('assets/js/angular-cookies.min.js')}}"></script>
+     <script  type="text/javascript" src="{{asset('js/dirPagination.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/adminDashboardController.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/userManageController.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/addManageController.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/adminVideoAlbumController.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/adminPhotoAlbumController.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/Apps/adminPanelApp.js')}}"></script>
+    <!--End Angular Ctrl-->
     <!-- END SCRIPTS -->                   
     </body>
 </html>

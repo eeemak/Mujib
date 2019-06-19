@@ -8,11 +8,14 @@ use Session;
 
 class HomeController extends Controller
 {
+    
     public function index(){
         return redirect()->route('dashboard');
     }
     public function dashboard(){
-        return view('panel.layout.dashboard');
+        $view = view('panel.layout.dashboard');
+        $view->with('controller', "EmployeeController");
+        return $view;
     }
     public function login(){
         return view('panel.layout.login');
@@ -29,10 +32,5 @@ class HomeController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
-    public function viewProfile(){
-        return view('panel.profile.view_profile');
-    }
-    public function viewUpload(){
-        return view('panel.upload.view_upload');
-    }
+
 }
