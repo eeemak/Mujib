@@ -73,13 +73,13 @@
         <!--Start Angular Ctrl-->
     <script  type="text/javascript" src="{{asset('assets/js/angular-route.min.js')}}"></script>
     <script  type="text/javascript" src="{{asset('assets/js/angular-cookies.min.js')}}"></script>
-     <script  type="text/javascript" src="{{asset('js/dirPagination.js')}}"></script>
-    <script  type="text/javascript" src="{{asset('js/adminDashboardController.js')}}"></script>
-    <script  type="text/javascript" src="{{asset('js/userManageController.js')}}"></script>
-    <script  type="text/javascript" src="{{asset('js/addManageController.js')}}"></script>
-    <script  type="text/javascript" src="{{asset('js/adminVideoAlbumController.js')}}"></script>
-    <script  type="text/javascript" src="{{asset('js/adminPhotoAlbumController.js')}}"></script>
-    <script  type="text/javascript" src="{{asset('js/Apps/adminPanelApp.js')}}"></script>
+     <script  type="text/javascript" src="{{asset('js/adminDashboard/dirPagination.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/adminDashboard/adminDashboardController.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/adminDashboard/userManageController.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/adminDashboard/addManageController.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/adminDashboard/adminVideoAlbumController.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/adminDashboard/adminPhotoAlbumController.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/adminDashboard/Apps/adminPanelApp.js')}}"></script>
     <!--End Angular Ctrl-->
     <!-- END SCRIPTS -->                   
     </body>
