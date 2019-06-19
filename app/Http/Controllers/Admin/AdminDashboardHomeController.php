@@ -34,5 +34,27 @@ class AdminDashboardHomeController extends Controller
         //Todo:: Get Profession will return all proffesion data;
         return [];
       }
-
+      public function GetUserInstructionList()
+      {
+        //Todo:: Id will get from login session and data will retun along with this id
+          return [];
+      }
+      public function GetUserMobileList()
+      {
+        //Todo:: Id will get from login session and data will retun along with this id
+        return [];
+      }
+      public function GetUserFileModelById()
+      {
+        //Todo:: Id will get from login session and data will retun along with this id
+        return [];
+      }
+      public function UploadProfileImage()
+      {
+          return;
+      }
+    //   public function UpdateUser(UserProfile model, List<UserInstitutions> userInstructions, List<UserMobile> userMobile, List<EmailLink> emailLink, List<FamilyAndFriendPhone> familyAndFriendPhone, List<SocialLink> socialLink, List<UserLink> userLink)
+    //   {
+    //      return;
+    //   }
 }
