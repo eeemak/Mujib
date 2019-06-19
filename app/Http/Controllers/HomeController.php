@@ -30,7 +30,10 @@ class HomeController extends Controller
         return redirect()->route('login');
     }
     public function viewProfile(){
-        return view('panel.profile.view_profile');
+        $view = view('panel.profile.view_profile');
+        $user = Auth::user();
+        $view->with('user', $user);
+        return $view;
     }
     public function viewUpload(){
         return view('panel.upload.view_upload');
