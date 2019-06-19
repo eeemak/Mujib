@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="adminPanelApp">
     <head>        
         <!-- META SECTION -->
         <title>NetaBD</title>            
@@ -12,21 +12,22 @@
                         
         <!-- CSS INCLUDE -->        
         <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/css/theme-default.css')}}"/>
+            <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/css/dashBoardCustom.css')}}"/>
         <!-- EOF CSS INCLUDE -->                 
     </head>
-    <body>
+    <body id="page-top" ng-controller="{{$ControllerName}}">
         <!-- START PAGE CONTAINER -->
         <div class="page-container">
             
             <!-- START PAGE SIDEBAR -->
-            @include('panel.layout.sidebar')
+            @include('panel.layout.adminDashboard.sidebar')
             <!-- END PAGE SIDEBAR -->
             
             <!-- PAGE CONTENT -->
             <div class="page-content">
                 
                 <!-- START X-NAVIGATION VERTICAL -->
-                @include('panel.layout.header')
+                @include('panel.layout.adminDashboard.header')
                 <!-- END X-NAVIGATION VERTICAL -->                   
                 
                 @yield('content')
@@ -49,6 +50,7 @@
         <script type="text/javascript" src="{{asset('assets/js/plugins/jquery/jquery.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('assets/js/plugins/jquery/jquery-ui.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('assets/js/plugins/bootstrap/bootstrap.min.js')}}"></script>                
+        <script type="text/javascript" src="{{asset('assets/js/angular.js')}}"></script>                
         <!-- END PLUGINS -->
         
         <!-- THIS PAGE PLUGINS -->
@@ -69,6 +71,17 @@
         <script type="text/javascript" src="{{asset('assets/js/plugins.js')}}"></script>        
         <script type="text/javascript" src="{{asset('assets/js/actions.js')}}"></script>        
         <!-- END TEMPLATE -->
+        <!--Start Angular Ctrl-->
+    <script  type="text/javascript" src="{{asset('assets/js/angular-route.min.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('assets/js/angular-cookies.min.js')}}"></script>
+     <script  type="text/javascript" src="{{asset('assets/js/dirPagination.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/adminDashboard/adminDashboardController.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/adminDashboard/userManageController.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/adminDashboard/addManageController.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/adminDashboard/adminVideoAlbumController.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/adminDashboard/adminPhotoAlbumController.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/adminDashboard/Apps/adminPanelApp.js')}}"></script>
+    <!--End Angular Ctrl-->
     <!-- END SCRIPTS -->                   
     </body>
 </html>

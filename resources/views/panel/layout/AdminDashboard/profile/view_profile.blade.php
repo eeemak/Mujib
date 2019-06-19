@@ -1,4 +1,4 @@
-@extends('panel.layout.master')
+@extends('panel.layout.AdminDashboard.master')
 @section('content')
 <div class="row">
     <div class="col-md-12">

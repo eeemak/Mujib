@@ -8,11 +8,14 @@ use Session;
 
 class HomeController extends Controller
 {
+    
     public function index(){
         return redirect()->route('dashboard');
     }
     public function dashboard(){
-        return view('panel.layout.dashboard');
+        $view = view('panel.layout.dashboard');
+        $view->with('controller', "EmployeeController");
+        return $view;
     }
     public function login(){
         return view('panel.layout.login');
@@ -29,13 +32,21 @@ class HomeController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
-    public function viewProfile(){
-        $view = view('panel.profile.view_profile');
-        $user = Auth::user();
-        $view->with('user', $user);
-        return $view;
+    public function GetDistrict()
+    {
+        return [];
     }
-    public function viewUpload(){
-        return view('panel.upload.view_upload');
+    public function GetThana($districtId)
+    {
+        return [];
+    }
+    public function GetPoliceStation($thanaId, $districtId)
+    {
+        return [];
+    }
+
+    public function GetVillage($policeStationId, $thanaId, $districtId)
+    {
+        return [];
     }
 }
