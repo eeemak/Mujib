@@ -32,5 +32,21 @@ class HomeController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
+    public function GetDistrict()
+    {
+        return [];
+    }
+    public function GetThana($districtId)
+    {
+        return [];
+    }
+    public function GetPoliceStation($thanaId, $districtId)
+    {
+        return [];
+    }
 
+    public function GetVillage($policeStationId, $thanaId, $districtId)
+    {
+        return [];
+    }
 }

@@ -26,4 +26,13 @@ class AdminDashboardHomeController extends Controller
     public function viewUpload(){
         return view('panel.layout.adminDashboard.upload.view_upload');
     }
+    public function GetUserById(){
+      //Todo:: Id will get from login session and data will retun along with this id
+      return [];
+    }
+    public function GetProfessionTypeCbo(){
+        //Todo:: Get Profession will return all proffesion data;
+        return [];
+      }
+
 }

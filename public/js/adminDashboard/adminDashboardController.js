@@ -1,7 +1,7 @@
 ﻿'use strict';
 AdminDashboardController.$inject = ['$scope', '$rootScope', '$http', '$location', '$routeParams', '$cookies', '$cookieStore', '$filter'];
 function AdminDashboardController($scope, $rootScope, $http, $location, $routeParams, $cookies, $cookieStore, $filter) {
-    $scope.title = "User Dashboard";
+    $scope.title = "Admin Dashboard";
     $scope.userMobileList = [];
     $scope.userInstituteList = [];
     $scope.userLinkList = [];
@@ -11,7 +11,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
     $scope.userEmailList = [];
     $scope.userCardList = [];
     $scope.editUserProfile = {
-        Id:null,
+        Id: null,
         FullName: null,
         PermanentAddress: null,
         PresentAddress: null,
@@ -20,9 +20,10 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
         ThanaId: null,
         PoliceStationId: null,
         VillageId: null,
-        VillageName:null,
+        VillageName: null,
         Phone: null,
-        EmailId:null,
+        PhoneUpdateCount: 0,
+        EmailId: null,
 
         NIDNo: null,
         NIdFileName: null,
@@ -45,21 +46,28 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
         TaxtLicenseNo: null,
         TaxtLicenseFileName: null,
         TaxtLicenseFileNo: null,
-        PhotoPath:''
+        PhotoPath: ''
     }
-
+    $scope.changePassOb = {
+        OldPassword: null,
+        NewPassword: null,
+        NewPasswordConfirm: null
+    }
+    $scope.changeUserIdOb = {
+        Phone: null
+    }
     $scope.getUserInfoById = function () {
         $http({
             method: 'GET',
             url: '/UserDashboard/GetUserById'
         }).then(function successCallback(response) {
             $scope.editUserProfile = response.data;
+            $scope.changeUserIdOb.Phone = $scope.editUserProfile.Phone;
+            $rootScope.userUniquePhotoPath = response.data.PhotoPath;
             $scope.getDistrict();
             $scope.getUserInstructionById();
             $scope.getUserMobileById();
-            $scope.getEmailLinkById();
             $scope.getFamilyAndFriendPhoneById();
-            $scope.getUserLinkById();
             $scope.getSocialLinkById();
             $scope.getUserFileById();
             if (response.data === "") {
@@ -79,6 +87,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
         })
     }
     $scope.getProfessionType();
+
     //**************AdvanceSearch****************/
     $scope.districtList = [];
     $scope.getDistrict = function () {
@@ -126,7 +135,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
             method: 'GET',
             url: '/UserDashboard/GetUserInstructionList'
         }).then(function successCallback(response) {
-            if (response.data !=='') {
+            if (response.data !== '') {
                 $scope.userInstituteList = response.data;
             }
         })
@@ -141,16 +150,6 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
             }
         })
     }
-    $scope.getEmailLinkById = function () {
-        $http({
-            method: 'GET',
-            url: '/UserDashboard/GetEmailLinkList'
-        }).then(function successCallback(response) {
-            if (response.data !== '') {
-                $scope.userEmailList = response.data;
-            }
-        })
-    }
     $scope.getFamilyAndFriendPhoneById = function () {
         $http({
             method: 'GET',
@@ -158,16 +157,6 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
         }).then(function successCallback(response) {
             if (response.data !== '') {
                 $scope.familyAndFriendsNoList = response.data;
-            }
-        })
-    }
-    $scope.getUserLinkById = function () {
-        $http({
-            method: 'GET',
-            url: '/UserDashboard/GetUserLinkList'
-        }).then(function successCallback(response) {
-            if (response.data !== '') {
-                $scope.userLinkList = response.data;
             }
         })
     }
@@ -215,7 +204,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
             Position: null,
             JoiningDate: null,
             EndDate: null,
-            Address:null,
+            Address: null,
             UserId: $scope.editUserProfile.Id
         });
     }
@@ -242,35 +231,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
     }
 
     //----------------
-    $scope.addUserEmail = function () {
-        $scope.userEmailList.push({
-            Id: null,
-            Email: null,
-            UserId: $scope.editUserProfile.Id
-        });
-    }
-    if ($scope.addUserEmail.length < 1) {
-        $scope.addUserEmail();
-    }
-    $scope.deleteUserEmail = function (index) {
-        $scope.userEmailList.splice(index, 1);
-    }
-    //----------------
-    $scope.addUserLink = function () {
-        $scope.userLinkList.push({
-            Id: null,
-            Title: null,
-            Link:null,
-            UserId: $scope.editUserProfile.Id
-        });
-    }
-    if ($scope.userLinkList.length < 1) {
-        $scope.addUserLink();
-    }
-    $scope.deleteUserLink = function (index) {
-        $scope.userLinkList.splice(index, 1);
-    }
-    //----------------
+
     $scope.addUserSocialLink = function () {
         $scope.userSocialLinkList.push({
             Id: null,
@@ -304,20 +265,81 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
                 , 'socialLink': $scope.userSocialLinkList
                 , 'userLink': $scope.userLinkList
             },
-                dataType: "json"
+            dataType: "json"
         }).then(function successCallback(response) {
             if (response.data.Error === true) {
-                myFunction(response.data.Message);
+                //myFunction(response.data.Message);
+                noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
             }
             else {
-                myFunction(response.data.Message);
-                ClearFields();
+                noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
             }
         }), function errorCallBack(response) {
             ShowResult(response.data.Message, 'failure');
         }
     }
-
+    $scope.changePassword = function () {
+        if ($scope.changePassOb.OldPassword === null) {
+            return noty({ text: "Old Password require!", layout: 'topRight', type: 'error' });
+        }
+        if ($scope.changePassOb.NewPassword === null) {
+            return noty({ text: "New Password require!", layout: 'topRight', type: 'error' });
+        }
+        if ($scope.changePassOb.NewPassword !== $scope.changePassOb.NewPasswordConfirm) {
+            return noty({ text: "New Password and new ConfirmPassword does not match", layout: 'topRight', type: 'error' });
+        }
+        $scope.$broadcast('show-errors-check-validity');
+        if ($scope.passwrodChangeForm.$valid) {
+            $http({
+                method: "post",
+                url: '/Account/ChangePassword/',
+                data: { 'model': $scope.changePassOb },
+                dataType: "json"
+            }).then(function successCallback(response) {
+                if (response.data.Error === true) {
+                    //myFunction(response.data.Message);
+                    noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
+                }
+                else {
+                    noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
+                    $scope.changePassOb = {
+                        OldPassword: null,
+                        NewPassword: null,
+                        NewPasswordConfirm: null
+                    }
+                }
+            }), function errorCallBack(response) {
+                showResult(response.data.Message, 'failure');
+            }
+        }
+    }
+    $scope.changeUserId = function () {
+        if ($scope.changeUserIdOb.Phone === null) {
+            return noty({ text: "Phone require!", layout: 'topRight', type: 'error' });
+        }
+        $scope.$broadcast('show-errors-check-validity');
+        if ($scope.userIdChangeForm.$valid) {
+            $http({
+                method: "post",
+                url: '/Account/ChangeUserId/',
+                data: { 'phone': $scope.changeUserIdOb.Phone },
+                dataType: "json"
+            }).then(function successCallback(response) {
+                if (response.data.Error === true) {
+                    //myFunction(response.data.Message);
+                    noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
+                }
+                else {
+                    noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
+                    $scope.changeUserIdOb = {
+                        Phone: null
+                    }
+                }
+            }), function errorCallBack(response) {
+                showResult(response.data.Message, 'failure');
+            }
+        }
+    }
     $scope.uploadDocument = function () {
         var fileD = $("#docs").get(0);
         $scope.fileDoc = fileD.files;
@@ -374,6 +396,9 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
                 if (imgSrc !== null) {
                     $(".profileImage").attr('src', "");
                     $(".profileImage").attr('src', imgSrc);
+                    $scope.editUserProfile.PhotoPath = '';
+                    $scope.editUserProfile.PhotoPath = imgSrc;
+                    $rootScope.userUniquePhotoPath = imgSrc;
                     //$scope.GetPerson();
                 }
             },
@@ -392,6 +417,6 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
         $scope.dwonloadUrl = null;
         var str = data.FileName;
         var extention = str.substr(str.indexOf('.'));
-        $scope.dwonloadUrl = '/UploadFiles/UsersFileDoc/'+data.FileId+extention;
+        $scope.dwonloadUrl = '/UploadFiles/UsersFileDoc/' + data.FileId + extention;
     };
 };
