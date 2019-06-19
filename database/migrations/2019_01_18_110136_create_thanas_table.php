@@ -14,7 +14,7 @@ class CreateThanasTable extends Migration
     public function up()
     {
         Schema::create('thanas', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->int('id');
             $table->string('name');
             $table->bigInteger('district_id')->unsigned();
             $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
