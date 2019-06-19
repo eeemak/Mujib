@@ -19,7 +19,9 @@ class AdminDashboardHomeController extends Controller
     }
 
     public function viewProfile(){
-        return view('panel.layout.adminDashboard.profile.view_profile');
+        $view = view('panel.layout.adminDashboard.profile.view_profile');
+        $view->with('ControllerName','UserDashboardController');
+        return $view;
     }
     public function viewUpload(){
         return view('panel.layout.adminDashboard.upload.view_upload');
