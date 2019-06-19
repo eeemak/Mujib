@@ -1,19 +1,10 @@
 ﻿'use strict';
-var adminPanelApp = angular.module('adminPanelApp', ['ngRoute', 'ngCookies', 'angularUtils.directives.dirPagination', 'summernote']);
-adminPanelApp.controller('MenuController', MenuController)
+var adminPanelApp = angular.module('adminPanelApp', ['ngRoute', 'ngCookies', 'angularUtils.directives.dirPagination']);
 adminPanelApp.controller('AdminDashboardController', AdminDashboardController)
 adminPanelApp.controller('UserManageController', UserManageController)
 adminPanelApp.controller('AddManageController', AddManageController)
 adminPanelApp.controller('AdminVideoAlbumController', AdminVideoAlbumController)
-adminPanelApp.controller('BiggoShomajPostAdminController', BiggoShomajPostAdminController)
-adminPanelApp.controller('KagojBartaPostAdminController', KagojBartaPostAdminController)
-adminPanelApp.controller('GetAttentionPostAdminController', GetAttentionPostAdminController)
-adminPanelApp.controller('EditAdminForumPostController', EditAdminForumPostController)
-adminPanelApp.controller('AdminBlogPostController', AdminBlogPostController)
-adminPanelApp.controller('EditAdminBlogPostController', EditAdminBlogPostController)
-adminPanelApp.controller('DetailAdminPostController', DetailAdminPostController)
 adminPanelApp.controller('AdminPhotoAlbumController', AdminPhotoAlbumController)
-adminPanelApp.controller('AdminForumPostController', AdminForumPostController)
 adminPanelApp.directive('datepicker', datepicker)
 adminPanelApp.directive('ngFileSelect', ngFileSelect)
 adminPanelApp.directive('loader', loader)

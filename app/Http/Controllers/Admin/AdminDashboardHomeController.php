@@ -20,7 +20,7 @@ class AdminDashboardHomeController extends Controller
 
     public function viewProfile(){
         $view = view('panel.layout.adminDashboard.profile.view_profile');
-        $view->with('ControllerName','UserDashboardController');
+        $view->with('ControllerName','AdminDashboardController');
         return $view;
     }
     public function viewUpload(){

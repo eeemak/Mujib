@@ -50,6 +50,7 @@
         <script type="text/javascript" src="{{asset('assets/js/plugins/jquery/jquery.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('assets/js/plugins/jquery/jquery-ui.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('assets/js/plugins/bootstrap/bootstrap.min.js')}}"></script>                
+        <script type="text/javascript" src="{{asset('assets/js/angular.js')}}"></script>                
         <!-- END PLUGINS -->
         
         <!-- THIS PAGE PLUGINS -->
@@ -73,7 +74,7 @@
         <!--Start Angular Ctrl-->
     <script  type="text/javascript" src="{{asset('assets/js/angular-route.min.js')}}"></script>
     <script  type="text/javascript" src="{{asset('assets/js/angular-cookies.min.js')}}"></script>
-     <script  type="text/javascript" src="{{asset('js/adminDashboard/dirPagination.js')}}"></script>
+     <script  type="text/javascript" src="{{asset('assets/js/dirPagination.js')}}"></script>
     <script  type="text/javascript" src="{{asset('js/adminDashboard/adminDashboardController.js')}}"></script>
     <script  type="text/javascript" src="{{asset('js/adminDashboard/userManageController.js')}}"></script>
     <script  type="text/javascript" src="{{asset('js/adminDashboard/addManageController.js')}}"></script>
