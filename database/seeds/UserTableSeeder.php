@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Model\UserInstitutions;
 
 class UserTableSeeder extends Seeder
 {
@@ -12,18 +13,37 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-    	User::create([
-            'email' => "admin@example.com",
-            'full_name' => "Admin",
-            'username' => "admin",
-            'password' => bcrypt("admin"),
+        User::insert([
+            [
+                'id' => "1",
+                'email' => "admin@example.com",
+                'full_name' => "Admin",
+                'username' => "admin",
+                'password' => bcrypt("admin"),
+            ],
+            [
+                'id' => "2",
+                'email' => "user@example.com",
+                'full_name' => "User",
+                'username' => "user",
+                'password' => bcrypt("user"),
+            ]
         ]);
-
-    	User::create([
-            'email' => "user@example.com",
-            'full_name' => "User",
-            'username' => "user",
-            'password' => bcrypt("user"),
+        UserInstitutions::insert([
+            [
+                'instituteName' => 'Admin Institute',
+                'position' => 'Administrator',
+                'user_id' => '1',
+                'profession_type_id' => '1',
+                'Address' => 'Dhaka, Bangladesh',
+            ],
+            [
+                'instituteName' => 'User Institute',
+                'position' => 'Mew User',
+                'user_id' => '2',
+                'profession_type_id' => '2',
+                'Address' => 'Dhaka, Bangladesh',
+            ]
         ]);
     }
 }

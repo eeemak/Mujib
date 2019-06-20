@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserInstitutions extends Model
 {
-    //
+    public function profession_type(){
+        return $this->belongsTo(ProfessionType::class, 'profession_type_id');
+    }
 }
