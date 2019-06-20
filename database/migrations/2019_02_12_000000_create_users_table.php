@@ -20,18 +20,20 @@ class CreateUsersTable extends Migration
             $table->integer('district_id')->nullable();
             $table->integer('thana_id')->nullable();
             $table->integer('police_station_id')->nullable();
-            $table->string('parmanentAddress')->nullable()->nullable();
-            $table->string('presentAddress')->nullable();
-            $table->string('aboutSelf')->nullable();
-            $table->string('photoPath')->nullable();
+            $table->integer('village_id')->nullable();
+            $table->string('parmanent_address')->nullable()->nullable();
+            $table->string('present_address')->nullable();
+            $table->string('about_self')->nullable();
+            $table->string('photo_path')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
             $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
             $table->foreign('thana_id')->references('id')->on('thanas')->onDelete('cascade');
             $table->foreign('police_station_id')->references('id')->on('police_stations')->onDelete('cascade');
-            $table->string('addedFromIp')->nullable();
+            $table->foreign('village_id')->references('id')->on('villages')->onDelete('cascade');
+            $table->string('added_from_ip')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }
