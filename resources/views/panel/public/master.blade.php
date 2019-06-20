@@ -25,7 +25,7 @@
     <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/themes/Gob/themes/respoxnsive_npf/stylesheets/bacse.css')}}"/>
     <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/themes/Gob/themes/responsive_npf/stylesheets/skeleton.css')}}"/>
     <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/themes/Gob/themes/responsive_npf/stylesheets/style.css')}}"/>
-    <link type="text/css" rel="stylesheet" media="all" href="~/Content/themes/Gob/themes/responsive_npf/stylesheets/meganizr.css" />
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/themes/Gob/themes/responsive_npf/stylesheets/meganizr.css')}}"/>
     <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/themes/Gob/themes/responsive_npf/stylesheets/demo.css')}}"/>
     <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/tchemes/Gob/themes/responsive_npf/templates/ministry/style.css')}}"/>
         <script type="text/javascript" src="{{asset('assets/tchemes/Gob/themes/responsive_npf/js/jquery-1.11.1.min.js')}}"></script>
