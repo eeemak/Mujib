@@ -16,6 +16,8 @@ class CreatePoliceStationsTable extends Migration
         Schema::create('police_stations', function (Blueprint $table) {
             $table->integer('id')->primary();
             $table->string('name');
+            $table->integer('district_id');
+            $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
             $table->integer('thana_id');
             $table->foreign('thana_id')->references('id')->on('thanas')->onDelete('cascade');
             $table->timestamps();
