@@ -59,17 +59,25 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
     $scope.getUserInfoById = function () {
         $http({
             method: 'GET',
-            url: '/UserDashboard/GetUserById'
+            url: '/api/GetUserById'
         }).then(function successCallback(response) {
-            $scope.editUserProfile = response.data;
+            console.log('response', response);
+            $scope.editUserProfile.FullName = response.data.full_name;
+            $scope.editUserProfile.DistrictId = response.data.district_id;
+            $scope.editUserProfile.ThanaId = response.data.thana_id;
+            $scope.editUserProfile.PoliceStationId = response.data.police_station_id;
+            $scope.editUserProfile.VillageId = response.data.village_id;
+            $scope.editUserProfile.PermanentAddress = response.data.parmanent_address;
+            $scope.editUserProfile.PresentAddress = response.data.present_address;
+            $scope.editUserProfile.AboutSelf = response.data.about_self;
             $scope.changeUserIdOb.Phone = $scope.editUserProfile.Phone;
             $rootScope.userUniquePhotoPath = response.data.PhotoPath;
             $scope.getDistrict();
-            $scope.getUserInstructionById();
-            $scope.getUserMobileById();
-            $scope.getFamilyAndFriendPhoneById();
-            $scope.getSocialLinkById();
-            $scope.getUserFileById();
+            // $scope.getUserInstructionById();
+            // $scope.getUserMobileById();
+            // $scope.getFamilyAndFriendPhoneById();
+            // $scope.getSocialLinkById();
+            // $scope.getUserFileById();
             if (response.data === "") {
                 $scope.userFoundByPhone = null;
             }
@@ -81,12 +89,12 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
     $scope.getProfessionType = function () {
         $http({
             method: 'GET',
-            url: '/UserDashboard/GetProfessionTypeCbo'
+            url: '/api/GetProfessionTypeCbo'
         }).then(function successCallback(response) {
             $scope.professionTypeList = response.data;
         })
     }
-    $scope.getProfessionType();
+    // $scope.getProfessionType();
 
     //**************AdvanceSearch****************/
     $scope.test = [];
@@ -98,7 +106,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
             $scope.test = response.data;
         })
     }
-    $scope.getTest();
+    // $scope.getTest();
     $scope.districtList = [];
     $scope.getDistrict = function () {
         $http({
@@ -109,7 +117,6 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
             $scope.getThana();
         })
     }
-    $scope.getDistrict();
     $scope.thanaList = [];
     $scope.getThana = function () {
         if ($scope.editUserProfile.DistrictId !== null) {
@@ -136,7 +143,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
     $scope.getVillage = function () {
         $http({
             method: 'GET',
-            url: '/Home/GetVillage?policeStationId=' + $scope.editUserProfile.PoliceStationId + '&thanaId=' + $scope.editUserProfile.ThanaId + '&districtId=' + $scope.editUserProfile.DistrictId
+            url: '/api/GetVillage?policeStationId=' + $scope.editUserProfile.PoliceStationId + '&thanaId=' + $scope.editUserProfile.ThanaId + '&districtId=' + $scope.editUserProfile.DistrictId
         }).then(function successCallback(response) {
             $scope.villageList = response.data;
         })
@@ -144,7 +151,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
     $scope.getUserInstructionById = function () {
         $http({
             method: 'GET',
-            url: '/UserDashboard/GetUserInstructionList'
+            url: '/api/GetUserInstructionList'
         }).then(function successCallback(response) {
             if (response.data !== '') {
                 $scope.userInstituteList = response.data;
@@ -154,7 +161,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
     $scope.getUserMobileById = function () {
         $http({
             method: 'GET',
-            url: '/UserDashboard/GetUserMobileList'
+            url: '/api/GetUserMobileList'
         }).then(function successCallback(response) {
             if (response.data !== '') {
                 $scope.userMobileList = response.data;
@@ -164,7 +171,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
     $scope.getFamilyAndFriendPhoneById = function () {
         $http({
             method: 'GET',
-            url: '/UserDashboard/GetFamilyAndFriendPhoneList'
+            url: '/api/GetFamilyAndFriendPhoneList'
         }).then(function successCallback(response) {
             if (response.data !== '') {
                 $scope.familyAndFriendsNoList = response.data;
@@ -174,7 +181,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
     $scope.getSocialLinkById = function () {
         $http({
             method: 'GET',
-            url: '/UserDashboard/GetSocialLinkList'
+            url: '/api/GetSocialLinkList'
         }).then(function successCallback(response) {
             if (response.data !== '') {
                 $scope.userSocialLinkList = response.data;
@@ -193,7 +200,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
     $scope.getUserFileById = function () {
         $http({
             method: 'GET',
-            url: '/UserDashboard/GetUserFileModelById'
+            url: '/api/GetUserFileModelById'
         }).then(function successCallback(response) {
             if (response.data !== '') {
                 $scope.userFileList = response.data;
@@ -266,7 +273,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
     $scope.updateUserProfile = function () {
         $http({
             method: 'POST',
-            url: '/UserDashboard/UpdateUser/',
+            url: '/api/UpdateUser/',
             data: {
                 'model': $scope.editUserProfile
                 , 'userInstructions': $scope.userInstituteList
@@ -278,13 +285,15 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
             },
             dataType: "json"
         }).then(function successCallback(response) {
-            if (response.data.Error === true) {
+            alert('Profile Updated Successfully!!!');
+            noty({ text: 'Profile updated successfully!!!', layout: 'topRight', type: 'success' });
+            // if (response.data.Error === true) {
                 //myFunction(response.data.Message);
-                noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
-            }
-            else {
-                noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
-            }
+                // noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
+            // }
+            // else {
+                // noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
+            // }
         }), function errorCallBack(response) {
             ShowResult(response.data.Message, 'failure');
         }
@@ -399,7 +408,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
         }
         $.ajax({
             type: "POST",
-            url: "/UserDashboard/UploadProfileImage",
+            url: "/api/UploadProfileImage",
             contentType: false,
             processData: false,
             data: data,

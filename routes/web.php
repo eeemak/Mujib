@@ -20,11 +20,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/logout', ['as' => 'logout', 'uses' => 'HomeController@logout']);
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'AdminDashboardHomeController@dashboard']);
     Route::get('profile', ['as' => 'profile', 'uses' => 'AdminDashboardHomeController@viewProfile']);
+    Route::group(['prefix' => 'api'], function () {
+        Route::get('/GetUserById', 'AdminDashboardHomeController@GetUserById');
+        Route::get('/GetDistrict', 'HomeController@GetDistrict');
+        Route::get('/GetThana', 'HomeController@GetThana');
+        Route::get('/GetPoliceStation', 'HomeController@GetPoliceStation');
+        Route::get('/GetVillage', 'HomeController@GetVillage');
+        Route::post('/UpdateUser', 'AdminDashboardHomeController@UpdateUser');
+    });
     //=======Admin==========
     Route::group(['middleware' => ['role:admin']], function () {
         Route::get('upload', ['as' => 'upload', 'uses' => 'AdminDashboardHomeController@viewUpload']);
     });
     //=======User==========
-    Route::group(['middleware' => ['role:user']], function () {
-    });
+    Route::group(['middleware' => ['role:user']], function () { });
 });

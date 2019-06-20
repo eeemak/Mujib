@@ -26,7 +26,7 @@ adminPanelApp.run(function ($rootScope, $http) {
         Position: null,
         ProfessionTypeName: null
     };
-    $http.get('/UserDashboard/GetUserById')
+    $http.get('/api/GetUserById')
         .then(function successCallback(response) {
             $rootScope.userUniquePhotoPath = response.data.PhotoPath;
             $rootScope.globalUserInfo.UserId = response.data.Id;
