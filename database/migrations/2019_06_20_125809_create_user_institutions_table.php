@@ -19,10 +19,10 @@ class CreateUserInstitutionsTable extends Migration
             $table->string('position',50)->nullable();
             $table->dateTime('joiningDate')->nullable();
             $table->dateTime('endDate')->nullable();
-            $table->integer('user_id')->nullable();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->bigIncrements('professionType_id')->nullable();
-            $table->foreign('professionType_id')->references('id')->on('professionType')->onDelete('cascade');
+            $table->bigInteger('profession_type_id')->unsigned()->nullable();
+            $table->foreign('profession_type_id')->references('id')->on('profession_types')->onDelete('cascade');
             $table->text('Address')->nullable();
             $table->timestamps();
         });
