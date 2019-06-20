@@ -20,5 +20,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/logout', ['as' => 'logout', 'uses' => 'HomeController@logout']);
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'AdminDashboardHomeController@dashboard']);
     Route::get('profile', ['as' => 'profile', 'uses' => 'AdminDashboardHomeController@viewProfile']);
-    Route::get('upload', ['as' => 'upload', 'uses' => 'AdminDashboardHomeController@viewUpload']);
+    //=======Admin==========
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::get('upload', ['as' => 'upload', 'uses' => 'AdminDashboardHomeController@viewUpload']);
+    });
+    //=======User==========
+    Route::group(['middleware' => ['role:user']], function () {
+    });
 });

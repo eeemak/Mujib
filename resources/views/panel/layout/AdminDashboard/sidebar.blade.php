@@ -30,9 +30,11 @@
         <li class="{{ Request::is('profile') ? 'active':'' }}">
             <a href="{{ route('profile') }}"><span class="fa fa-user"></span> <span class="xn-text">Profile</span></a>
         </li>
+        @role('admin')
         <li class="{{ Request::is('upload') ? 'active':'' }}">
             <a href="{{ route('upload') }}"><span class="fa fa-user"></span> <span class="xn-text">Upload</span></a>
         </li>
+        
         <li class="xn-openable">
             <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Master Data</span></a>
             <ul>
@@ -42,6 +44,7 @@
                 
             </ul>
         </li>
+        @endrole
         <li class="xn-openable">
             <a href="#"><span class="fa fa-file-text-o"></span> <span class="xn-text">Layouts</span></a>
             <ul>

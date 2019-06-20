@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Model\PoliceStation;
 
 class PoliceStationTableSeeder extends Seeder
 {
@@ -88,7 +89,6 @@ class PoliceStationTableSeeder extends Seeder
         PoliceStation::create(['id'=>'81','thana_id'=>'9','district_id'=>'49','name' => 'Loskordiya']);
         PoliceStation::create(['id'=>'82','thana_id'=>'9','district_id'=>'49','name' => 'sonapur']);
         PoliceStation::create(['id'=>'89','thana_id'=>'9','district_id'=>'49','name' => 'kodaliya shoheed nagar']);
-        PoliceStation::create(['id'=>'90','thana_id'=>'9','district_id'=>'49','name' => 'kodaliya shoheed nagar']);
         PoliceStation::create(['id'=>'91','thana_id'=>'9','district_id'=>'49','name' => 'Gotti']);
         PoliceStation::create(['id'=>'92','thana_id'=>'9','district_id'=>'49','name' => 'char joshordi']);
         PoliceStation::create(['id'=>'93','thana_id'=>'9','district_id'=>'49','name' => 'Dangi']);
