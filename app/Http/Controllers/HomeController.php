@@ -7,6 +7,9 @@ use Auth;
 use Session;
 use App\Model\District;
 use App\Model\Thana;
+use App\Model\Village;
+use App\Model\PoliceStation;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -46,12 +49,16 @@ class HomeController extends Controller
     }
     public function GetPoliceStation(Request $request)
     {
-        $policestations = Thana::where('thana_id', $request->thanaId)->get();
+        $policestations = PoliceStation::where('thana_id', $request->thanaId)->get();
         return response()->json($policestations);
     }
 
-    public function GetVillage($policeStationId, $thanaId, $districtId)
+    public function GetVillage(Request $request)
     {
-        return [];
+        $villages = Village::where('police_stations_id', $request->policeStationId)->get();
+        return response()->json($villages);
     }
+    // public function UpdateUser(Request $request){
+    //     return response()->json($request->model['full_name']);
+    // }
 }
