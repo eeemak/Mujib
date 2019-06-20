@@ -1,4 +1,4 @@
-@extends('panel.layout.public.master')
+{{-- @extends('panel.layout.public.master')
 @section('content')
 <div class="twelve columns" id="left-content">
     <div class="row mainwrapper">
@@ -289,4 +289,4 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection --}}
