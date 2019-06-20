@@ -10,6 +10,7 @@ use App\Model\Thana;
 use App\Model\Village;
 use App\Model\PoliceStation;
 use App\User;
+use App\Model\ProfessionType;
 
 class HomeController extends Controller
 {
@@ -57,6 +58,16 @@ class HomeController extends Controller
     {
         $villages = Village::where('police_stations_id', $request->policeStationId)->get();
         return response()->json($villages);
+    }
+    public function GetProfessionTypeCbo()
+    {
+        $professions = ProfessionType::all();
+        return response()->json($professions);
+    }
+    public function GetUserInstructionList()
+    {
+        $user = Auth::user();
+        return response()->json($user->institution);
     }
     // public function UpdateUser(Request $request){
     //     return response()->json($request->model['full_name']);

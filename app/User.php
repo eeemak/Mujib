@@ -40,6 +40,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     public function institution(){
-        return $this->hasOne(UserInstitutions::class);
+        return $this->hasMany(UserInstitutions::class);
     }
 }

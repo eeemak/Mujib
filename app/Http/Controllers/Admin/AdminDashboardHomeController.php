@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Session;
+use App\Model\UserInstitutions;
 
 class AdminDashboardHomeController extends Controller
 {
@@ -70,6 +71,22 @@ class AdminDashboardHomeController extends Controller
     $user->present_address = $request->model['PresentAddress'];
     $user->about_self = $request->model['AboutSelf'];
     $user->update();
+
+    $user_institutions = [];
+    foreach($request->userInstructions as $item){
+      $user_institution = new UserInstitutions();
+      $user_institution->InstituteName = $item['InstituteName'];
+      $user_institution->Position = $item['Position'];
+      $user_institution->JoiningDate =\Carbon\Carbon::parse($item['JoiningDate']);
+      $user_institution->EndDate = \Carbon\Carbon::parse($item['EndDate']);
+      $user_institution->user_id = Auth::id();
+      $user_institution->ProfessionTypeId = $item['ProfessionTypeId'];
+      $user_institution->Address = $item['Address'];
+      $user_institutions[] = $user_institution;
+    }
+    $user->institution()->delete();
+    $user->institution()->saveMany($user_institutions);
+    
     return response()->json('success');
   }
   public function UploadProfileImage()

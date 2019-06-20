@@ -73,7 +73,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
             $scope.changeUserIdOb.Phone = $scope.editUserProfile.Phone;
             $rootScope.userUniquePhotoPath = response.data.PhotoPath;
             $scope.getDistrict();
-            // $scope.getUserInstructionById();
+            $scope.getUserInstructionById();
             // $scope.getUserMobileById();
             // $scope.getFamilyAndFriendPhoneById();
             // $scope.getSocialLinkById();
@@ -94,7 +94,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
             $scope.professionTypeList = response.data;
         })
     }
-    // $scope.getProfessionType();
+    $scope.getProfessionType();
 
     //**************AdvanceSearch****************/
     $scope.test = [];
@@ -285,6 +285,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
             },
             dataType: "json"
         }).then(function successCallback(response) {
+            // console.log(response.data);
             alert('Profile Updated Successfully!!!');
             noty({ text: 'Profile updated successfully!!!', layout: 'topRight', type: 'success' });
             // if (response.data.Error === true) {
