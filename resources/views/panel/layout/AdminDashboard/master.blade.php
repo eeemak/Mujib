@@ -47,7 +47,7 @@
         
     <!-- START SCRIPTS -->
         <!-- START PLUGINS -->
-        <script type="text/javascript" src="{{asset('assets/js/plugins/jquery/jquery.min.js')}}"></script>
+        <script type="text/javascript" src="{{acsset('assets/js/plugins/jquery/jquery.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('assets/js/plugins/jquery/jquery-ui.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('assets/js/plugins/bootstrap/bootstrap.min.js')}}"></script>                
         <script type="text/javascript" src="{{asset('assets/js/angular.js')}}"></script>                

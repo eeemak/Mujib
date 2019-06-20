@@ -26,12 +26,7 @@ class AdminDashboardHomeController extends Controller
     $view->with('ControllerName', 'AdminDashboardController');
     return $view;
   }
-  public function viewUpload()
-  {
-    $view = view('panel.layout.adminDashboard.upload.view_upload');
-    $view->with('ControllerName', "AdminUploadController");
-    return $view;
-  }
+
 
   public function GetUserById()
   {

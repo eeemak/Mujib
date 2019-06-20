@@ -15,7 +15,9 @@ class HomeController extends Controller
 {
     
     public function index(){
-        return redirect()->route('dashboard');
+        $view = view('panel.public.index');
+        $view->with('ControllerName', "HomeController");
+        return $view;
     }
     public function dashboard(){
         $view = view('panel.layout.dashboard');

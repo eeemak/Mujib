@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
     //=======Admin==========
     Route::group(['middleware' => ['role:admin']], function () {
-        Route::get('upload', ['as' => 'upload', 'uses' => 'AdminDashboardHomeController@viewUpload']);
+        Route::get('upload', ['as' => 'upload', 'uses' => 'AdminUploadController@viewUpload']);
     });
     //=======User==========
     Route::group(['middleware' => ['role:user']], function () { });
