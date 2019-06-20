@@ -14,9 +14,9 @@ class CreatePoliceStationsTable extends Migration
     public function up()
     {
         Schema::create('police_stations', function (Blueprint $table) {
-            $table->int('id');
+            $table->integer('id')->primary();
             $table->string('name');
-            $table->bigInteger('thana_id')->unsigned();
+            $table->integer('thana_id');
             $table->foreign('thana_id')->references('id')->on('thanas')->onDelete('cascade');
             $table->timestamps();
         });

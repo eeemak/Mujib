@@ -17,9 +17,9 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('full_name');
             $table->string('username');
-            $table->bigInteger('district_id')->unsigned()->nullable();
-            $table->bigInteger('thana_id')->unsigned()->nullable();
-            $table->bigInteger('police_station_id')->unsigned()->nullable();
+            $table->integer('district_id')->nullable();
+            $table->integer('thana_id')->nullable();
+            $table->integer('police_station_id')->nullable();
             $table->string('parmanentAddress')->nullable()->nullable();
             $table->string('presentAddress')->nullable();
             $table->string('aboutSelf')->nullable();
