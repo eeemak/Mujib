@@ -1,4 +1,4 @@
-{{-- <!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if lt IE 7 ]>
 <html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]>
@@ -20,26 +20,25 @@
     <meta name="description" content="">
 
     <!-- =============== tt canonical End =============================== -->
-    <link href="~/Content/themes/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-    <link type="text/css" rel="stylesheet" media="all" href="~/Content/themes/Gob/themes/responsive_npf/stylesheets/base.css" />
-    <link type="text/css" rel="stylesheet" media="all" href="~/Content/themes/Gob/themes/responsive_npf/stylesheets/skeleton.css" />
-    <link type="text/css" rel="stylesheet" media="all" href="~/Content/themes/Gob/themes/responsive_npf/stylesheets/style.css" />
-    <link type="text/css" rel="stylesheet" media="all" href="~/Content/themes/Gob/themes/responsive_npf/stylesheets/meganizr.css" />
-    <link type="text/css" rel="stylesheet" media="all" href="~/Content/themes/Gob/themes/responsive_npf/stylesheets/demo.css" />
-    @*<link type="text/css" rel="stylesheet" media="all" href="~/Content/themes/Gob/npfadmin/public/css/flaticon/flaticon.css" />*@
-    <link type="text/css" rel="stylesheet" media="all" href="~/Content/themes/Gob/themes/responsive_npf/templates/ministry/style.css" />
-    <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>-->
-    <script type="text/javascript" src="~/Content/themes/Gob/themes/responsive_npf/js/jquery-1.11.1.min.js"></script>
-    <script src="~/Content/themes/bootstrap-3.3.7/js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('css/bootstrap/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/themes/Gob/themes/responsive_npf/stylesheets/base.css')}}"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/themes/Gob/themes/respoxnsive_npf/stylesheets/bacse.css')}}"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/themes/Gob/themes/responsive_npf/stylesheets/skeleton.css')}}"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/themes/Gob/themes/responsive_npf/stylesheets/style.css')}}"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/themes/Gob/themes/responsive_npf/stylesheets/meganizr.css')}}"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/themes/Gob/themes/responsive_npf/stylesheets/demo.css')}}"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/tchemes/Gob/themes/responsive_npf/templates/ministry/style.css')}}"/>
+        <script type="text/javascript" src="{{asset('assets/tchemes/Gob/themes/responsive_npf/js/jquery-1.11.1.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/plugins/bootstrap/bootstrap.min.js')}}"></script>
     <!-- include the jquery-accessibleMegaMenu plugin script -->
-    <script src="~/Content/themes/Gob/themes/responsive_npf/js/jquery-accessibleMegaMenu.js"></script>
+        <script type="text/javascript" src="{{asset('assets/tchemes/Gob/themes/responsive_npf/js/jquery-accessibleMegaMenu.js')}}"></script>
 
-    <link rel="stylesheet" href="~/Content/themes/Gob/themes/responsive_npf/stylesheets/responsiveslides.css">
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/tchemes/Gob/themes/responsive_npf/stylesheets/responsiveslides.css')}}"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/tchemes/Gob/cthemes/responsive_npf/templates/ministry/responsive.css')}}"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/tchemes/Gob/cthemes/responsive_npf/templates/ministry/accessibility.css')}}"/>
 
-    <link rel="stylesheet" href="~/Content/themes/Gob/themes/responsive_npf/templates/ministry/responsive.css">
-    <link rel="stylesheet" href="~/Content/themes/Gob/themes/responsive_npf/templates/ministry/accessibility.css">
-    <script src="~/Content/themes/Gob/themes/responsive_npf/js/responsiveslides.min.js"></script>
-    <script src="~/Content/themes/Gob/themes/responsive_npf/js/jquery.vticker.js" type="text/javascript"></script>
+        <script type="text/javascript" src="{{asset('assets/tchemes/Gob/themes/responsive_npf/js/responsiveslides.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('assets/tchemes/Gob/themes/responsive_npf/js/jquery.vticker.js')}}"></script>
     <link rel="shortcut icon" href="ico/favicon.png" />
 
 
@@ -57,7 +56,7 @@
         }
     </script>
 </head>
-<body class="bangabhaban-portal-gov-bd" oncopy="return OnCopy()" ng-controller="@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()Controller">
+<body class="bangabhaban-portal-gov-bd" oncopy="return OnCopy()" ng-controller="{{$ControllerName}}">
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -98,27 +97,27 @@
                 <ul class="rslides" id="front-image-slider">
                     <li>
 
-                        <img src="~/Content/themes/Gob/images/E0RY0E.jpg" alt="" width="960" height="220" />
+                        <img src="{{URL::asset('assets/tchemes/Gob/images/E0RY0E.jpg')}}" alt="" width="960" height="220" />
 
                     </li>
                     <li>
 
-                        <img src="~/Content/themes/Gob/images/E0YRB0.jpg" alt="" width="960" height="220" />
+                        <img src="{{URL::asset('assets/tchemes/Gob/images/E0YRB0.jpg')}}" alt="" width="960" height="220" />
 
                     </li>
                     <li>
 
-                        <img src="~/Content/themes/Gob/images/E10C30.jpg" alt="" width="960" height="220" />
+                        <img src="{{URL::asset('assets/tchemes/Gob/images/E10C30.jpg')}}" alt="" width="960" height="220" />
 
                     </li>
                     <li>
 
-                        <img src="~/Content/themes/Gob/images/E10EAC.jpg" alt="" width="960" height="220" />
+                        <img src="{{URL::asset('assets/tchemes/Gob/images/E10EAC.jpg')}}" alt="" width="960" height="220" />
 
                     </li>
                     <li>
 
-                        <img src="~/Content/themes/Gob/images/E10J5E.jpg" alt="" width="960" height="220" />
+                        <img src="{{URL::asset('assets/tchemes/Gob/images/E10J5E.jpg')}}" alt="" width="960" height="220" />
 
                     </li>
                 </ul>
@@ -234,7 +233,7 @@
                     <ul class="meganizr mzr-slide mzr-responsive">
                         <!-- Build The Menu -->
                         <li class="col0 ">
-                            <a title="Home" href="/Home/Index" style="background-image: url(/Content/themes/Gob/themes/responsive_npf/img/home_dark.png);margin-top:5px;"></a>
+                            <a title="Home" href="/Home/Index" style="background-image: url('{{asset('assets/tchemes/Gob/responsive_npf/img/home_dark.png')}}');margin-top:5px;"></a>
                         </li>
                         <li class="col1">
                             <a href="#" class="submenu">আপলোড/ডাউনলোড</a>
@@ -280,23 +279,8 @@
                 });
             });
         </script>
-        @*<style>
-            .right-side-bar .block ul li a {
-                font-size: 14px;
-            }
-
-            #notice-board ul a {
-                font-size: 14px;
-            }
-
-            @media screen and (min-width: 1400px) {
-                .mainwrapper .box {
-                    margin-right: 13px
-                }
-            }
-        </style>*@
         <div id="contents" class="sixteen columns">
-            @RenderBody()
+        @yield('content')
         </div>
     </div>
 
@@ -572,19 +556,13 @@
 
 
     <!-- Template Custom JavaScript File -->
-    <script src="~/Scripts/angular.js"></script>
-    <script src="~/Scripts/angular-route.js"></script>
-    <script src="~/Scripts/angular-cookies.js"></script>
-    <script src="~/Scripts/dirPagination.js"></script>
-    @*@Scripts.Render("~/bundles/angular")*@
-    <script src="~/Content/PublicJs/homeController.js"></script>
-    <script src="~/Content/PublicJs/advanceSearchController.js"></script>
-    <script src="~/Content/PublicJs/accountController.js"></script>
-    @*@Scripts.Render("~/bundles/userpanel")*@
-    <script src="~/Scripts/Apps/publicpanelApp.js"></script>
-    @*@Scripts.Render("~/bundles/publicApp")*@
-    @*<script src="~/angularjs/appLayout.js"></script>*@
+    <script type="text/javascript" src="{{asset('assets/js/angular.js')}}"></script>   
+    <script  type="text/javascript" src="{{asset('assets/js/angular-route.min.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('assets/js/angular-cookies.min.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('assets/js/dirPagination.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/publicJs/homeController.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/publicJs/Apps/publicpanelApp.js')}}"></script>
 
     <a id="scrollUp" href="#" style="display: none; position: fixed; z-index: 2147483647;"><i class="fa fa-arrow-up"></i></a>
 </body>
-</html> --}}
+</html>
