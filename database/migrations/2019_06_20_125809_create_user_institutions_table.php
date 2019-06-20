@@ -21,7 +21,7 @@ class CreateUserInstitutionsTable extends Migration
             $table->dateTime('endDate')->nullable();
             $table->integer('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('professionType_id')->nullable();
+            $table->bigIncrements('professionType_id')->nullable();
             $table->foreign('professionType_id')->references('id')->on('professionType')->onDelete('cascade');
             $table->text('Address')->nullable();
             $table->timestamps();
