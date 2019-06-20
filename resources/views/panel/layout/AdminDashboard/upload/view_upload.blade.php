@@ -5,7 +5,7 @@
         <!-- START TABS -->
         <div class="panel panel-default tabs">
             <ul class="nav nav-tabs" role="tablist">
-                <li class="active"><a href="#tab-first" role="tab" data-toggle="tab">Add management</a></li>
+                <li class="active"><a href="#tab-first" role="tab" data-toggle="tab">Upload management</a></li>
             </ul>
             <div class="panel-body tab-content">
                 <div class="tab-pane active" id="tab-first">
