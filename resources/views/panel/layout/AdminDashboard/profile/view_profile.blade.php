@@ -8,8 +8,8 @@
                 <p>Add Your Profile Picture</p>
                 <div class="form-group">
                     <div>
-                        {{-- <img ng-if="editUserProfile.PhotoPath==''" src="~/Images/no_image.png" class="profileImage img-thumbnail" />
-                        <img ng-if="editUserProfile.PhotoPath!=''" src="@{{editUserProfile.PhotoPath}}" class="profileImage img-thumbnail" /> --}}
+                        <img ng-if="editUserProfile.PhotoPatbh==''" src="~/Images/no_image.png" class="profileImage img-thumbnail" />
+                        <img ng-if="editUserProfile.PhotoPath!=''" src="@{{editUserProfile.PhotoPath}}" class="profileImage img-thumbnail" />
                     </div>
                     <div class="col-md-12">
                         <input type="file" id="imageFiles" title="Change Profile Picture" onchange="angular.element(this).scope().uploadImage()" class="upload fileinput btn-primary" file-upload multiple />

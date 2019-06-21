@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Session;
 use App\Model\UserInstitutions;
+use Illuminate\Support\Facades\Storage;
 
 class AdminDashboardHomeController extends Controller
 {
@@ -56,6 +57,7 @@ class AdminDashboardHomeController extends Controller
   }
   public function UpdateUser(Request $request)
   {
+    return $request->input();
     $user = Auth::user();
     $user->full_name = $request->model['FullName'];
     $user->district_id = $request->model['DistrictId'];
@@ -84,9 +86,12 @@ class AdminDashboardHomeController extends Controller
     
     return response()->json('success');
   }
-  public function UploadProfileImage()
+  public function UploadProfileImage(Request $request)
   {
-    return;
+    // return $request->file('file')->getClientOriginalName();
+    $url = Storage::putFile('public/profileImg', $request->file('file'));
+    $url = str_replace('public', 'storage', $url);
+    return $url;
   }
   //   public function UpdateUser(UserProfile model, List<UserInstitutions> userInstructions, List<UserMobile> userMobile, List<EmailLink> emailLink, List<FamilyAndFriendPhone> familyAndFriendPhone, List<SocialLink> socialLink, List<UserLink> userLink)
   //   {
