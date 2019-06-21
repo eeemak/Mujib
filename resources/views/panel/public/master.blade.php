@@ -20,25 +20,25 @@
     <meta name="description" content="">
 
     <!-- =============== tt canonical End =============================== -->
-    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('css/bootstrap/bootstrap.min.css')}}"/>
-    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/themes/Gob/themes/responsive_npf/stylesheets/base.css')}}"/>
-    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/themes/Gob/themes/respoxnsive_npf/stylesheets/bacse.css')}}"/>
-    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/themes/Gob/themes/responsive_npf/stylesheets/skeleton.css')}}"/>
-    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/themes/Gob/themes/responsive_npf/stylesheets/style.css')}}"/>
-    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/themes/Gob/themes/responsive_npf/stylesheets/meganizr.css')}}"/>
-    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/themes/Gob/themes/responsive_npf/stylesheets/demo.css')}}"/>
-    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/tchemes/Gob/themes/responsive_npf/templates/ministry/style.css')}}"/>
-        <script type="text/javascript" src="{{asset('assets/tchemes/Gob/themes/responsive_npf/js/jquery-1.11.1.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('js/plugins/bootstrap/bootstrap.min.js')}}"></script>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/css/bootstrap/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/themes/Gob/themes/responsive_npf/stylesheets/base.css')}}"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/themes/Gob/themes/respoxnsive_npf/stylesheets/bacse.css')}}"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/themes/Gob/themes/responsive_npf/stylesheets/skeleton.css')}}"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/themes/Gob/themes/responsive_npf/stylesheets/style.css')}}"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/themes/Gob/themes/responsive_npf/stylesheets/meganizr.css')}}"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/themes/Gob/themes/responsive_npf/stylesheets/demo.css')}}"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/tchemes/Gob/themes/responsive_npf/templates/ministry/style.css')}}"/>
+        <script type="text/javascript" src="{{asset('assets/assets/tchemes/Gob/themes/responsive_npf/js/jquery-1.11.1.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('assets/js/plugins/bootstrap/bootstrap.min.js')}}"></script>
     <!-- include the jquery-accessibleMegaMenu plugin script -->
-        <script type="text/javascript" src="{{asset('assets/tchemes/Gob/themes/responsive_npf/js/jquery-accessibleMegaMenu.js')}}"></script>
+        <script type="text/javascript" src="{{asset('assets/assets/tchemes/Gob/themes/responsive_npf/js/jquery-accessibleMegaMenu.js')}}"></script>
 
-    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/tchemes/Gob/themes/responsive_npf/stylesheets/responsiveslides.css')}}"/>
-    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/tchemes/Gob/cthemes/responsive_npf/templates/ministry/responsive.css')}}"/>
-    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/tchemes/Gob/cthemes/responsive_npf/templates/ministry/accessibility.css')}}"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/tchemes/Gob/themes/responsive_npf/stylesheets/responsiveslides.css')}}"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/tchemes/Gob/cthemes/responsive_npf/templates/ministry/responsive.css')}}"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/tchemes/Gob/cthemes/responsive_npf/templates/ministry/accessibility.css')}}"/>
 
-        <script type="text/javascript" src="{{asset('assets/tchemes/Gob/themes/responsive_npf/js/responsiveslides.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('assets/tchemes/Gob/themes/responsive_npf/js/jquery.vticker.js')}}"></script>
+        <script type="text/javascript" src="{{asset('assets/assets/tchemes/Gob/themes/responsive_npf/js/responsiveslides.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('assets/assets/tchemes/Gob/themes/responsive_npf/js/jquery.vticker.js')}}"></script>
     <link rel="shortcut icon" href="ico/favicon.png" />
 
 
@@ -97,27 +97,27 @@
                 <ul class="rslides" id="front-image-slider">
                     <li>
 
-                        <img src="{{URL::asset('assets/tchemes/Gob/images/E0RY0E.jpg')}}" alt="" width="960" height="220" />
+                        <img src="{{URL::asset('assets/assets/tchemes/Gob/images/E0RY0E.jpg')}}" alt="" width="960" height="220" />
 
                     </li>
                     <li>
 
-                        <img src="{{URL::asset('assets/tchemes/Gob/images/E0YRB0.jpg')}}" alt="" width="960" height="220" />
+                        <img src="{{URL::asset('assets/assets/tchemes/Gob/images/E0YRB0.jpg')}}" alt="" width="960" height="220" />
 
                     </li>
                     <li>
 
-                        <img src="{{URL::asset('assets/tchemes/Gob/images/E10C30.jpg')}}" alt="" width="960" height="220" />
+                        <img src="{{URL::asset('assets/assets/tchemes/Gob/images/E10C30.jpg')}}" alt="" width="960" height="220" />
 
                     </li>
                     <li>
 
-                        <img src="{{URL::asset('assets/tchemes/Gob/images/E10EAC.jpg')}}" alt="" width="960" height="220" />
+                        <img src="{{URL::asset('assets/assets/tchemes/Gob/images/E10EAC.jpg')}}" alt="" width="960" height="220" />
 
                     </li>
                     <li>
 
-                        <img src="{{URL::asset('assets/tchemes/Gob/images/E10J5E.jpg')}}" alt="" width="960" height="220" />
+                        <img src="{{URL::asset('assets/assets/tchemes/Gob/images/E10J5E.jpg')}}" alt="" width="960" height="220" />
 
                     </li>
                 </ul>
@@ -233,7 +233,7 @@
                     <ul class="meganizr mzr-slide mzr-responsive">
                         <!-- Build The Menu -->
                         <li class="col0 ">
-                            <a title="Home" href="/Home/Index" style="background-image: url('{{asset('assets/tchemes/Gob/responsive_npf/img/home_dark.png')}}');margin-top:5px;"></a>
+                            <a title="Home" href="/Home/Index" style="background-image: url('{{asset('assets/assets/tchemes/Gob/responsive_npf/img/home_dark.png')}}');margin-top:5px;"></a>
                         </li>
                         <li class="col1">
                             <a href="#" class="submenu">আপলোড/ডাউনলোড</a>
@@ -556,12 +556,12 @@
 
 
     <!-- Template Custom JavaScript File -->
-    <script type="text/javascript" src="{{asset('assets/js/angular.js')}}"></script>   
-    <script  type="text/javascript" src="{{asset('assets/js/angular-route.min.js')}}"></script>
-    <script  type="text/javascript" src="{{asset('assets/js/angular-cookies.min.js')}}"></script>
-    <script  type="text/javascript" src="{{asset('assets/js/dirPagination.js')}}"></script>
-    <script  type="text/javascript" src="{{asset('js/publicJs/homeController.js')}}"></script>
-    <script  type="text/javascript" src="{{asset('js/publicJs/Apps/publicpanelApp.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/assets/js/angular.js')}}"></script>   
+    <script  type="text/javascript" src="{{asset('assets/assets/js/angular-route.min.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('assets/assets/js/angular-cookies.min.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('assets/assets/js/dirPagination.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('assets/js/publicJs/homeController.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('assets/js/publicJs/Apps/publicpanelApp.js')}}"></script>
 
     <a id="scrollUp" href="#" style="display: none; position: fixed; z-index: 2147483647;"><i class="fa fa-arrow-up"></i></a>
 </body>
