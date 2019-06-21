@@ -28,7 +28,12 @@ class AdminDashboardHomeController extends Controller
     $view->with('ControllerName', 'AdminDashboardController');
     return $view;
   }
-
+  public function Gallary()
+  {
+    $view = view('panel.layout.adminDashboard.gallary');
+    $view->with('ControllerName', 'GallaryController');
+    return $view;
+  }
 
   public function GetUserById()
   {

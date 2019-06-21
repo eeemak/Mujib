@@ -2,7 +2,8 @@
 var adminPanelApp = angular.module('adminPanelApp', ['ngRoute', 'ngCookies', 'angularUtils.directives.dirPagination']);
 adminPanelApp.controller('AdminDashboardController', AdminDashboardController)
 adminPanelApp.controller('UserManageController', UserManageController)
-adminPanelApp.controller('c', UserManageController)
+adminPanelApp.controller('UserManageController', UserManageController)
+adminPanelApp.controller('GallaryController', GallaryController)
 adminPanelApp.controller('AddManageController', AddManageController)
 adminPanelApp.controller('AdminVideoAlbumController', AdminVideoAlbumController)
 adminPanelApp.controller('AdminPhotoAlbumController', AdminPhotoAlbumController)

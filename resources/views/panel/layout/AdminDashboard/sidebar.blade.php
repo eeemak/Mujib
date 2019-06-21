@@ -17,7 +17,12 @@
                 </div>
                 <div class="profile-data">
                     <div class="profile-data-name">{{ Auth::user()->name }}</div>
+                    @role('admin')
                     <div class="profile-data-title">Admin</div>
+                    @endrole
+                    @role('user')
+                    <div class="profile-data-title">user</div>
+                    @endrole
                 </div>
                 <div class="profile-controls">
                     <a href="pages-profile.html" class="profile-control-left"><span class="fa fa-info"></span></a>
@@ -35,6 +40,12 @@
         @role('admin')
         <li class="{{ Request::is('upload') ? 'active':'' }}">
             <a href="{{ route('upload') }}"><span class="fa fa-user"></span> <span class="xn-text">Upload</span></a>
+        </li>
+    
+        @endrole
+        @role('user')
+        <li class="{{ Request::is('gallary') ? 'active':'' }}">
+            <a href="{{ route('gallary') }}"><span class="fa fa-user"></span> <span class="xn-text">Gallary</span></a>
         </li>
     
         @endrole

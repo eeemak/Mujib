@@ -19,12 +19,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/logout', ['as' => 'logout', 'uses' => 'HomeController@logout']);
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'AdminDashboardHomeController@dashboard']);
     Route::get('profile', ['as' => 'profile', 'uses' => 'AdminDashboardHomeController@viewProfile']);
-    Route::group(['prefix' => 'api'], function () {
+    Route::get('gallary', ['as' => 'gallary', 'uses' => 'AdminDashboardHomeController@Gallary']);
+        Route::group(['prefix' => 'api'], function () {
         Route::get('/GetUserById', 'AdminDashboardHomeController@GetUserById');
         Route::get('/GetProfessionTypeCbo', 'HomeController@GetProfessionTypeCbo');
         Route::get('/GetUserInstructionList', 'HomeController@GetUserInstructionList');
         Route::post('/UpdateUser', 'AdminDashboardHomeController@UpdateUser');
         Route::post('/UploadProfileImage', 'AdminDashboardHomeController@UploadProfileImage');
+        Route::post('/UploadGallary', 'AdminDashboardHomeController@UploadGallary');
     });
     //=======Admin=======
     Route::group(['middleware' => ['role:admin']], function () {
