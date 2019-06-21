@@ -201,10 +201,10 @@
                             <a href="/Home/Motamot">মতামত</a>
                         </li>
                         <li class="col10">
-                            <a href="{{ route('login') }}">লগইন</a>
+                            <a href="{{route('login') }}">লগইন</a>
                         </li>
                         <li class="col9">
-                            <a href="{{ route('register') }}">রেজিস্ট্রেশন</a>
+                            <a href="{{route('register') }}">রেজিস্ট্রেশন</a>
                         </li>
 
 

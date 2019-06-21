@@ -63,6 +63,9 @@
         <script type="text/javascript" src="{{asset('assets/js/plugins/bootstrap/bootstrap-file-input.js')}}"></script>
         <script type="text/javascript" src="{{asset('assets/js/plugins/bootstrap/bootstrap-select.js')}}"></script>
         <script type="text/javascript" src="{{asset('assets/js/plugins/tagsinput/jquery.tagsinput.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('assets/js/plugins/noty/jquery.noty.js')}}"></script>
+        <script type="text/javascript" src="{{asset('assets/js/plugins/noty/layouts/topRight.js')}}"></script>
+        <script type="text/javascript" src="{{asset('assets/js/plugins/noty/themes/default.js')}}"></script>
         <!-- END THIS PAGE PLUGINS -->       
         
         <!-- START TEMPLATE -->
