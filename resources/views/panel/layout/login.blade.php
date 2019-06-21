@@ -1,70 +1,32 @@
-<!DOCTYPE html>
-<html lang="en" class="body-full-height">
-    <head>        
-        <!-- META SECTION -->
-        <title>Login | NetaBD</title>            
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        
-        <link rel="icon" href="favicon.ico" type="image/x-icon" />
-        <!-- END META SECTION -->
-        
-        <!-- CSS INCLUDE -->        
-        <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/css/theme-default.css')}}"/>
-        <!-- EOF CSS INCLUDE -->                                    
-    </head>
-    <body>
-        
-        <div class="login-container">
-        
-            <div class="login-box animated fadeInDown">
-                <div class="login-logo"></div>
-                @include('panel.layout.messages')
-                <div class="login-body">
-                    <div class="login-title"><strong>Welcome</strong>, Please login</div>
+@extends('panel.public.master')
+@section('content')
+<div class="row">
+    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" style="margin-top: 110px;margin-bottom: 119px;">
+            <div class="sign-inner" ng-form="loginForm">
+                <div>
+                    <h3 class="first-child text-center" style="font-size:27px;color:#9d2118;margin-bottom: 0px;font-weight:bold">প্রবেশ করুন</h3>
+                </div>
+                <div class="error">
+                    @include('panel.layout.messages')
+                </div>
                     <form action="{{route('attempt_login')}}" class="form-horizontal" method="post" autocomplete="off">
                         @method('POST')
                         @csrf
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <input type="text" name="username" class="form-control" placeholder="Username"/>
-                        </div>
+                        <label class="sr-only">Enter Mobile No</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input type="text" name="username" class="form-control" placeholder="Enter your phone"/>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <input type="password" name="password" class="form-control" placeholder="Password"/>
-                        </div>
+                    <br>
+                    <label class="sr-only">Enter password</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="password" name="password" class="form-control" placeholder="Password"/>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-6">
-                            <a href="#" class="btn btn-link btn-block">Forgot your password?</a>
-                        </div>
-                        <div class="col-md-6">
-                            <button type="submit" class="btn btn-info btn-block">Log In</button>
-                        </div>
-                    </div>
+  
+                    <button type="submit" class="ha-btn-small">প্রবেশ</button>
                     </form>
-                </div>
-                <div class="login-footer">
-                    <div class="pull-left">
-                        &copy; 2014 AppName
-                    </div>
-                    <div class="pull-right">
-                        <a href="#">About</a> |
-                        <a href="#">Privacy</a> |
-                        <a href="#">Contact Us</a>
-                    </div>
-                </div>
             </div>
-            
-        </div>
-        
-    </body>
-</html>
-
-
-
-
-
-
+    </div>
+</div>
+@endsection

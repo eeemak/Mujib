@@ -22,14 +22,18 @@ class HomeController extends Controller
     }
     public function dashboard(){
         $view = view('panel.layout.dashboard');
-        $view->with('controller', "EmployeeController");
+        $view->with('ControllerName', "EmployeeController");
         return $view;
     }
     public function login(){
-        return view('panel.layout.login');
+        $view = view('panel.layout.login');
+        $view->with('ControllerName', "AccountController");
+        return $view;
     }
     public function register(){
-        return view('panel.layout.register');
+        $view = view('panel.layout.register');
+        $view->with('ControllerName', "AccountController");
+        return $view;
     }
     public function attemptLogin(Request $request) {
         if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
@@ -38,6 +42,9 @@ class HomeController extends Controller
             Session::put('alert-danger', 'Invalid username or password');
             return redirect()->back();
         }
+    }
+    public function attemptRegister(Request $request) {
+   
     }
     public function logout() {
         Auth::logout();
