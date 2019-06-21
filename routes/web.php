@@ -12,6 +12,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('login', ['as' => 'login', 'uses' => 'HomeController@login']);
     Route::post('login', ['as' => 'attempt_login', 'uses' => 'HomeController@attemptLogin']);
     Route::get('register', ['as' => 'register', 'uses' => 'HomeController@register']);
+    Route::get('register', ['as' => 'attempt_register', 'uses' => 'HomeController@attemptRegister']);
 });
 //=======All User=======
 Route::group(['middleware' => 'auth'], function () {
