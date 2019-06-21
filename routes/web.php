@@ -6,6 +6,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/GetThana', 'HomeController@GetThana');
     Route::get('/GetPoliceStation', 'HomeController@GetPoliceStation');
     Route::get('/GetVillage', 'HomeController@GetVillage');
+    Route::get('/AdvanceSearchUsers', 'HomeController@AdvanceSearchUsers');
 });
 //=======Guest=======
 Route::group(['middleware' => 'guest'], function () {

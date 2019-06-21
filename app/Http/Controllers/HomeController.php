@@ -81,7 +81,33 @@ class HomeController extends Controller
         $user = Auth::user();
         return response()->json($user->institution);
     }
-    // public function UpdateUser(Request $request){
-    //     return response()->json($request->model['full_name']);
-    // }
+    public function AdvanceSearchUsers(Request $request){
+        if($request->districtId){
+            $obj_user = User::where('district_id', $request->districtId);
+            if($request->thanaId != 'null'){
+                $obj_user->where('thana_id', $request->thanaId);
+                if($request->policeStationId != 'null'){
+                    $obj_user->where('police_station_id', $request->policeStationId);
+                    if($request->villageId != 'null'){
+                        $obj_user->where('village_id', $request->villageId);
+                    }
+                }
+            }
+            $users = $obj_user->get();
+            $data['user_count'] = $obj_user->count();
+            $data['users'] = [];
+            foreach($users as $key => $user){
+                $data['users'][] =[
+                    'FullName' => $user->full_name,
+                    'VillageName' => $user->village ? $user->village->name : null,
+                    'PoliceStationName' => $user->police_station ? $user->police_station->name : null,
+                    'ThanaName' => $user->thana ? $user->thana->name : null,
+                    'DistrictName' => $user->district ? $user->district->name : null,
+                    'PhotoPath' => $user->photo_path,
+                ];
+            }
+            return response()->json($data);
+        } 
+        return false;
+    }
 }
