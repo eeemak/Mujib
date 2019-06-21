@@ -7,6 +7,10 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use App\Model\UserInstitutions;
+use App\Model\District;
+use App\Model\Thana;
+use App\Model\PoliceStation;
+use App\Model\Village;
 
 class User extends Authenticatable
 {
@@ -41,5 +45,17 @@ class User extends Authenticatable
     ];
     public function institution(){
         return $this->hasMany(UserInstitutions::class);
+    }
+    public function district(){
+        return $this->belongsTo(District::class);
+    }
+    public function thana(){
+        return $this->belongsTo(Thana::class);
+    }
+    public function police_station(){
+        return $this->belongsTo(PoliceStation::class);
+    }
+    public function village(){
+        return $this->belongsTo(Village::class);
     }
 }

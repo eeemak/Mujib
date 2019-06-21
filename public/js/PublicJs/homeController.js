@@ -161,10 +161,11 @@ function HomeController($scope, $rootScope, $http, $location, $routeParams, $coo
             $scope.UserByAdvanceSearchParameters.PageNo = num != undefined ? num : 1;
             $http({
                 method: 'GET',
-                url: '/AdvanceSearch/AdvanceSearchData?pageNo=' + $scope.UserByAdvanceSearchParameters.PageNo + '&pageSize=' + $scope.UserByAdvanceSearchParameters.PageSize + '&districtId=' + $scope.advanceSearchData.DistrictId + '&thanaId=' + $scope.advanceSearchData.ThanaId + '&policeStationId=' + $scope.advanceSearchData.PoliceStationId + '&villageId=' + $scope.advanceSearchData.VillageId
+                url: '/api/AdvanceSearchUsers?pageNo=' + $scope.UserByAdvanceSearchParameters.PageNo + '&pageSize=' + $scope.UserByAdvanceSearchParameters.PageSize + '&districtId=' + $scope.advanceSearchData.DistrictId + '&thanaId=' + $scope.advanceSearchData.ThanaId + '&policeStationId=' + $scope.advanceSearchData.PoliceStationId + '&villageId=' + $scope.advanceSearchData.VillageId
             }).then(function successCallback(response) {
-                $scope.advanceSearchUserList = response.data.Items;
-                $scope.UserByAdvanceSearchParameters.Total_Count = response.data.Pager.TotalItems;
+                console.log('response',response.data);
+                $scope.advanceSearchUserList = response.data.users;
+                $scope.UserByAdvanceSearchParameters.Total_Count = response.data.Pager.user_count;
             })
         };
         $scope.pageChangeHandler();
