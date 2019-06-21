@@ -34,14 +34,14 @@ class UserTableSeeder extends Seeder
                 'instituteName' => 'Admin Institute',
                 'position' => 'Administrator',
                 'user_id' => '1',
-                'profession_type_id' => '1',
+                'ProfessionTypeId' => '1',
                 'Address' => 'Dhaka, Bangladesh',
             ],
             [
                 'instituteName' => 'User Institute',
                 'position' => 'Mew User',
                 'user_id' => '2',
-                'profession_type_id' => '2',
+                'ProfessionTypeId' => '2',
                 'Address' => 'Dhaka, Bangladesh',
             ]
         ]);

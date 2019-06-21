@@ -187,7 +187,7 @@
                                     <label class="col-md-3 col-xs-12 control-label">Profession</label>
                                     <div class="col-md-6 col-xs-12">
                                         <select class="form-control" ng-model="userInstituteList[0].ProfessionTypeId"
-                                                ng-options="item.Value as item.Text for item in professionTypeList" id="ProfessionId"
+                                                ng-options="item.id as item.professionTypeName for item in professionTypeList" id="ProfessionId"
                                                 name="Profession" required>
                                             <option value="">Select One</option>
                                         </select>

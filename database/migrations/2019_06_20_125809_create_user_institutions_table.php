@@ -15,15 +15,15 @@ class CreateUserInstitutionsTable extends Migration
     {
         Schema::create('user_institutions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('instituteName',150)->nullable();
-            $table->string('position',50)->nullable();
-            $table->dateTime('joiningDate')->nullable();
-            $table->dateTime('endDate')->nullable();
+            $table->string('InstituteName',150)->nullable();
+            $table->string('Position',50)->nullable();
+            $table->dateTime('JoiningDate')->nullable();
+            $table->dateTime('EndDate')->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->bigInteger('profession_type_id')->unsigned()->nullable();
-            $table->foreign('profession_type_id')->references('id')->on('profession_types')->onDelete('cascade');
+            $table->bigInteger('ProfessionTypeId')->unsigned()->nullable();
             $table->text('Address')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('ProfessionTypeId')->references('id')->on('profession_types')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -26,6 +26,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/GetThana', 'HomeController@GetThana');
         Route::get('/GetPoliceStation', 'HomeController@GetPoliceStation');
         Route::get('/GetVillage', 'HomeController@GetVillage');
+        Route::get('/GetProfessionTypeCbo', 'HomeController@GetProfessionTypeCbo');
+        Route::get('/GetUserInstructionList', 'HomeController@GetUserInstructionList');
         Route::post('/UpdateUser', 'AdminDashboardHomeController@UpdateUser');
     });
     //=======Admin==========
