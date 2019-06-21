@@ -165,34 +165,7 @@
         <h5 class="bk-org title eservice-title">
             Title
         </h5>
-        <ul>
-
-            <!-- <li class="item_1"><a href="http://service.gov.bd/">অনলাইনে সেবার আবেদন</a></li>
-
-            <li class="item_2"><a href="http://www.nothi.gov.bd/users/login">নথি</a></li>
-
-            <li class="item_3"><a href="http://bangladesh.gov.bd/site/page/5c238920-a65f-4168-9c2b-70c39dc7cb1c">প্রয়োজনীয় এপস </a></li>
-
-            <li class="item_4"><a href="http://bris.lgd.gov.bd/pub/?pg=application_form">জন্ম ও মৃত্যু নিবন্ধন</a></li>
-
-            <li class="item_5"><a href="http://xn--d5by7bap7cc3ici3m.xn--54b7fta0cc/">উত্তরাধিকার ক্যালকুলেটর</a></li>
-
-            <li class="item_6"><a href="http://pcc.police.gov.bd/en/f?p=500:1:::NO:::">অনলাইন পুলিশ ক্লিয়ারেন্স</a></li>
-
-            <li class="item_7"><a href="http://www.dip.gov.bd/site/page/f2d015a9-1132-4426-8eef-147f1c4bac8a">অনলাইনে পাসপোর্টের আবেদন</a></li>
-
-            <li class="item_8"><a href="https://services.nidw.gov.bd/">জাতীয় পরিচয়পত্রের তথ্য হালনাগাদকরণ</a></li>
-
-            <li class="item_9"><a href="http://www.cga.gov.bd/index.php?option=com_wrapper">অনলাইন চালান যাচাইকরণ</a></li>
-
-            <li class="item_10"><a href="https://www.etaxnbr.gov.bd/tpos/home">অনলাইন আয়কর পরিশোধ</a></li>
-
-            <li class="item_11"><a href="http://www.bmet.gov.bd/BMET/onlinaVisaCheckAction"> ভিসা যাচাই </a></li>
-
-            <li class="item_12"><a href="http://eservice.bkkb.gov.bd/">বিকেকেবি শিক্ষাবৃত্তির আবেদন</a></li>
-
-            <li class="item_13"><a href="http://accessibledictionary.gov.bd/">অভিগম্য অভিধান</a></li>-->
-        </ul>
+        <div class="fb-page" data-href="https://www.facebook.com/sugary.xoxo/" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/bd5000net/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/bd5000net/">bd5000.com</a></blockquote></div>
     </div>
     <style>
         .eservice-title {
@@ -226,13 +199,6 @@
     <div class="column block">
         <h5 class="bk-org title">Title </h5>
 
-        <!-- @*<a href="https://www.facebook.com/Bangabhaban-182500998818773/?skip_nax_wizard=true" target="_blank" class="share-buttons">
-            <img src="themes/responsive_npf/img/social/facebook.png" alt="ফেসবুক" />
-        </a>
-
-        <a href="https://www.youtube.com/" target="_blank" class="share-buttons">
-            <img src="themes/responsive_npf/img/social/youtube.png" alt="ইউটিউব" />
-        </a>*@ -->
 
     </div>
 
