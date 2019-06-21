@@ -20,15 +20,14 @@
     <meta name="description" content="">
 
     <!-- =============== tt canonical End =============================== -->
-    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/css/bootstrap/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/css/bootstrap/bootstrap.min.css')}}"/>
     <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/themes/Gob/themes/responsive_npf/stylesheets/base.css')}}"/>
-    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/themes/Gob/themes/respoxnsive_npf/stylesheets/bacse.css')}}"/>
     <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/themes/Gob/themes/responsive_npf/stylesheets/skeleton.css')}}"/>
     <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/themes/Gob/themes/responsive_npf/stylesheets/style.css')}}"/>
     <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/themes/Gob/themes/responsive_npf/stylesheets/meganizr.css')}}"/>
     <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/themes/Gob/themes/responsive_npf/stylesheets/demo.css')}}"/>
-    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/tchemes/Gob/themes/responsive_npf/templates/ministry/style.css')}}"/>
-        <script type="text/javascript" src="{{asset('assets/assets/tchemes/Gob/themes/responsive_npf/js/jquery-1.11.1.min.js')}}"></script>
+    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/themes/Gob/themes/responsive_npf/templates/ministry/style.css')}}"/>
+        <script type="text/javascript" src="{{asset('assets/assets/themes/Gob/themes/responsive_npf/js/jquery-1.11.1.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('assets/js/plugins/bootstrap/bootstrap.min.js')}}"></script>
     <!-- include the jquery-accessibleMegaMenu plugin script -->
         <script type="text/javascript" src="{{asset('assets/assets/tchemes/Gob/themes/responsive_npf/js/jquery-accessibleMegaMenu.js')}}"></script>
