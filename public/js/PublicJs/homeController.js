@@ -77,7 +77,7 @@ function HomeController($scope, $rootScope, $http, $location, $routeParams, $coo
     $scope.getDistrict = function () {
         $http({
             method: 'GET',
-            url: '/Home/GetDistrict'
+            url: 'api/GetDistrict'
         }).then(function successCallback(response) {
             $scope.districtList = response.data;
         });
@@ -88,7 +88,7 @@ function HomeController($scope, $rootScope, $http, $location, $routeParams, $coo
         if ($scope.advanceSearchData.DistrictId != null) {
             $http({
                 method: 'GET',
-                url: '/Home/GetThana?districtId=' + $scope.advanceSearchData.DistrictId
+                url: 'api/GetThana?districtId=' + $scope.advanceSearchData.DistrictId
             }).then(function successCallback(response) {
                 $scope.thanaList = response.data;
             })
@@ -98,7 +98,7 @@ function HomeController($scope, $rootScope, $http, $location, $routeParams, $coo
     $scope.getPoliceStation = function () {
         $http({
             method: 'GET',
-            url: '/Home/GetPoliceStation?thanaId=' + $scope.advanceSearchData.ThanaId + '&districtId=' + $scope.advanceSearchData.DistrictId
+            url: '/api/GetPoliceStation?thanaId=' + $scope.advanceSearchData.ThanaId + '&districtId=' + $scope.advanceSearchData.DistrictId
         }).then(function successCallback(response) {
             $scope.policeStationList = response.data;
         });
@@ -107,7 +107,7 @@ function HomeController($scope, $rootScope, $http, $location, $routeParams, $coo
     $scope.getVillage = function () {
         $http({
             method: 'GET',
-            url: '/Home/GetVillage?policeStationId=' + $scope.advanceSearchData.PoliceStationId + '&thanaId=' + $scope.advanceSearchData.ThanaId + '&districtId=' + $scope.advanceSearchData.DistrictId
+            url: '/api/GetVillage?policeStationId=' + $scope.advanceSearchData.PoliceStationId + '&thanaId=' + $scope.advanceSearchData.ThanaId + '&districtId=' + $scope.advanceSearchData.DistrictId
         }).then(function successCallback(response) {
             $scope.villageList = response.data;
         });
