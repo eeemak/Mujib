@@ -12,7 +12,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="shortcut icon" href="misc/favicon.ico" type="image/x-icon" />
-    <title>Mujib</title>
+    <title>মুজিব সার্কেল</title>
     <!-- Mobile Specific Metas
     ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1">

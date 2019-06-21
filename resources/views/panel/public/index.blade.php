@@ -102,7 +102,7 @@
                 <div class="form-group">
                     <div class="col-sm-12">
                         <select class="form-control" ng-model="advanceSearchData.DistrictId"
-                                ng-options="item.Value as item.Text for item in districtList" id="DistrictId"
+                                ng-options="item.id as item.name for item in districtList" id="DistrictId"
                                 name="District" ng-change="getThana()">
                             <option value="">District</option>
                         </select>
@@ -113,21 +113,8 @@
                 <div class="form-group">
                     <div class="col-sm-12">
                         <div class="select-style">
-                            <select class="form-control" ng-model="advanceSearchData.PoliceStationId"
-                                    ng-options="item.Value as item.Text for item in policeStationList" id="PoliceStationId"
-                                    name="PoliceStation" ng-change="getVillage()">
-                                <option value="">Union</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12" style="padding-right:0px">
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <div class="select-style">
                             <select class="form-control ha-dbbl" ng-model="advanceSearchData.ThanaId"
-                                    ng-options="item.Value as item.Text for item in thanaList" id="ThanaId"
+                                    ng-options="item.id as item.name for item in thanaList" id="ThanaId"
                                     name="Thana" ng-change="getPoliceStation()">
                                 <option value="">Thana</option>
                             </select>
@@ -136,13 +123,26 @@
                 </div>
 
             </div>
+            <div class="col-xs-12" style="padding-right:0px">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="select-style">
+                            <select class="form-control" ng-model="advanceSearchData.PoliceStationId"
+                                    ng-options="item.id as item.name for item in policeStationList" id="PoliceStationId"
+                                    name="PoliceStation" ng-change="getVillage()">
+                                <option value="">Union</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-xs-12"style="padding-right:0px">
 
                 <div class="form-group">
                     <div class="col-sm-12">
                         <div class="select-style">
                             <select class="form-control ha-dbbl" ng-model="advanceSearchData.VillageId"
-                                    ng-options="item.Value as item.Text for item in villageList" id="VillageId"
+                                    ng-options="item.id as item.name for item in villageList" id="VillageId"
                                     name="Village" required tabindex="1">
                                 <option value="">Village</option>
                             </select>
