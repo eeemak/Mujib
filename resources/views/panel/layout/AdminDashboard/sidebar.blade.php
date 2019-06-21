@@ -7,11 +7,13 @@
         </li>
         <li class="xn-profile">
             <a href="#" class="profile-mini">
-                <img src="{{asset('assets/assets/images/users/avatar.jpg')}}" alt="John Doe" />
+                <img ng-if="!editUserProfile.PhotoPath" src="{{ asset('img/no-image.jpg') }}"/>
+                <img ng-if="editUserProfile.PhotoPath" src="@{{ editUserProfile.PhotoPath }}"/>
             </a>
             <div class="profile">
                 <div class="profile-image">
-                    <img src="{{asset('assets/assets/images/users/avatar.jpg')}}" alt="John Doe" />
+                        <img ng-if="!editUserProfile.PhotoPath" src="{{ asset('img/no-image.jpg') }}"/>
+                        <img ng-if="editUserProfile.PhotoPath" src="@{{ editUserProfile.PhotoPath }}"/>
                 </div>
                 <div class="profile-data">
                     <div class="profile-data-name">{{ Auth::user()->name }}</div>
