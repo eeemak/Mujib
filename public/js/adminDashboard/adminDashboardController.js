@@ -286,7 +286,6 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
             dataType: "json"
         }).then(function successCallback(response) {
             // console.log(response.data);
-            alert('Profile Updated Successfully!!!');
             noty({ text: 'Profile updated successfully!!!', layout: 'topRight', type: 'success' });
             // if (response.data.Error === true) {
                 //myFunction(response.data.Message);
@@ -401,19 +400,25 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
     }
     $scope.uploadImage = function () {
         var fileUpload = $("#imageFiles").get(0);
-        var files = fileUpload.files;
-        var personId = $scope.editUserProfile.Id;
         var data = new FormData();
-        for (var i = 0; i < files.length; i++) {
-            data.append(files[i].name, files[i], personId);
-        }
+        data.append('file', fileUpload.files[0]);
+        // var files = fileUpload.files;
+        // var personId = $scope.editUserProfile.Id;
+        // var data = new FormData();
+        // for (var i = 0; i < files.length; i++) {
+        //     data.append(files[i].name, files[i], personId);
+        // }
         $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             type: "POST",
             url: "/api/UploadProfileImage",
             contentType: false,
             processData: false,
             data: data,
             success: function (imgSrc) {
+                console.log(imgSrc);
                 if (imgSrc !== null) {
                     $(".profileImage").attr('src', "");
                     $(".profileImage").attr('src', imgSrc);
