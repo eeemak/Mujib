@@ -95,7 +95,7 @@
     <script></script>
     <div class="column block">
         <h5 class="bk-org title">
-            Title
+            অনুসন্ধান
         </h5>
         <div class="form-horizontal">
             <div class="col-xs-12" style="padding-right:0px">
