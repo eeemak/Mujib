@@ -70,6 +70,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
             $scope.editUserProfile.PermanentAddress = response.data.parmanent_address;
             $scope.editUserProfile.PresentAddress = response.data.present_address;
             $scope.editUserProfile.AboutSelf = response.data.about_self;
+            $scope.editUserProfile.PhotoPath = response.data.photo_path;
             $scope.changeUserIdOb.Phone = $scope.editUserProfile.Phone;
             $rootScope.userUniquePhotoPath = response.data.PhotoPath;
             $scope.getDistrict();
@@ -418,7 +419,6 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
             processData: false,
             data: data,
             success: function (imgSrc) {
-                console.log(imgSrc);
                 if (imgSrc !== null) {
                     $(".profileImage").attr('src', "");
                     $(".profileImage").attr('src', imgSrc);

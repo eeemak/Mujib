@@ -89,9 +89,15 @@ class AdminDashboardHomeController extends Controller
   public function UploadProfileImage(Request $request)
   {
     // return $request->file('file')->getClientOriginalName();
-    $url = Storage::putFile('public/profileImg', $request->file('file'));
-    $url = str_replace('public', 'storage', $url);
-    return $url;
+    $photo_path = Storage::putFile('public/profileImg', $request->file('file'));
+    $photo_path = str_replace('public', 'storage', $photo_path);
+    $user = Auth::user();
+    $old_path = $user->photo_path;
+    $old_path = str_replace('storage', 'public', $old_path);
+    Storage::delete($old_path);
+    $user->photo_path = $photo_path;
+    $user->update();
+    return $photo_path;
   }
   //   public function UpdateUser(UserProfile model, List<UserInstitutions> userInstructions, List<UserMobile> userMobile, List<EmailLink> emailLink, List<FamilyAndFriendPhone> familyAndFriendPhone, List<SocialLink> socialLink, List<UserLink> userLink)
   //   {

@@ -45,23 +45,23 @@ class HomeController extends Controller
     }
     public function GetDistrict()
     {
-        $districts = District::all();
+        $districts = District::orderBy('name')->get();
         return response()->json($districts);
     }
     public function GetThana(Request $request)
     {
-        $thanas = Thana::where('district_id', $request->districtId)->get();
+        $thanas = Thana::where('district_id', $request->districtId)->orderBy('name')->get();
         return response()->json($thanas);
     }
     public function GetPoliceStation(Request $request)
     {
-        $policestations = PoliceStation::where('thana_id', $request->thanaId)->get();
+        $policestations = PoliceStation::where('thana_id', $request->thanaId)->orderBy('name')->get();
         return response()->json($policestations);
     }
 
     public function GetVillage(Request $request)
     {
-        $villages = Village::where('police_stations_id', $request->policeStationId)->get();
+        $villages = Village::where('police_stations_id', $request->policeStationId)->orderBy('name')->get();
         return response()->json($villages);
     }
     public function GetProfessionTypeCbo()
