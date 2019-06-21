@@ -1,6 +1,6 @@
 <?php
 //=======All User & Guest =======
-Route::get('/', 'HomeController@index');
+Route::get('/', array( 'as' => '/', 'uses' => 'HomeController@index' ) );
 Route::group(['prefix' => 'api'], function () {
     Route::get('/GetDistrict', 'HomeController@GetDistrict');
     Route::get('/GetThana', 'HomeController@GetThana');
