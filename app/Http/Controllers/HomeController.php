@@ -28,6 +28,9 @@ class HomeController extends Controller
     public function login(){
         return view('panel.layout.login');
     }
+    public function register(){
+        return view('panel.layout.register');
+    }
     public function attemptLogin(Request $request) {
         if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
             return redirect()->route('dashboard');

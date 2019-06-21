@@ -97,17 +97,67 @@
         <h5 class="bk-org title">
             Title
         </h5>
-        <ul>
-<!-- 
-            <li><a href="https://mail.bangabhaban.gov.bd/">ওয়েব মেইল</a></li>
+        <div class="form-horizontal">
+            <div class="col-xs-12" style="padding-right:0px">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <select class="form-control" ng-model="advanceSearchData.DistrictId"
+                                ng-options="item.Value as item.Text for item in districtList" id="DistrictId"
+                                name="District" ng-change="getThana()">
+                            <option value="">District</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12" style="padding-right:0px">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="select-style">
+                            <select class="form-control" ng-model="advanceSearchData.PoliceStationId"
+                                    ng-options="item.Value as item.Text for item in policeStationList" id="PoliceStationId"
+                                    name="PoliceStation" ng-change="getVillage()">
+                                <option value="">Union</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12" style="padding-right:0px">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="select-style">
+                            <select class="form-control ha-dbbl" ng-model="advanceSearchData.ThanaId"
+                                    ng-options="item.Value as item.Text for item in thanaList" id="ThanaId"
+                                    name="Thana" ng-change="getPoliceStation()">
+                                <option value="">Thana</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
 
-            <li><a href="http://nothi.gov.bd/login">জাতীয় ই-সেবা সিস্টেম</a></li> -->
-        </ul>
-        <!-- <a href="site/view/internal_eservices.html" style="display:block;text-align:right;text-decoration:underline;">সকল </a> -->
+            </div>
+            <div class="col-xs-12"style="padding-right:0px">
 
-        <!-- <a href="/site/view/internal_eservices" class="btn" style="display:block;text-align:center;">সকল ই-সেবা</a> -->
-        <!--<a href="/site/view/internal_eservices" style="display:block;text-align:right;text-decoration:underline;">সকল </a>> -->
-
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="select-style">
+                            <select class="form-control ha-dbbl" ng-model="advanceSearchData.VillageId"
+                                    ng-options="item.Value as item.Text for item in villageList" id="VillageId"
+                                    name="Village" required tabindex="1">
+                                <option value="">Village</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button class="btn btn-danger" style="width:30%;padding:10px;" ng-click="getUserByAdvanceSearch();"><i class="fa fa-search"></i> <span>সার্চ</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <style></style>
     <script></script>

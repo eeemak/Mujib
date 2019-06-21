@@ -15,6 +15,7 @@ Route::get('/', 'HomeController@index');
 Route::group(['middleware' => 'guest'], function () {
     Route::get('login', ['as' => 'login', 'uses' => 'HomeController@login']);
     Route::post('login', ['as' => 'attempt_login', 'uses' => 'HomeController@attemptLogin']);
+    Route::get('register', ['as' => 'register', 'uses' => 'HomeController@register']);
 });
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/logout', ['as' => 'logout', 'uses' => 'HomeController@logout']);

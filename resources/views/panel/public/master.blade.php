@@ -132,65 +132,7 @@
 
                 <div>
                     <div class="clearfix" id="site-name-wrapper">
-                        <div>
-                            <h4 style=" text-align: center;  margin-right: 42px; color: #fff; font-weight: bold;">অনুসন্ধান</h4>
-                            <div class="form-horizontal">
-                                <div class="col-xs-12 col-md-5" style="padding-right:0px">
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <select class="form-control ha-dbbl" ng-model="advanceSearchData.DistrictId"
-                                                    ng-options="item.Value as item.Text for item in districtList" id="DistrictId"
-                                                    name="District" ng-change="getThana()">
-                                                <option value="">District</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <div class="select-style">
-                                                <select class="form-control ha-dbbl" ng-model="advanceSearchData.PoliceStationId"
-                                                        ng-options="item.Value as item.Text for item in policeStationList" id="PoliceStationId"
-                                                        name="PoliceStation" ng-change="getVillage()">
-                                                    <option value="">Union</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-md-5">
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <div class="select-style">
-                                                <select class="form-control ha-dbbl" ng-model="advanceSearchData.ThanaId"
-                                                        ng-options="item.Value as item.Text for item in thanaList" id="ThanaId"
-                                                        name="Thana" ng-change="getPoliceStation()">
-                                                    <option value="">Thana</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <div class="select-style">
-                                                <select class="form-control ha-dbbl" ng-model="advanceSearchData.VillageId"
-                                                        ng-options="item.Value as item.Text for item in villageList" id="VillageId"
-                                                        name="Village" required tabindex="1">
-                                                    <option value="">Village</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-md-10">
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <button class="btn btn-danger" style="width:30%;padding:10px;" ng-click="getUserByAdvanceSearch();"><i class="fa fa-search"></i> <span>সার্চ</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                
                     </div>
                     <!-- /site-name-wrapper -->
 
@@ -258,12 +200,13 @@
                         <li class="col8">
                             <a href="/Home/Motamot">মতামত</a>
                         </li>
-                        <li class="col9">
-                            <a href="/Account/Register">রেজিস্ট্রেশন</a>
-                        </li>
                         <li class="col10">
-                            <a href="/Account/Login">লগইন</a>
+                            <a href="{{ route('login') }}">লগইন</a>
                         </li>
+                        <li class="col9">
+                            <a href="{{ route('register') }}">রেজিস্ট্রেশন</a>
+                        </li>
+
 
                     </ul>
                 </div>
