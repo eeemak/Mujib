@@ -232,7 +232,7 @@
                     <ul class="meganizr mzr-slide mzr-responsive">
                         <!-- Build The Menu -->
                         <li class="col0 ">
-                            <a title="Home" href="/Home/Index" style="background-image: url('{{asset('assets/assets/themes/Gob/responsive_npf/img/home_dark.png')}}');margin-top:5px;"></a>
+                            <a title="Home" href="/Home/Index" style="background-image: url('{{asset('assets/assets/themes/Gob/themes/responsive_npf/img/home_dark.png')}}');margin-top:5px;"></a>
                         </li>
                         <li class="col1">
                             <a href="#" class="submenu">আপলোড/ডাউনলোড</a>
@@ -559,7 +559,7 @@
     <script  type="text/javascript" src="{{asset('assets/js/angular-route.min.js')}}"></script>
     <script  type="text/javascript" src="{{asset('assets/js/angular-cookies.min.js')}}"></script>
     <script  type="text/javascript" src="{{asset('assets/js/dirPagination.js')}}"></script>
-    <script  type="text/javascript" src="{{asset('assets/js/publicJs/homeController.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/publicJs/homeController.js')}}"></script>
     <script  type="text/javascript" src="{{asset('js/publicJs/Apps/publicpanelApp.js')}}"></script>
 
     <a id="scrollUp" href="#" style="display: none; position: fixed; z-index: 2147483647;"><i class="fa fa-arrow-up"></i></a>
