@@ -175,7 +175,7 @@
                     <ul class="meganizr mzr-slide mzr-responsive">
                         <!-- Build The Menu -->
                         <li class="col0 ">
-                            <a title="Home" href="/Home/Index" style="background-image: url('{{asset('assets/assets/themes/Gob/themes/responsive_npf/img/home_dark.png')}}');margin-top:5px;"></a>
+                            <a title="Home" href="{{route('/') }}" style="background-image: url('{{asset('assets/assets/themes/Gob/themes/responsive_npf/img/home_dark.png')}}');margin-top:5px;"></a>
                         </li>
                         <li class="col1">
                             <a href="#" class="submenu">আপলোড/ডাউনলোড</a>
