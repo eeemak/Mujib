@@ -20,6 +20,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::group(['prefix' => 'api'], function () {
         Route::post('RegisterUser', ['as' => 'attempt_register', 'uses' => 'HomeController@attemptRegister']);
     });
+    Route::get('photoGallery', ['as' => 'photoGallery', 'uses' => 'HomeController@publicGallery']);
 });
 //=======All User=======
 Route::group(['middleware' => 'auth'], function () {

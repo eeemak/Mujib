@@ -21,6 +21,11 @@ class HomeController extends Controller
         $view->with('ControllerName', "HomeController");
         return $view;
     }
+    public function publicGallery(){
+        $view = view('panel.public.gallery');
+        $view->with('ControllerName', "GallaryController");
+        return $view;
+    }
     public function dashboard(){
         $view = view('panel.layout.dashboard');
         $view->with('ControllerName', "EmployeeController");

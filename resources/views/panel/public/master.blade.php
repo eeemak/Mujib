@@ -187,7 +187,7 @@
                             <a href="/Home/Karjokrom">কার্যক্রম</a>
                         </li>
                         <li class="col4">
-                            <a href="/Home/Gallery">গ্যালারি</a>
+                            <a href="{{ route('photoGallery') }}">গ্যালারি</a>
                         </li>
                         <li class="col5">
                             <a href="/Home/News">নিউজ</a>
@@ -505,6 +505,7 @@
     <script  type="text/javascript" src="{{asset('assets/js/dirPagination.js')}}"></script>
     <script  type="text/javascript" src="{{asset('js/publicJs/homeController.js')}}"></script>
     <script  type="text/javascript" src="{{asset('js/publicJs/accountController.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/adminDashboard/gallaryController.js')}}"></script>
     <script  type="text/javascript" src="{{asset('js/publicJs/Apps/publicpanelApp.js')}}"></script>
 
     <a id="scrollUp" href="#" style="display: none; position: fixed; z-index: 2147483647;"><i class="fa fa-arrow-up"></i></a>
