@@ -38,13 +38,24 @@ class HomeController extends Controller
     public function attemptLogin(Request $request) {
         if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
             return redirect()->route('dashboard');
+        }else if (Auth::attempt(['phone' => $request->input('username'), 'password' => $request->input('password')])) {
+            return redirect()->route('dashboard');
         } else {
             Session::put('alert-danger', 'Invalid username or password');
             return redirect()->back();
         }
     }
     public function attemptRegister(Request $request) {
-        dd($request->input());
+        $this->validate($request, [
+            'full_name' => 'required|min:4',
+            'phone' => 'required|unique:users',
+            'password' => 'required|confirmed|min:4',
+        ]);
+        $user = new User();
+        $user->fill($request->input());
+        $user->save();
+        Session::put('alert-success', 'Registration successfull! Please login.');
+        return redirect()->route('login');
     }
     public function logout() {
         Auth::logout();

@@ -19,6 +19,7 @@ class UserTableSeeder extends Seeder
                 'email' => "admin@example.com",
                 'full_name' => "Admin",
                 'username' => "admin",
+                'phone' => "111",
                 'password' => bcrypt("admin"),
             ],
             [
@@ -26,6 +27,7 @@ class UserTableSeeder extends Seeder
                 'email' => "user@example.com",
                 'full_name' => "User",
                 'username' => "user",
+                'phone' => "222",
                 'password' => bcrypt("user"),
             ]
         ]);
