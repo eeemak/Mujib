@@ -15,7 +15,7 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
     $scope.adminUploadFileOb = {
         Id: null,
         Title: null,
-        Link:null,
+        Link: null,
         IsFeature: true,
         ViewFor: 'public',
         FileName: null,
@@ -90,7 +90,7 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
                 method: 'GET',
                 url: '/UserPhotoAlbum/GetUserPublicPhotoLinkAllList?pageNo=' + $scope.UserPublicPhotoLinkSearchParameters.PageNo + '&pageSize=' + $scope.UserPublicPhotoLinkSearchParameters.PageSize
             }).then(function successCallback(response) {
-                    $scope.userPublicPhotoLinkAllList = response.data.Items;
+                $scope.userPublicPhotoLinkAllList = response.data.Items;
                 $scope.UserPublicPhotoLinkSearchParameters.Total_Count = response.data.Pager.TotalItems;
             })
         };
@@ -183,27 +183,27 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
     $scope.saveAlbum = function () {
         if ($scope.adminPhotoAlbum.$valid) {
             var formData = new FormData();
-                formData.append('title', $scope.adminUploadFileOb.Title);
-                formData.append('file', $scope.filedata);
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: "POST",
-                    url: "/api/UploadGallary",
-                    contentType: false,
-                    processData: false,
-                    data: formData,
-                    success: function (imgSrc) {
-                        noty({ text: "Photo added to the gallary!", layout: 'topRight', type: 'success' });
-                        $scope.adminUploadFileOb.Title=null;
-                        $scope.getUserFeaturePhotoFileListById();
-                        $scope.ClearImage();
-                    },
-                    error: function () {
-                        //alert("There was error uploading files!");
-                    }
-                });
+            formData.append('title', $scope.adminUploadFileOb.Title);
+            formData.append('file', $scope.filedata);
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "POST",
+                url: "/api/UploadGallary",
+                contentType: false,
+                processData: false,
+                data: formData,
+                success: function (imgSrc) {
+                    noty({ text: "Photo added to the gallary!", layout: 'topRight', type: 'success' });
+                    $scope.adminUploadFileOb.Title = null;
+                    $scope.getUserFeaturePhotoFileListById();
+                    $scope.ClearImage();
+                },
+                error: function () {
+                    //alert("There was error uploading files!");
+                }
+            });
             // $http({
             //     method: "post",
             //     url: '/api/UploadGallary/',
@@ -260,6 +260,7 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
                 dataType: 'JSON'
             }).then(function successCallback(response) {
                 // console.log('response', response.data);
+                $scope.getUserFeaturePhotoFileListById();
                 noty({ text: response.data.title + ' has deleted!', layout: 'topRight', type: 'success' });
                 // if (response.data.Error === true) {
                 //     noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
