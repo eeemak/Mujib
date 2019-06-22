@@ -247,7 +247,7 @@
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </div>
                         <div ng-if="x.PhotoPath !=null" class="treatment-icon col-sm-4">
-                            <img src="@{{x.PhotoPath}}" class="profileImage" />
+                            <img src="@{{x.PhotoPath}}" class="profileImage img-thumbnail" />
                         </div>
                         <div ng-if="x.PhotoPath ===null" class="treatment-icon col-sm-4">
                         <img  src="{{ asset('img/no-image.jpg') }}" class="profileImage img-thumbnail" />
