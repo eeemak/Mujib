@@ -44,7 +44,7 @@ class HomeController extends Controller
         }
     }
     public function attemptRegister(Request $request) {
-   
+        dd($request->input());
     }
     public function logout() {
         Auth::logout();
@@ -80,6 +80,15 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         return response()->json($user->institution);
+    }
+    public function CheckUserExist(Request $request){
+        $user_exist = User::where('phone', $request->phone)->exists();
+        $data['message'] = '';
+        $data['isExist'] = $user_exist;
+        if($user_exist){
+            $data['message'] = 'User already exist';
+        }
+        return $data;
     }
     public function AdvanceSearchUsers(Request $request){
         if($request->districtId){

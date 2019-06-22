@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->integer('village_id')->nullable();
             $table->string('parmanent_address')->nullable()->nullable();
             $table->string('present_address')->nullable();
+            $table->string('phone')->nullable();
             $table->string('about_self')->nullable();
             $table->string('photo_path')->nullable();
             $table->string('email')->unique();
