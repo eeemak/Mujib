@@ -7,6 +7,7 @@ use Auth;
 use Session;
 use App\Model\UserInstitutions;
 use Illuminate\Support\Facades\Storage;
+use App\Model\Gallary;
 
 class AdminDashboardHomeController extends Controller
 {
@@ -35,9 +36,14 @@ class AdminDashboardHomeController extends Controller
     return $view;
   }
   public function UploadGallary(Request $request) {
-    // $file = $request->file('userFileList');
-     $file = $request->all();
-    return $file;
+    $photo_path = Storage::putFile('public/gallary', $request->file('file'));
+    $photo_path = str_replace('public', 'storage', $photo_path);
+    $gallary = new Gallary();
+    $gallary->title = $request->title;
+    $gallary->photo_path = $photo_path;
+    $gallary->user_id = Auth::id();
+    $gallary->save();
+    return $photo_path;
 }
   public function GetUserById()
   {
@@ -101,13 +107,19 @@ class AdminDashboardHomeController extends Controller
     $photo_path = Storage::putFile('public/profileImg', $request->file('file'));
     $photo_path = str_replace('public', 'storage', $photo_path);
     $user = Auth::user();
-    $old_path = $user->photo_path;
-    $old_path = str_replace('storage', 'public', $old_path);
+    $old_path = str_replace('storage', 'public', $user->photo_path);
     Storage::delete($old_path);
     $user->photo_path = $photo_path;
     $user->update();
     return $photo_path;
   }
+  public function DeleteGallary(Request $request){
+    $gallary = Gallary::find($request->gallaryId);
+    $old_path = str_replace('storage', 'public', $gallary->photo_path);
+    Storage::delete($old_path);
+    $gallary->delete();
+    return response()->json($gallary);
+}
   //   public function UpdateUser(UserProfile model, List<UserInstitutions> userInstructions, List<UserMobile> userMobile, List<EmailLink> emailLink, List<FamilyAndFriendPhone> familyAndFriendPhone, List<SocialLink> socialLink, List<UserLink> userLink)
   //   {
   //      return;

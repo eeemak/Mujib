@@ -11,6 +11,7 @@ use App\Model\Village;
 use App\Model\PoliceStation;
 use App\User;
 use App\Model\ProfessionType;
+use App\Model\Gallary;
 
 class HomeController extends Controller
 {
@@ -93,6 +94,10 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         return response()->json($user->institution);
+    }
+    public function GetPublicGallary(){
+        $gallaries = Gallary::orderBy('id', 'desc')->get();
+        return response()->json($gallaries);
     }
     public function CheckUserExist(Request $request){
         $user_exist = User::where('phone', $request->phone)->exists();

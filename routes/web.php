@@ -9,6 +9,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/GetProfessionTypeCbo', 'HomeController@GetProfessionTypeCbo');
     Route::get('/AdvanceSearchUsers', 'HomeController@AdvanceSearchUsers');
     Route::get('/CheckUserExist', 'HomeController@CheckUserExist');
+    Route::get('/GetPublicGallary', 'HomeController@GetPublicGallary');
 });
 //=======Guest=======
 Route::group(['middleware' => 'guest'], function () {
@@ -32,6 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/UpdateUser', 'AdminDashboardHomeController@UpdateUser');
         Route::post('/UploadProfileImage', 'AdminDashboardHomeController@UploadProfileImage');
         Route::post('/UploadGallary', 'AdminDashboardHomeController@UploadGallary');
+        Route::post('/DeleteGallary', 'AdminDashboardHomeController@DeleteGallary');
     });
     //=======Admin=======
     Route::group(['middleware' => ['role:admin']], function () {

@@ -47,7 +47,7 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
         };
         $scope.pageAllChangeHandler();
     }
-    $scope.getAllPhotoList();
+    // $scope.getAllPhotoList();
     $scope.userFeaturePhotoFileList = [];
     $scope.UserFeaturePhotoFileListSearchParameters = {
         PageSize: 12,
@@ -60,15 +60,17 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
             $scope.UserFeaturePhotoFileListSearchParameters.PageNo = num != undefined ? num : 1;
             $http({
                 method: 'GET',
-                url: '/UserPhotoAlbum/GetAdminPublicPhotoFeatureFileListById?pageNo=' + $scope.UserFeaturePhotoFileListSearchParameters.PageNo + '&pageSize=' + $scope.UserFeaturePhotoFileListSearchParameters.PageSize
+                url: '/api/GetPublicGallary?pageNo=' + $scope.UserFeaturePhotoFileListSearchParameters.PageNo + '&pageSize=' + $scope.UserFeaturePhotoFileListSearchParameters.PageSize
             }).then(function successCallback(response) {
-                if (response.data.Items.length > 0) {
-                    angular.forEach(response.data.Items, function (item) {
-                        item.TempSrc = getFileUrl(item.FileId, item.FileName);
+                if (response.data.length > 0) {
+                    angular.forEach(response.data, function (item) {
+                        // item.TempSrc = getFileUrl(item.FileId, item.FileName);
+                        item.TempSrc = item.photo_path;
+                        item.Title = item.title;
                     });
-                    $scope.userFeaturePhotoFileList = response.data.Items;
+                    $scope.userFeaturePhotoFileList = response.data;
                 }
-                $scope.UserFeaturePhotoFileListSearchParameters.Total_Count = response.data.Pager.TotalItems;
+                // $scope.UserFeaturePhotoFileListSearchParameters.Total_Count = response.data.Pager.TotalItems;
             })
         };
         $scope.pageFeaturePhotoFileChangeHandler();
@@ -94,7 +96,7 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
         };
         $scope.pageUserPublicPhotoLinkChangeHandler();
     }
-    $scope.GetUserPublicPhotoLinkAllList();
+    // $scope.GetUserPublicPhotoLinkAllList();
     $scope.photoDetailOb = {};
     $scope.photoDetail = function (data) {
         if (data.FileId != null) {
@@ -193,7 +195,9 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
                     processData: false,
                     data: formData,
                     success: function (imgSrc) {
-                        console.log('response',imgSrc);
+                        // console.log('response',imgSrc);
+                        $scope.$apply();
+                        noty({ text: "Photo added to the gallary!", layout: 'topRight', type: 'success' });
                     },
                     error: function () {
                         //alert("There was error uploading files!");
@@ -245,23 +249,28 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
         }
     };
     $scope.deleteUserFile = function (data) {
-        if (data.Id != null || data.Id != undefined) {
+        if (data.id != null || data.id != undefined) {
             $http({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 method: 'POST',
-                url: '/UserPhotoAlbum/DeletePost/' + data.Id,
+                url: '/api/DeleteGallary?gallaryId=' + data.id,
                 dataType: 'JSON'
             }).then(function successCallback(response) {
-                if (response.data.Error === true) {
-                    noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
-                }
-                else {
-                    noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
-                    angular.forEach($scope.userFeaturePhotoFileList, function (item, i) {
-                        if (item.Id == data.Id) {
-                            $scope.userFeaturePhotoFileList.splice(i, 1);
-                        }
-                    });
-                }
+                // console.log('response', response.data);
+                noty({ text: response.data.title + ' has deleted!', layout: 'topRight', type: 'success' });
+                // if (response.data.Error === true) {
+                //     noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
+                // }
+                // else {
+                //     noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
+                //     angular.forEach($scope.userFeaturePhotoFileList, function (item, i) {
+                //         if (item.Id == data.Id) {
+                //             $scope.userFeaturePhotoFileList.splice(i, 1);
+                //         }
+                //     });
+                // }
             }, function errorCallback(response) {
                 noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
             });
