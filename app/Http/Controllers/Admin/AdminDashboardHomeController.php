@@ -34,7 +34,9 @@ class AdminDashboardHomeController extends Controller
     $view->with('ControllerName', 'GallaryController');
     return $view;
   }
-
+  public function UploadGallary(Request $request) {
+    dd($request->input());
+}
   public function GetUserById()
   {
     $user = Auth::user();

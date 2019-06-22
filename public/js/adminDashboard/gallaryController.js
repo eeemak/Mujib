@@ -183,10 +183,12 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
             var formData = new FormData();
             $http({
                 method: "post",
-                url: '/UserPhotoAlbum/AdminCreate/',
+                url: '/api/UploadGallary/',
                 headers: {  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                contentType: false,
+                processData: false,
                 transformRequest: function (data) {
-                    formData.append('userFileList', angular.toJson(data.userFileList));
+                    formData.append('userFileList',data.userFileList);
                     for (var i = 0; i < data.userFile.length; i++) {
                         formData.append('userFile[' + i + ']', data.userFile[i]);
                     }
@@ -249,7 +251,7 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
         }
         var file = [];
         $scope.fileDoc = [];
-        $scope.ClearImage();
+       // $scope.ClearImage();
         $scope.saveAlbum();
     }
     $scope.ClearImage = function () {
