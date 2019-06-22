@@ -34,16 +34,16 @@
                                     <label class="col-md-3 col-xs-12 control-label">Photo</label>
                                     <div class="col-md-6 col-xs-12">
                                         <div>
-                                                <img ng-if="!imageSrc" src="{{ asset('img/no-image.jpg') }}" class="profileImage img-thumbnail" />
-                        <img ng-if="imageSrc" src="@{{ imageSrc }}" class="profileImage img-thumbnail" />
+                        <img ng-if="imageSrc===null" src="{{ asset('img/no-image.jpg') }}" class="profileImage" />
+                        <img ng-if="imageSrc !=null" id="uploadImageSrc" ng-src="@{{imageSrc}}" style=" border: 1px solid; height: 200px; width: 200px;" />
                     </div>
-                        <input type="file" id="imageFiles" title="Change Profile Picture" onchange="angular.element(this).scope().uploadImage()" class="upload fileinput btn-primary" file-upload />
-                                    </div>
+                        <input type="file" id="uploadImage" title="Upload Thumbline" ng-file-select="onFileSelect($files)" class="upload fileinput btn-primary" file-upload multiple />
+                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 col-xs-12 control-label"></label>
                                     <div class="col-md-6 col-xs-12">
-                                        <button type="button" class="btn btn-info" ng-click="addUserFile();">
+                                        <button type="button" class="btn btn-info" ng-click="saveAlbum();">
                                             <span class="fa fa-floppy-o"></span> Save
                                         </button>
                      

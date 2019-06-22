@@ -181,44 +181,52 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
     $scope.saveAlbum = function () {
         if ($scope.adminPhotoAlbum.$valid) {
             var formData = new FormData();
-            $http({
-                method: "post",
-                url: '/api/UploadGallary/',
-                headers: {  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                contentType: false,
-                processData: false,
-                transformRequest: function (data) {
-                    formData.append('userFileList',data.userFileList);
-                    for (var i = 0; i < data.userFile.length; i++) {
-                        formData.append('userFile[' + i + ']', data.userFile[i]);
+                formData.append('title', $scope.adminUploadFileOb.Title);
+                formData.append('file', $scope.filedata);
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: "POST",
+                    url: "/api/UploadGallary",
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    success: function (imgSrc) {
+                        console.log('response',imgSrc);
+                    },
+                    error: function () {
+                        //alert("There was error uploading files!");
                     }
-                    return formData;
-                },
-                data: {
-                    'userFileList': $scope.photoSaveFileList
-                    , 'userFile': $scope.inputFileList
-                },
-            }).then(function successCallback(response) {
-                console.log('response',response.data);
-                // if (response.data.Error == true) {
-                //     noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
-                // }
-                // else {
-                //     noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
-                //     $scope.getAllPhotoList();
-                //     $scope.getUserFeaturePhotoFileListById();
-                //     ClearFields();
-                // }
-            }), function errorCallBack(response) {
-                showResult(response.data.Message, 'failure');
-            }
+                });
+            // $http({
+            //     method: "post",
+            //     url: '/api/UploadGallary/',
+            //     headers: {  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            //     data: {
+            //        formData
+            //     },
+            // }).then(function successCallback(response) {
+            //     console.log('response',response.data);
+            //     // if (response.data.Error == true) {
+            //     //     noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
+            //     // }
+            //     // else {
+            //     //     noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
+            //     //     $scope.getAllPhotoList();
+            //     //     $scope.getUserFeaturePhotoFileListById();
+            //     //     ClearFields();
+            //     // }
+            // }), function errorCallBack(response) {
+            //     showResult(response.data.Message, 'failure');
+            // }
         }
     }
     $scope.imageSrc = null;
     $scope.filedata = null;
-    $scope.uploadImage = function(){
-        $scope.filedata = $("#imageFiles").get(0);
-    }
+    $("#uploadImage").change(function () {
+        $scope.filedata = this.files[0];
+    });
     $scope.getFile = function () {
         fileReader.readAsDataUrl($scope.file, $scope)
             .then(function (result) {
@@ -226,35 +234,6 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
             });
     };
 
-    $scope.inputFileList = [];
-    $scope.photoSaveFileList = [];
-    $scope.addUserFile = function () {
-        $scope.inputFileList = [];
-        $scope.photoSaveFileList = [];
-        var file = $scope.filedata;
-        var ob = {
-            Id: null,
-            Title: $scope.adminUploadFileOb.Title,
-            FileName: file != null ? file.name : null,
-            FileId: file != null ? Math.random().toString(36).substr(2, 16) : null,
-            TempSrc: $scope.imageSrc != null ? $scope.imageSrc : "/Images/default.jpg",
-            UserId: null
-        }
-        $scope.photoSaveFileList.push(ob);
-        $scope.inputFileList.push(file);
-        $scope.adminUploadFileOb = {
-            Id: null,
-            Title: null,
-            IsFeature: true,
-            FileName: null,
-            FileId: null,
-            UserId: null
-        }
-        var file = [];
-        $scope.fileDoc = [];
-       // $scope.ClearImage();
-        $scope.saveAlbum();
-    }
     $scope.ClearImage = function () {
         $scope.imageSrc = null;
         document.getElementById("uploadImage").value = '';

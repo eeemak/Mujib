@@ -18,7 +18,9 @@
             <h5 class="bk-org title">
                 মুজিব সার্কেলে আপনাকে স্বাগতম
             </h5>
-
+<div>
+    <img src="{{URL::asset('assets/assets/themes/Gob/images/Bangabandhu-.jpg')}}" alt="" width="960"/>
+</div>
    
         </div>
         <style>

@@ -110,7 +110,7 @@
                         <img src="{{URL::asset('assets/assets/themes/Gob/images/E10C30.jpg')}}" alt="" width="960" height="220" />
 
                     </li>
-                    <li>
+                    {{-- <li>
 
                         <img src="{{URL::asset('assets/assets/themes/Gob/images/E10EAC.jpg')}}" alt="" width="960" height="220" />
 
@@ -119,7 +119,7 @@
 
                         <img src="{{URL::asset('assets/assets/themes/Gob/images/E10J5E.jpg')}}" alt="" width="960" height="220" />
 
-                    </li>
+                    </li> --}}
                 </ul>
                 <style>
                     .rslides img {
