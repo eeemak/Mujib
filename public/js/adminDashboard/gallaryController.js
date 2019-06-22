@@ -195,9 +195,10 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
                     processData: false,
                     data: formData,
                     success: function (imgSrc) {
-                        // console.log('response',imgSrc);
-                        $scope.$apply();
                         noty({ text: "Photo added to the gallary!", layout: 'topRight', type: 'success' });
+                        $scope.adminUploadFileOb.Title=null;
+                        $scope.getUserFeaturePhotoFileListById();
+                        $scope.ClearImage();
                     },
                     error: function () {
                         //alert("There was error uploading files!");
