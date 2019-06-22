@@ -1,6 +1,7 @@
 ﻿'use strict';
 var publicpanelApp = angular.module('publicpanelApp', ['ngRoute', 'ngCookies', 'angularUtils.directives.dirPagination'])
     .controller('HomeController', HomeController)
+    .controller('AccountController', AccountController)
 publicpanelApp.factory('LoginService', function ($http) {
     var fac = {};
     fac.GetUser = function (d) {
