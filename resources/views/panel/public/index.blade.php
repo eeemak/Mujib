@@ -246,8 +246,11 @@
                         <div ng-if="x.PhotoPath==''" class="treatment-icon col-sm-4">
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </div>
-                        <div ng-if="x.PhotoPath !=''" class="treatment-icon col-sm-4">
-                            <img ng-if="x.PhotoPath!=''" src="@{{x.PhotoPath}}" class="profileImage" />
+                        <div ng-if="x.PhotoPath !=null" class="treatment-icon col-sm-4">
+                            <img src="@{{x.PhotoPath}}" class="profileImage" />
+                        </div>
+                        <div ng-if="x.PhotoPath ===null" class="treatment-icon col-sm-4">
+                        <img  src="{{ asset('img/no-image.jpg') }}" class="profileImage img-thumbnail" />
                         </div>
                         <div class="col-sm-8 ad-list-info">
                             <h3>@{{x.FullName}}</h3>
