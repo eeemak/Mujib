@@ -2,7 +2,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" style="margin-top: 64px;margin-bottom: 60px;">
-        <div ng-form="registerForm">
+        <div>
             <div class="sign-inner">
                 <div class="text-right">
                     <h3 class="first-child" style="font-size:34px;color:#9d2118;margin-bottom: 0px;">আপনার অ্যাকাউন্ট</h3>
