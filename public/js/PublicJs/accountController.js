@@ -22,7 +22,7 @@ function AccountController($scope, $rootScope, $routeParams, $http, $filter, $wi
     $scope.getProfessionType = function () {
         $http({
             method: 'GET',
-            url: '/Home/GetProfessionTypeCbo'
+            url: '/api/GetProfessionTypeCbo'
         }).then(function successCallback(response) {
             $scope.professionTypeList = response.data;
         })
@@ -33,10 +33,10 @@ function AccountController($scope, $rootScope, $routeParams, $http, $filter, $wi
     $scope.CheckUserAlreadyExist = function () {
         $http({
             method: 'GET',
-            url: '/Account/CheckUserExist?phone=' + $scope.registerModel.Phone
+            url: '/api/CheckUserExist?phone=' + $scope.registerModel.Phone
         }).then(function successCallback(response) {
-            $scope.userAlreadyExistErrorMessage = response.data.Message;
-            $scope.userAlreadyExist = response.data.Error;
+            $scope.userAlreadyExistErrorMessage = response.data.message;
+            $scope.userAlreadyExist = response.data.isExist;
         })
     }
     //**************AdvanceSearch****************/
@@ -44,7 +44,7 @@ function AccountController($scope, $rootScope, $routeParams, $http, $filter, $wi
     $scope.getDistrict = function () {
         $http({
             method: 'GET',
-            url: '/Home/GetDistrict'
+            url: '/api/GetDistrict'
         }).then(function successCallback(response) {
             $scope.districtList = response.data;
         })
@@ -54,7 +54,7 @@ function AccountController($scope, $rootScope, $routeParams, $http, $filter, $wi
     $scope.getThana = function () {
         $http({
             method: 'GET',
-            url: '/Home/GetThana?districtId=' + $scope.registerModel.DistrictId
+            url: '/api/GetThana?districtId=' + $scope.registerModel.DistrictId
         }).then(function successCallback(response) {
             $scope.thanaList = response.data;
         })
@@ -63,7 +63,7 @@ function AccountController($scope, $rootScope, $routeParams, $http, $filter, $wi
     $scope.getPoliceStation = function () {
         $http({
             method: 'GET',
-            url: '/Home/GetPoliceStation?thanaId=' + $scope.registerModel.ThanaId + '&districtId=' + $scope.registerModel.DistrictId
+            url: '/api/GetPoliceStation?thanaId=' + $scope.registerModel.ThanaId + '&districtId=' + $scope.registerModel.DistrictId
         }).then(function successCallback(response) {
             $scope.policeStationList = response.data;
         })
@@ -72,7 +72,7 @@ function AccountController($scope, $rootScope, $routeParams, $http, $filter, $wi
     $scope.getVillage = function () {
         $http({
             method: 'GET',
-            url: '/Home/GetVillage?policeStationId=' + $scope.registerModel.PoliceStationId + '&thanaId=' + $scope.registerModel.ThanaId + '&districtId=' + $scope.registerModel.DistrictId
+            url: '/api/GetVillage?policeStationId=' + $scope.registerModel.PoliceStationId + '&thanaId=' + $scope.registerModel.ThanaId + '&districtId=' + $scope.registerModel.DistrictId
         }).then(function successCallback(response) {
             $scope.villageList = response.data;
         })
@@ -108,10 +108,11 @@ function AccountController($scope, $rootScope, $routeParams, $http, $filter, $wi
         if ($scope.registerForm.$valid) {
             $http({
                 method: "post",
-                url: '/Account/RegisterUser/',
+                url: '/api/RegisterUser/',
                 data: { 'model': $scope.registerModel },
                 dataType: "json"
             }).then(function successCallback(response) {
+                console.log('response', response.data);
                 if (response.data.Error == true) {
                     myFunction(response.data.Message);
                 }
