@@ -82,6 +82,7 @@
     <script  type="text/javascript" src="{{asset('js/adminDashboard/userManageController.js')}}"></script>
     <script  type="text/javascript" src="{{asset('js/adminDashboard/addManageController.js')}}"></script>
     <script  type="text/javascript" src="{{asset('js/adminDashboard/adminVideoAlbumController.js')}}"></script>
+    <script  type="text/javascript" src="{{asset('js/adminDashboard/gallaryController.js')}}"></script>
     <script  type="text/javascript" src="{{asset('js/adminDashboard/adminPhotoAlbumController.js')}}"></script>
     <script  type="text/javascript" src="{{asset('js/adminDashboard/Apps/adminPanelApp.js')}}"></script>
     <!--End Angular Ctrl-->
