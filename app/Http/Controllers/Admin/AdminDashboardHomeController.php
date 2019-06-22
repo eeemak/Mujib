@@ -35,7 +35,8 @@ class AdminDashboardHomeController extends Controller
     return $view;
   }
   public function UploadGallary(Request $request) {
-    dd($request->input());
+    // $file = $request->file('userFileList');
+    return $request->all();
 }
   public function GetUserById()
   {

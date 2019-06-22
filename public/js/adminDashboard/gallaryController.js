@@ -199,15 +199,16 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
                     , 'userFile': $scope.inputFileList
                 },
             }).then(function successCallback(response) {
-                if (response.data.Error == true) {
-                    noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
-                }
-                else {
-                    noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
-                    $scope.getAllPhotoList();
-                    $scope.getUserFeaturePhotoFileListById();
-                    ClearFields();
-                }
+                console.log('response',response.data);
+                // if (response.data.Error == true) {
+                //     noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
+                // }
+                // else {
+                //     noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
+                //     $scope.getAllPhotoList();
+                //     $scope.getUserFeaturePhotoFileListById();
+                //     ClearFields();
+                // }
             }), function errorCallBack(response) {
                 showResult(response.data.Message, 'failure');
             }

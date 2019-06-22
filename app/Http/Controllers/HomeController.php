@@ -53,6 +53,7 @@ class HomeController extends Controller
         ]);
         $user = new User();
         $user->fill($request->input());
+        $user->password = bcrypt($request->password);
         $user->save();
         Session::put('alert-success', 'Registration successfull! Please login.');
         return redirect()->route('login');
