@@ -214,7 +214,7 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
     $scope.imageSrc = null;
     $scope.filedata = null;
     $scope.uploadImage = function(){
-        $scope.filedata = this.files[0];
+        $scope.filedata = $("#imageFiles").get(0);
     }
     $scope.getFile = function () {
         fileReader.readAsDataUrl($scope.file, $scope)
