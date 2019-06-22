@@ -175,7 +175,7 @@
                     <ul class="meganizr mzr-slide mzr-responsive">
                         <!-- Build The Menu -->
                         <li class="col0 ">
-                            <a title="Home" href="{{route('/') }}" style="background-image: url('{{asset('assets/assets/themes/Gob/themes/responsive_npf/img/home_dark.png')}}');margin-top:5px;"></a>
+                            <a title="Home" href="{{ route('home') }}" style="background-image: url('{{asset('assets/assets/themes/Gob/themes/responsive_npf/img/home_dark.png')}}');margin-top:5px;"></a>
                         </li>
                         <li class="col1">
                             <a href="#" class="submenu">আপলোড/ডাউনলোড</a>
@@ -202,10 +202,10 @@
                             <a href="/Home/Motamot">মতামত</a>
                         </li>
                         <li class="col10">
-                            <a href="{{route('login') }}">লগইন</a>
+                            <a href="{{ route('login') }}">লগইন</a>
                         </li>
                         <li class="col9">
-                            <a href="{{route('register') }}">রেজিস্ট্রেশন</a>
+                            <a href="{{  route('register') }}">রেজিস্ট্রেশন</a>
                         </li>
 
 
