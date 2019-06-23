@@ -35,15 +35,34 @@ class AdminDashboardHomeController extends Controller
     $view->with('ControllerName', 'GallaryController');
     return $view;
   }
+  public function GetGallaryByUser(){
+    $gallaries = Gallary::where('user_id', Auth::id())->orderBy('id', 'desc')->get();
+        return response()->json($gallaries);
+  }
   public function UploadGallary(Request $request) {
-    $photo_path = Storage::putFile('public/gallary', $request->file('file'));
-    $photo_path = str_replace('public', 'storage', $photo_path);
-    $gallary = new Gallary();
-    $gallary->title = $request->title;
-    $gallary->photo_path = $photo_path;
-    $gallary->user_id = Auth::id();
-    $gallary->save();
-    return $photo_path;
+    if ($request->file) {
+      $file = $request->file;
+      $photo_directory = 'upload/gallary/';
+      $photo_path = $photo_directory . time() . "-" . $file->getClientOriginalName();
+      $file->move($photo_directory, $photo_path);
+      // $photo_path = Storage::putFile('upload/gallary', $request->file('file'));
+      $gallary = new Gallary();
+      $gallary->title = $request->title;
+      $gallary->photo_path = $photo_path;
+      $gallary->user_id = Auth::id();
+      $gallary->save();
+      return $photo_path;
+    }
+    return false;
+  }
+public function DeleteGallary(Request $request){
+    $gallary = Gallary::find($request->gallaryId);
+    // Storage::delete($gallary->photo_path);
+    if($gallary->photo_path){
+      unlink($gallary->photo_path);
+    }
+    $gallary->delete();
+    return response()->json($gallary);
 }
   public function GetUserById()
   {
@@ -103,23 +122,25 @@ class AdminDashboardHomeController extends Controller
   }
   public function UploadProfileImage(Request $request)
   {
-    // return $request->file('file')->getClientOriginalName();
-    $photo_path = Storage::putFile('public/profileImg', $request->file('file'));
-    $photo_path = str_replace('public', 'storage', $photo_path);
-    $user = Auth::user();
-    $old_path = str_replace('storage', 'public', $user->photo_path);
-    Storage::delete($old_path);
-    $user->photo_path = $photo_path;
-    $user->update();
-    return $photo_path;
+    if($request->file){
+      $file = $request->file;
+      $photo_directory = 'upload/profileImg/';
+      $photo_path = $photo_directory . time() . "-" . $file->getClientOriginalName();
+      $file->move($photo_directory, $photo_path);
+      // $photo_path = Storage::putFile('upload/profileImg', $request->file('file'));
+      $user = Auth::user();
+      // Storage::delete($user->photo_path);
+      if($user->photo_path){
+        unlink($user->photo_path);
+      }
+      $user->photo_path = $photo_path;
+      $user->update();
+      return $photo_path;
+    }
+    return false;
+    
   }
-  public function DeleteGallary(Request $request){
-    $gallary = Gallary::find($request->gallaryId);
-    $old_path = str_replace('storage', 'public', $gallary->photo_path);
-    Storage::delete($old_path);
-    $gallary->delete();
-    return response()->json($gallary);
-}
+  
   //   public function UpdateUser(UserProfile model, List<UserInstitutions> userInstructions, List<UserMobile> userMobile, List<EmailLink> emailLink, List<FamilyAndFriendPhone> familyAndFriendPhone, List<SocialLink> socialLink, List<UserLink> userLink)
   //   {
   //      return;
