@@ -33,14 +33,17 @@
     <!-- include the jquery-accessibleMegaMenu plugin script -->
     <script type="text/javascript" src="{{asset('assets/assets/themes/Gob/themes/responsive_npf/js/jquery-accessibleMegaMenu.js')}}"></script>
 
-    <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/themes/Gob/themes/responsive_npf/stylesheets/responsiveslides.css')}}" />
+    <link rel="stylesheet" type="text/css" id="theme" href="{{ asset('assets/assets/themes/Gob/themes/responsive_npf/stylesheets/responsiveslides.css')}}" />
     <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/themes/Gob/themes/responsive_npf/templates/ministry/responsive.css')}}" />
     <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/assets/themes/Gob/themes/responsive_npf/templates/ministry/accessibility.css')}}" />
 
     <script type="text/javascript" src="{{asset('assets/assets/themes/Gob/themes/responsive_npf/js/responsiveslides.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/assets/themes/Gob/themes/responsive_npf/js/jquery.vticker.js')}}"></script>
+    {{-- Select2 --}}
+    <link href="{{ asset('assets/vendor/select2/select2.min.css') }}" rel="stylesheet" />
+    <script src="{{ asset('assets/vendor/select2/select2.min.js') }}"></script>
+    
     <link rel="shortcut icon" href="ico/favicon.png" />
-
     <style>
         #pageloading {
             display: none;
@@ -297,6 +300,7 @@
                 $('#printable_area td').removeAttr('style');
                 $('#printable_area td p').css("width", "100%");
             }
+            $('.select2').select2();
         });
         $(".meganizr .mzr-drop").keyup(function() {
 
