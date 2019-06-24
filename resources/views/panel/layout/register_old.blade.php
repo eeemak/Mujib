@@ -72,7 +72,7 @@
                             <option ng-repeat="item in villageList" value="@{{ item.id }}">@{{ item.name }}</option>
                         </select>
                     </div>
-                    {{-- <div class="form-group">
+                    <div class="form-group">
                         <div>
                             <button type="submit" class="btn btn-theme-primaryfocus" ng-click="showNewVillage()">Create New Village</button>
                         </div>
@@ -82,7 +82,7 @@
                         <div>
                             <input type="text" class="form-control" name="ContactNo" ng-model="registerModel.NewVillageName" placeholder="Your Village (If not found on Village Select)" data-toggle="popover" data-placement="left" data-trigger="focus" data-content="Enter your new village here." data-original-title="New Village">
                         </div>
-                    </div> --}}
+                    </div>
                     <div class="form-group" show-errors>
                         <div class="show-message">
                             <select name="ProfessionTypeId" class="form-control" ng-model="registerModel.ProfessionTypeId" id="ProfessionId" tabindex="1">

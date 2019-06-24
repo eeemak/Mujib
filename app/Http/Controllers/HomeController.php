@@ -12,6 +12,7 @@ use App\Model\PoliceStation;
 use App\User;
 use App\Model\ProfessionType;
 use App\Model\Gallary;
+use App\Model\UserInstitutions;
 
 class HomeController extends Controller
 {
@@ -38,6 +39,7 @@ class HomeController extends Controller
     }
     public function register(){
         $view = view('panel.layout.register');
+        $view->with('hasSlider', false);
         $view->with('ControllerName', "AccountController");
         return $view;
     }
@@ -62,6 +64,9 @@ class HomeController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
         $user->assignRole('user');
+        $user_institution = new UserInstitutions();
+        $user_institution->ProfessionTypeId = $request->ProfessionTypeId;
+        $user->institution()->save($user_institution);
         Session::put('alert-success', 'Registration successfull! Please login.');
         return redirect()->route('login');
     }
