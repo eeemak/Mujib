@@ -12,7 +12,7 @@ class PoliceStationTableSeeder extends Seeder
      */
     public function run()
     {
-        // PoliceStation::create(['id'=>'2','thana_id'=>'318','district_id'=>'56','name' => 'Kazi Alauddin Road']);
+        PoliceStation::create(['id'=>'2','thana_id'=>'318','district_id'=>'56','name' => 'Kazi Alauddin Road']);
         PoliceStation::create(['id'=>'3','thana_id'=>'10','district_id'=>'49','name' => 'Alfadanga']);
         PoliceStation::create(['id'=>'4','thana_id'=>'10','district_id'=>'49','name' => 'Gopalpur']);
         PoliceStation::create(['id'=>'5','thana_id'=>'10','district_id'=>'49','name' => 'Togarbondho']);
