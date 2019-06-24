@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'api'], function () {
         Route::get('/GetUserById', 'AdminDashboardHomeController@GetUserById');
         Route::get('/GetUserInstructionList', 'HomeController@GetUserInstructionList');
+        Route::get('/GetGallaryByUser', 'AdminDashboardHomeController@GetGallaryByUser');
         Route::post('/UpdateUser', 'AdminDashboardHomeController@UpdateUser');
         Route::post('/UploadProfileImage', 'AdminDashboardHomeController@UploadProfileImage');
         Route::post('/UploadGallary', 'AdminDashboardHomeController@UploadGallary');
@@ -42,4 +43,28 @@ Route::group(['middleware' => 'auth'], function () {
     });
     //=======User=======
     Route::group(['middleware' => ['role:user']], function () { });
+});
+
+//Clear configurations:
+Route::get('/config-clear', function() {
+    $status = Artisan::call('config:clear');
+    return '<h1>'. $status .'</h1>';
+});
+
+//Clear cache:
+Route::get('/cache-clear', function() {
+    $status = Artisan::call('cache:clear');
+    return '<h1>Cache cleared</h1>';
+});
+
+//Clear configuration cache:
+Route::get('/config-cache', function() {
+    $status = Artisan::call('config:Cache');
+    return '<h1>Configurations cache cleared</h1>';
+});
+
+//Migration fresh seed:
+Route::get('/artisan-migrate-fresh-seed', function() {
+    $status = Artisan::call('migrate:fresh --seed');
+    return '<h1>Migrate Fresh Seed Successfull</h1>';
 });

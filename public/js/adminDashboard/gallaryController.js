@@ -16,7 +16,7 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
             $scope.UserFeaturePhotoFileListSearchParameters.PageNo = num != undefined ? num : 1;
             $http({
                 method: 'GET',
-                url: '/api/GetPublicGallary?pageNo=' + $scope.UserFeaturePhotoFileListSearchParameters.PageNo + '&pageSize=' + $scope.UserFeaturePhotoFileListSearchParameters.PageSize
+                url: '/api/GetGallaryByUser?pageNo=' + $scope.UserFeaturePhotoFileListSearchParameters.PageNo + '&pageSize=' + $scope.UserFeaturePhotoFileListSearchParameters.PageSize
             }).then(function successCallback(response) {
                 if (response.data.length > 0) {
                     angular.forEach(response.data, function (item) {
@@ -46,7 +46,7 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
                 method: 'GET',
                 url: '/UserPhotoAlbum/GetUserPublicPhotoLinkAllList?pageNo=' + $scope.UserPublicPhotoLinkSearchParameters.PageNo + '&pageSize=' + $scope.UserPublicPhotoLinkSearchParameters.PageSize
             }).then(function successCallback(response) {
-                    $scope.userPublicPhotoLinkAllList = response.data.Items;
+                $scope.userPublicPhotoLinkAllList = response.data.Items;
                 $scope.UserPublicPhotoLinkSearchParameters.Total_Count = response.data.Pager.TotalItems;
             })
         };
