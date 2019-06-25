@@ -38,10 +38,10 @@ class AdminUploadController extends Controller
       $file->move($photo_directory, $photo_path);
       // $photo_path = Storage::putFile('upload/gallary', $request->file('file'));
       $uploadfile = new FileUpload();
-      $uploadfile->file_title = $uploadob.file_title;
+      $uploadfile->file_title = $uploadob['file_title'];
       $uploadfile->file_path = $photo_path;
       $uploadfile->user_id = Auth::id();
-      $uploadfile->fileTypeId =$uploadob.fileTypeId;
+      $uploadfile->fileTypeId =$uploadob['fileTypeId'];
       $uploadfile->save();
       return true;
     }
