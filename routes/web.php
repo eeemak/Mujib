@@ -32,6 +32,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/GetUserById', 'AdminDashboardHomeController@GetUserById');
         Route::get('/GetUserInstructionList', 'HomeController@GetUserInstructionList');
         Route::get('/GetGallaryByUser', 'AdminDashboardHomeController@GetGallaryByUser');
+        Route::get('/GetFileType', 'AdminUploadController@GetFileType');
+        Route::get('/GetUserFileById', 'AdminUploadController@GetUserFileById');
+        Route::post('/UploadFile', 'AdminUploadController@UploadFile');
         Route::post('/UpdateUser', 'AdminDashboardHomeController@UpdateUser');
         Route::post('/UploadProfileImage', 'AdminDashboardHomeController@UploadProfileImage');
         Route::post('/UploadGallary', 'AdminDashboardHomeController@UploadGallary');

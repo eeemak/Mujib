@@ -3,7 +3,6 @@ GallaryController.$inject = ['$scope', '$rootScope', '$http', '$location', '$rou
 function GallaryController($scope, $rootScope, $http, $location, $routeParams, $cookies, $cookieStore, $filter, fileReader) {
     $scope.title = "Photo Album";
   
-    // $scope.getAllPhotoList();
     $scope.userFeaturePhotoFileList = [];
     $scope.UserFeaturePhotoFileListSearchParameters = {
         PageSize: 12,
@@ -20,13 +19,11 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
             }).then(function successCallback(response) {
                 if (response.data.length > 0) {
                     angular.forEach(response.data, function (item) {
-                        // item.TempSrc = getFileUrl(item.FileId, item.FileName);
                         item.TempSrc = item.photo_path;
                         item.Title = item.title;
                     });
                     $scope.userFeaturePhotoFileList = response.data;
                 }
-                // $scope.UserFeaturePhotoFileListSearchParameters.Total_Count = response.data.Pager.TotalItems;
             })
         };
         $scope.pageFeaturePhotoFileChangeHandler();
@@ -74,30 +71,9 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
                         $scope.getUserFeaturePhotoFileListById();
                     },
                     error: function () {
-                        //alert("There was error uploading files!");
                     }
                 });
-            // $http({
-            //     method: "post",
-            //     url: '/api/UploadGallary/',
-            //     headers: {  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            //     data: {
-            //        formData
-            //     },
-            // }).then(function successCallback(response) {
-            //     console.log('response',response.data);
-            //     // if (response.data.Error == true) {
-            //     //     noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
-            //     // }
-            //     // else {
-            //     //     noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
-            //     //     $scope.getAllPhotoList();
-            //     //     $scope.getUserFeaturePhotoFileListById();
-            //     //     ClearFields();
-            //     // }
-            // }), function errorCallBack(response) {
-            //     showResult(response.data.Message, 'failure');
-            // }
+           
         }
     }
     $scope.imageSrc = null;
