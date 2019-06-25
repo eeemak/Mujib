@@ -18,58 +18,52 @@
                     </div>
                 </div>
                 <div class="panel-body">
-
                     <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">File Type</label>
-                        <div class="col-md-6 col-xs-12">
-                            <select class="form-control " ng-model="userFileType.fileTypeId"
-                                    ng-options="item.value as item.text for item in fileTypeList" id="fileTypeId"
-                                    name="Document">
-                                <option value="">Select File Type</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">File Title</label>
+                        <input class="form-control" type="hidden" ng-model="adminUploadFileOb.Id" id="example-tel-input">
+                        <label class="col-md-3 col-xs-12 control-label">Title</label>
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">
-                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                <input type="text" class="form-control" ng-model="userFileType.file_title" placeholder="Input file title" />
+                                <span class="input-group-addon"><span class="fa fa-edit"></span></span>
+                                <input type="text" class="form-control" ng-model="adminUploadFileOb.Title" placeholder="Input file title" />
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Upload File</label>
+                        <label class="col-md-3 col-xs-12 control-label">Photo</label>
                         <div class="col-md-6 col-xs-12">
-                        <input type="file" id="uploadImage" title="Upload Thumbline" ng-file-select="onFileSelect($files)" class="upload fileinput btn-primary" file-upload multiple />
-                    </div>
+                    <div>
+            </div>
+            <input type="file" id="uploadImage" title="Choose File" ng-file-select="onFileSelect($files)" class="upload fileinput btn-primary" file-upload />
+            <p><small>File format: PDF, JPG, PNG</small></p>
+        </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label"></label>
                         <div class="col-md-6 col-xs-12">
-                            <button type="button" class="btn btn-info" ng-click="SaveDocument()">
-                                <span class="fa fa-plus"></span> Add
+                            <button ng-disabled="!adminUploadFileOb.Title" type="button" class="btn btn-info" ng-click="uploadFile();">
+                                <span class="fa fa-floppy-o"></span> Save
                             </button>
+         
                         </div>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th> Type</th>
-                                    <th>No</th>
                                     <th>Name</th>
+                                    <th> Type</th>
+                                    <th>FIle Path</th>
                                     <th>Dwonload</th>
                                     <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="x in userFileList|orderBy:$index:true">
-                                    <td>@{{x.FileTypeName}}</td>
-                                    <td>@{{x.FileNo}}</td>
+                                <tr ng-repeat="x in userFileList">
                                     <td><p>@{{x.FileName}}</p></td>
-                                    <td><a href="@{{dwonloadUrl}}" ng-click="FileDownload(x)" class="btn single-small-btn btn-primary" download="@{{x.FileName}}" target="_self"><i class="fa fa-cloud-download"></i></a></td>
-                                    <td style="width:50px" class="text-center"><button class="btn single-small-btn btn-danger" ng-click="deleteUserFile(x,$index)"><i class="fa fa-trash-o"></i></button></td>
+                                    <td>@{{x.FileExtension}}</td>
+                                    <td>@{{x.FilePath}}</td>
+                                    <td><a href="@{{ x.FilePath }}" ng-click="FileDownload(x)" class="btn single-small-btn btn-primary" download="@{{x.FileName}}" target="_self"><i class="fa fa-cloud-download"></i></a></td>
+                                    <td style="width:50px" class="text-center"><button class="btn single-small-btn btn-danger" ng-click="deleteUserFile(x.id,$index)"><i class="fa fa-trash-o"></i></button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -83,4 +77,29 @@
         </form>
     </div>
 </div>
+@endsection
+@section('script')
+<script>
+    $(function(){
+        $("#file-simple").fileinput({
+                showUpload: false,
+                showCaption: false,
+                browseClass: "btn btn-danger",
+                fileType: "any"
+        });            
+        $("#filetree").fileTree({
+            root: '/',
+            script: 'assets/filetree/jqueryFileTree.php',
+            expandSpeed: 100,
+            collapseSpeed: 100,
+            multiFolder: false                    
+        }, function(file) {
+            alert(file);
+        }, function(dir){
+            setTimeout(function(){
+                page_content_onresize();
+            },200);                    
+        });                
+    });            
+</script>
 @endsection

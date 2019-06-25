@@ -15,10 +15,9 @@ class CreateFileUploadsTable extends Migration
     {
         Schema::create('file_uploads', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('fileTypeId')->unsigned();
+            $table->string('file_extension')->nullable();
             $table->string('file_path',150)->unique();
             $table->string('file_title',250)->nullable();
-            $table->foreign('fileTypeId')->references('id')->on('file_types')->onDelete('cascade');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

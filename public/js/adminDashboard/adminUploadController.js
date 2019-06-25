@@ -38,55 +38,33 @@ function AdminUploadController($scope, $rootScope, $http, $location, $routeParam
   
  
     //------------
-    $scope.SaveDocument = function () {
+    $scope.uploadFile = function () {
         var formData = new FormData();
-        formData.append('title',angular.toJson($scope.userFileType) );
-        formData.append('file', $scope.filedata);
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: "POST",
-            url: "/api/UploadFile",
-            contentType: false,
-            processData: false,
-            data: formData,
-            success: function (imgSrc) {
-                noty({ text: "file added to the gallary!", layout: 'topRight', type: 'success' });
-                $scope.getFileTypeOb();
-                $scope.ClearImage();
-                $scope.getUserFileById();
-            },
-            error: function () {
-            }
-        });
-
-        // $http({
-        //     method: 'POST',
-        //     url: '/UserDocument/SaveDocument/',
-        //     headers: { 'Content-Type': undefined },
-        //     transformRequest: function (data) {
-        //         formData.append('userFileList', angular.toJson(data.userFileList));
-        //         for (var i = 0; i < data.userFile.length; i++) {
-        //             formData.append('userFile[' + i + ']', data.userFile[i]);
-        //         }
-        //         return formData;
-        //     },
-        //     data: {
-        //         'userFileList': $scope.userFileList
-        //         , 'userFile': $scope.inputFileList
-        //     },
-        // }).then(function successCallback(response) {
-        //     if (response.data.Error === true) {
-        //         noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
-        //     }
-        //     else {
-        //         noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
-        //         ClearFields();
-        //     }
-        // }), function errorCallBack(response) {
-        //     ShowResult(response.data.Message, 'failure');
-        // }
+            formData.append('title', $scope.adminUploadFileOb.Title);
+            formData.append('file', $scope.filedata);
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "POST",
+                url: "/api/UploadFile",
+                contentType: false,
+                processData: false,
+                data: formData,
+                success: function (response) {
+                    console.log(response);
+                    if(response.error == true){
+                        noty({ text: "This file format is not allowed to upload", layout: 'topRight', type: 'error' });
+                    }else{
+                        $scope.adminUploadFileOb.Title=null;
+                        noty({ text: response.file_title +" has uploaded!", layout: 'topRight', type: 'success' });
+                        $scope.getUserFileById();
+                    }
+                },
+                error: function () {
+                    noty({ text: "Something went wrong!", layout: 'topRight', type: 'error' });
+                }
+            });
     }
     $scope.imageSrc = null;
     $scope.filedata = null;
@@ -99,12 +77,27 @@ function AdminUploadController($scope, $rootScope, $http, $location, $routeParam
                 $scope.imageSrc = result;
             });
     };
-    $scope.deleteUserFile = function (data, index) {
-        angular.forEach($scope.userFileList, function (item, i) {
-            if (item.FileId == data.FileId) {
-                $scope.userFileList.splice(i, 1);
+    $scope.deleteUserFile = function (id, index) {
+        // angular.forEach($scope.userFileList, function (item, i) {
+        //     if (item.FileId == data.FileId) {
+        //         $scope.userFileList.splice(i, 1);
+        //     }
+        // })
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: "POST",
+            url: "/api/DeleteUserFileById/" + id,
+            contentType: false,
+            processData: false,
+            success: function (imgSrc) {
+                noty({ text: imgSrc.file_title +" has deleted!", layout: 'topRight', type: 'success' });
+                $scope.getUserFileById();
+            },
+            error: function () {
             }
-        })
+        });
     }
     function myFunction(msg) {
         $scope.msgText = msg

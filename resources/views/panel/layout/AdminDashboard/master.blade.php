@@ -87,6 +87,7 @@
     <script  type="text/javascript" src="{{asset('js/adminDashboard/adminUploadController.js')}}"></script>
     <script  type="text/javascript" src="{{asset('js/adminDashboard/Apps/adminPanelApp.js')}}"></script>
     <!--End Angular Ctrl-->
+    @yield('script')
     <!-- END SCRIPTS -->                   
     </body>
 </html>
