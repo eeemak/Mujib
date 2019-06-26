@@ -1,4 +1,4 @@
 @extends('panel.layout.adminDashboard.master')
 @section('content')
-    Dashboard Works! {{$ControllerName}}
+   <h1 class="text-center"> Welcome to your dashboard</h1>
 @endsection

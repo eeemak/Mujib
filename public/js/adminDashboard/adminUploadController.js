@@ -23,7 +23,17 @@ function AdminUploadController($scope, $rootScope, $http, $location, $routeParam
             }
         })
     }
-    $scope.getUserFileById();
+    
+    $scope.getUserFileAll = function () {
+        $http({
+            method: 'GET',
+            url: 'api/GetUserFileAll'
+        }).then(function successCallback(response) {
+            if (response.data !== '') {
+                $scope.userFileList = response.data;
+            }
+        })
+    }
     //--------------
     $scope.fileTypeList = [];
     $scope.getFileType = function () {

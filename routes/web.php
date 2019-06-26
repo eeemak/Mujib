@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/GetGallaryByUser', 'AdminDashboardHomeController@GetGallaryByUser');
         Route::get('/GetFileType', 'AdminUploadController@GetFileType');
         Route::get('/GetUserFileById', 'AdminUploadController@GetUserFileById');
+        Route::get('/GetUserFileAll', 'AdminUploadController@GetUserFileAll');
         Route::post('/UploadFile', 'AdminUploadController@UploadFile');
         Route::post('/UpdateUser', 'AdminDashboardHomeController@UpdateUser');
         Route::post('/UploadProfileImage', 'AdminDashboardHomeController@UploadProfileImage');
@@ -46,7 +47,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('upload-management', ['as' => 'upload', 'uses' => 'AdminUploadController@viewUpload']);
     });
     //=======User=======
-    Route::group(['middleware' => ['role:user']], function () { });
+    Route::group(['middleware' => ['role:user']], function () { 
+        Route::get('dwonload-management', ['as' => 'dwonload', 'uses' => 'AdminUploadController@viewUserDwonload']);
+    });
 });
 
 //Clear configurations:

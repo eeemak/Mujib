@@ -47,7 +47,9 @@
         <li class="{{ Request::is('gallary') ? 'active':'' }}">
             <a href="{{ route('gallary') }}"><span class="fa fa-user"></span> <span class="xn-text">Gallary</span></a>
         </li>
-    
+        <li class="{{ Request::is('dwonload') ? 'active':'' }}">
+            <a href="{{ route('dwonload') }}"><span class="fa fa-user"></span> <span class="xn-text">Dwonload</span></a>
+        </li>
         @endrole
  
     </ul>

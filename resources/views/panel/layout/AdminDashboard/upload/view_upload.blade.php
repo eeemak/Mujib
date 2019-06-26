@@ -1,7 +1,7 @@
 @extends('panel.layout.adminDashboard.master')
 @section('content')
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12"  ng-init="getUserFileById()">
 
         <form class="form-horizontal">
             <div class="panel panel-default">
