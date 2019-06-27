@@ -1,34 +1,34 @@
 <style>
     .meganizr > li.col1:hover, 
-    .meganizr > li.active,
+    .meganizr > li.active a,
 	.meganizr > li.col1 > a:hover{ background-color: #FF6600;}
 	.meganizr > li.col2:hover, 
-    .meganizr > li.active,
+    .meganizr > li.active a,
 	.meganizr > li.col2 > a:hover{ background-color: #C40A2A; color: #fff; }
 	.meganizr > li.col3:hover, 
-    .meganizr > li.active,
+    .meganizr > li.active a,
 	.meganizr > li.col3 > a:hover{ background-color: #84154D; color: #fff; }
 	.meganizr > li.col4:hover, 
-    .meganizr > li.active,
+    .meganizr > li.active a,
 	.meganizr > li.col4 > a:hover{ background-color: #098346; color: #fff; }
 	.meganizr > li.col5:hover, 
-    .meganizr > li.active,
+    .meganizr > li.active a,
 	.meganizr > li.col5 > a:hover{ background-color: #1399BE; color: #fff; }
 	.meganizr > li.col6:hover, 
-    .meganizr > li.active,
+    .meganizr > li.active a,
 	.meganizr > li.col6 > a:hover{ background-color: #8768DE; color: #fff; }
 
 	.meganizr > li.col7:hover, 
-    .meganizr > li.active,
+    .meganizr > li.active a,
 	.meganizr > li.col7 > a:hover{ background-color: #C40A2A; color: #fff; }
 	.meganizr > li.col8:hover, 
-    .meganizr > li.active,
+    .meganizr > li.active a,
 	.meganizr > li.col8 > a:hover{ background-color: #0000FF; color: #fff; }
 	.meganizr > li.col9:hover, 
-    .meganizr > li.active,
+    .meganizr > li.active a,
 	.meganizr > li.col9 > a:hover{ background-color: #84154D; color: #fff; }
 	.meganizr > li.col10:hover, 
-    .meganizr > li.active,
+    .meganizr > li.active a,
 	.meganizr > li.col10 > a:hover{ background-color: #098346; color: #fff; }
 	
 </style>
