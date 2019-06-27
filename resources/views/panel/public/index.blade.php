@@ -58,7 +58,11 @@
    
         </div>
         <style>
+            .home-content{
+                padding: 0px 15px;
+            }
             .home-content p {
+                text-align: justify;
     font-size: 17px;
     line-height: 25px;
     margin-bottom: 5px;
