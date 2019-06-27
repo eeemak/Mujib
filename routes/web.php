@@ -13,6 +13,12 @@ Route::group(['prefix' => 'api'], function () {
 });
 //=======Guest=======
 Route::group(['middleware' => 'guest'], function () {
+    Route::get('komiti', ['as' => 'komiti', 'uses' => 'HomeController@komitishomuho']);
+    Route::get('karjokrom', ['as' => 'karjokrom', 'uses' => 'HomeController@karjokrom']);
+    Route::get('news', ['as' => 'news', 'uses' => 'HomeController@news']);
+    Route::get('kroibikroi', ['as' => 'kroibikroi', 'uses' => 'HomeController@kroibikroi']);
+    Route::get('biggopti', ['as' => 'biggopti', 'uses' => 'HomeController@biggopti']);
+    Route::get('motamot', ['as' => 'motamot', 'uses' => 'HomeController@motamot']);
     Route::get('login', ['as' => 'login', 'uses' => 'HomeController@login']);
     Route::post('login', ['as' => 'attempt_login', 'uses' => 'HomeController@attemptLogin']);
     Route::get('register', ['as' => 'register', 'uses' => 'HomeController@register']);

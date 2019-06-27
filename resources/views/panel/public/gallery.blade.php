@@ -1,7 +1,7 @@
 @extends('panel.public.master')
 @section('content')
-<div class="row">
-    <div class="column-3" dir-paginate="x in userFeaturePhotoFileList | itemsPerPage:UserFeaturePhotoFileListSearchParameters.PageSize" current-page="UserFeaturePhotoFileListSearchParameters.PageNo" pagination-id="metaData.name + 'userFeaturePhotoFileList'" total-items='UserFeaturePhotoFileListSearchParameters.Total_Count'>
+<div class="row" ng-init="getUserGalleryPhotoFileListById()">
+    <div class="column-3" dir-paginate="x in userGalleryPhotoFileList | itemsPerPage:UserGalleryPhotoFileListSearchParameters.PageSize" current-page="UserGalleryPhotoFileListSearchParameters.PageNo" pagination-id="metaData.name + 'userGalleryPhotoFileList'" total-items='UserGalleryPhotoFileListSearchParameters.Total_Count'>
         <div class="col-lg-3 col-sm-4 col-xs-6"><a title="@{{x.Title}}" href="#"><img class="thumbnail img-responsive" src="@{{x.TempSrc}}" ng-click="showModal(x)"></a></div>
     </div>
 </div>

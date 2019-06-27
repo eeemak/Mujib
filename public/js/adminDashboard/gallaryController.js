@@ -28,7 +28,31 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
         };
         $scope.pageFeaturePhotoFileChangeHandler();
     }
-    $scope.getUserFeaturePhotoFileListById();
+    $scope.userGalleryPhotoFileList = [];
+    $scope.UserGalleryPhotoFileListSearchParameters = {
+        PageSize: 12,
+        Total_Count: 0,
+        CurrentPage: 1,
+        PageNo: 1
+    }
+    $scope.getUserGalleryPhotoFileListById = function () {
+        $scope.pageGalleryPhotoFileChangeHandler = function (num) {
+            $scope.UserGalleryPhotoFileListSearchParameters.PageNo = num != undefined ? num : 1;
+            $http({
+                method: 'GET',
+                url: '/api/GetPublicGallary?pageNo=' + $scope.UserGalleryPhotoFileListSearchParameters.PageNo + '&pageSize=' + $scope.UserGalleryPhotoFileListSearchParameters.PageSize
+            }).then(function successCallback(response) {
+                if (response.data.length > 0) {
+                    angular.forEach(response.data, function (item) {
+                        item.TempSrc = item.photo_path;
+                        item.Title = item.title;
+                    });
+                    $scope.userGalleryPhotoFileList = response.data;
+                }
+            })
+        };
+        $scope.pageGalleryPhotoFileChangeHandler();
+    }
     $scope.userPublicPhotoLinkAllList = [];
     $scope.UserPublicPhotoLinkSearchParameters = {
         PageSize: 12,

@@ -1,6 +1,6 @@
 @extends('panel.layout.adminDashboard.master')
 @section('content')
-<div class="col-md-12">
+<div class="col-md-12" ng-init="getUserFeaturePhotoFileListById()">
     <!-- START TABS -->
     <div class="panel panel-default tabs">
         <ul class="nav nav-tabs" role="tablist">

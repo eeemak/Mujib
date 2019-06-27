@@ -48,6 +48,16 @@
                                     <span class="text-danger"><i class="fa fa-star"></i></span>
                                 </div>
                                 <div class="form-group">
+                                    <label class="col-md-3 col-xs-12 control-label">Apner nam koron kivabe holo</label>
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                            <input type="text" class="form-control" ng-model="editUserProfile.Namkoron" placeholder="Input your name" />
+                                        </div>
+                                    </div>
+                                    <span class="text-danger"><i class="fa fa-star"></i></span>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-md-3 col-xs-12 control-label">Parmanent Address</label>
                                     <div class="col-md-6 col-xs-12">
                                         <textarea class="form-control" ng-model="editUserProfile.PermanentAddress" rows="5" readonly></textarea>

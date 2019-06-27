@@ -22,6 +22,36 @@ class HomeController extends Controller
         $view->with('ControllerName', "HomeController");
         return $view;
     }
+    public function komitishomuho(){
+        $view = view('panel.public.komiti');
+        $view->with('ControllerName', "HomeController");
+        return $view;
+    }
+    public function karjokrom(){
+        $view = view('panel.public.karjokrom');
+        $view->with('ControllerName', "HomeController");
+        return $view;
+    }
+    public function news(){
+        $view = view('panel.public.news');
+        $view->with('ControllerName', "HomeController");
+        return $view;
+    }
+    public function kroibikroi(){
+        $view = view('panel.public.kroibikroi');
+        $view->with('ControllerName', "HomeController");
+        return $view;
+    }
+    public function biggopti(){
+        $view = view('panel.public.biggopti');
+        $view->with('ControllerName', "HomeController");
+        return $view;
+    }
+    public function motamot(){
+        $view = view('panel.public.motamot');
+        $view->with('ControllerName', "HomeController");
+        return $view;
+    }
     public function publicGallery(){
         $view = view('panel.public.gallery');
         $view->with('ControllerName', "GallaryController");
@@ -45,9 +75,9 @@ class HomeController extends Controller
     }
     public function attemptLogin(Request $request) {
         if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
-            return redirect()->route('dashboard');
+            return redirect()->route('profile');
         }else if (Auth::attempt(['phone' => $request->input('username'), 'password' => $request->input('password')])) {
-            return redirect()->route('dashboard');
+            return redirect()->route('profile');
         } else {
             Session::put('alert-danger', 'Invalid username or password');
             return redirect()->back();
