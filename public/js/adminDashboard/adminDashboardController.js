@@ -287,7 +287,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
             dataType: "json"
         }).then(function successCallback(response) {
             // console.log(response.data);
-            noty({ text: 'Profile updated successfully!!!', layout: 'topRight', type: 'success' });
+            noty({ text: 'Profile updated successfully!!!', layout: 'topRight', type: 'success',timeout:5000 });
             // if (response.data.Error === true) {
                 //myFunction(response.data.Message);
                 // noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
@@ -301,13 +301,13 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
     }
     $scope.changePassword = function () {
         if ($scope.changePassOb.OldPassword === null) {
-            return noty({ text: "Old Password require!", layout: 'topRight', type: 'error' });
+            return noty({ text: "Old Password require!", layout: 'topRight', type: 'error',timeout:5000 });
         }
         if ($scope.changePassOb.NewPassword === null) {
-            return noty({ text: "New Password require!", layout: 'topRight', type: 'error' });
+            return noty({ text: "New Password require!", layout: 'topRight', type: 'error',timeout:5000 });
         }
         if ($scope.changePassOb.NewPassword !== $scope.changePassOb.NewPasswordConfirm) {
-            return noty({ text: "New Password and new ConfirmPassword does not match", layout: 'topRight', type: 'error' });
+            return noty({ text: "New Password and new ConfirmPassword does not match", layout: 'topRight', type: 'error',timeout:5000 });
         }
         $scope.$broadcast('show-errors-check-validity');
         if ($scope.passwrodChangeForm.$valid) {
@@ -319,10 +319,10 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
             }).then(function successCallback(response) {
                 if (response.data.Error === true) {
                     //myFunction(response.data.Message);
-                    noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
+                    noty({ text: response.data.Message, layout: 'topRight', type: 'error',timeout:5000 });
                 }
                 else {
-                    noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
+                    noty({ text: response.data.Message, layout: 'topRight', type: 'success',timeout:5000 });
                     $scope.changePassOb = {
                         OldPassword: null,
                         NewPassword: null,
@@ -336,7 +336,7 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
     }
     $scope.changeUserId = function () {
         if ($scope.changeUserIdOb.Phone === null) {
-            return noty({ text: "Phone require!", layout: 'topRight', type: 'error' });
+            return noty({ text: "Phone require!", layout: 'topRight', type: 'error',timeout:5000 });
         }
         $scope.$broadcast('show-errors-check-validity');
         if ($scope.userIdChangeForm.$valid) {
@@ -348,10 +348,10 @@ function AdminDashboardController($scope, $rootScope, $http, $location, $routePa
             }).then(function successCallback(response) {
                 if (response.data.Error === true) {
                     //myFunction(response.data.Message);
-                    noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
+                    noty({ text: response.data.Message, layout: 'topRight', type: 'error',timeout:5000 });
                 }
                 else {
-                    noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
+                    noty({ text: response.data.Message, layout: 'topRight', type: 'success',timeout:5000 });
                     $scope.changeUserIdOb = {
                         Phone: null
                     }

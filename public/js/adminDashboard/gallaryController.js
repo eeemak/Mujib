@@ -89,7 +89,7 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
                     processData: false,
                     data: formData,
                     success: function (imgSrc) {
-                        noty({ text: "Photo added to the gallary!", layout: 'topRight', type: 'success' });
+                        noty({ text: "Photo added to the gallary!", layout: 'topRight', type: 'success',timeout:5000 });
                         $scope.adminUploadFileOb.Title=null;
                         $scope.ClearImage();
                         $scope.getUserFeaturePhotoFileListById();
@@ -132,14 +132,14 @@ function GallaryController($scope, $rootScope, $http, $location, $routeParams, $
                 url: '/api/DeleteGallary?gallaryId=' + data.id,
                 dataType: 'JSON'
             }).then(function successCallback(response) {
-                noty({ text: response.data.title + ' has deleted!', layout: 'topRight', type: 'success' });
+                noty({ text: response.data.title + ' has deleted!', layout: 'topRight', type: 'success',timeout:5000 });
                 $scope.getUserFeaturePhotoFileListById();
             }, function errorCallback(response) {
-                noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
+                noty({ text: response.data.Message, layout: 'topRight', type: 'error',timeout:5000 });
             });
         }
         else {
-            noty({ text: "No Post Found to delete", layout: 'topRight', type: 'error' });
+            noty({ text: "No Post Found to delete", layout: 'topRight', type: 'error',timeout:5000 });
         }
         return true;
     };
