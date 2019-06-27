@@ -70,6 +70,7 @@ class HomeController extends Controller
     public function register(){
         $view = view('panel.layout.register');
         $view->with('hasSlider', false);
+        $view->with('hasMenu', false);
         $view->with('ControllerName', "AccountController");
         return $view;
     }
