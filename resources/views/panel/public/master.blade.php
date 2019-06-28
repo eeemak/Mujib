@@ -103,7 +103,8 @@
                 <li><a href="site/view/sitemap/%e0%a6%b8%e0%a6%be%e0%a6%87%e0%a6%9f-%e0%a6%ae%e0%a7%8d%e0%a6%af%e0%a6%be%e0%a6%aa.html">সাইট ম্যাপ</a></li>
             </ul> -->
             <div style="float: left; font-size: .9em;">
-                © স্বত্ব মুজিব ২০১৯
+                <p>© স্বত্ব মুজিব ২০১৯</p>
+                <p>৭০ পাইয়নিয়ার রোড, কাকরাইল, ঢাকা।</p>
                 <!--<span><a href="http://support.portal.gov.bd/" style="color: green" target="_blank"> | <u>হেল্পডেস্ক</u></a></span>-->
             </div>
         </div>
