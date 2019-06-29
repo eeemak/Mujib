@@ -29,7 +29,7 @@
                                     <div class="form-group" show-errors>
                                         <label class="sr-only">Enter contact no</label>
                                         <div class="show-message">
-                                            <input type="text" style="width: 100%" name="phone" class="form-control" only-numbers name="ContactNo" ng-model="registerModel.Phone" placeholder="Mobile number" ng-blur="CheckUserAlreadyExist()" />
+                                            <input type="text" style="width: 100%" name="phone" class="form-control" only-numbers name="ContactNo" ng-model="registerModel.Phone" placeholder="Mobile number(This mobile number will be your user name)" ng-blur="CheckUserAlreadyExist()" />
                                             <span ng-show="userAlreadyExist" style="color:red">@{{userAlreadyExistErrorMessage}}</span>
                                         </div>
                                     </div>

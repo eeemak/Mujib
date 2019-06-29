@@ -258,4 +258,8 @@ function HomeController($scope, $rootScope, $http, $location, $routeParams, $coo
         $scope.addDescription = data.Description;
         angular.element(document.querySelector('#addModal')).modal('show');
     }
+    $scope.isDetailShow=false;
+    $scope.showDetail=function(){
+        $scope.isDetailShow = !$scope.isDetailShow;
+    }
 };
