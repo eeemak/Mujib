@@ -90,15 +90,15 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
-                                    <div class="form-group">
+                                    <div class="form-group" ng-show="registerModel.PoliceStationId && !registerModel.VillageId">
                                         <div>
                                             <button type="button" class="btn btn-theme-primaryfocus" ng-click="showNewVillage()">Create New Village</button>
                                         </div>
                                     </div>
-                                    <div class="form-group" ng-show="showNewVillageField &&registerModel.VillageId===null">
+                                    <div class="form-group" ng-show="showNewVillageField && !registerModel.VillageId">
                                         <label class="sr-only">New Village</label>
                                         <div>
-                                            <input type="text" style="width:100%" class="form-control" name="ContactNo" ng-model="registerModel.NewVillageName" placeholder="Your Village (If not found on Village Select)" data-toggle="popover" data-placement="left" data-trigger="focus" data-content="Enter your new village here." data-original-title="New Village">
+                                            <input type="text" style="width:100%" class="form-control" name="new_village_name" ng-model="registerModel.NewVillageName" placeholder="Your Village (If not found on Village Select)" data-toggle="popover" data-placement="left" data-trigger="focus" data-content="Enter your new village here." data-original-title="New Village">
                                         </div>
                                     </div>
 

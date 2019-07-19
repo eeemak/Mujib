@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->integer('district_id')->nullable();
             $table->integer('thana_id')->nullable();
             $table->integer('police_station_id')->nullable();
-            $table->integer('village_id')->nullable();
+            $table->bigInteger('village_id')->unsigned()->nullable();
             $table->string('parmanent_address')->nullable()->nullable();
             $table->string('present_address')->nullable();
             $table->string('phone')->nullable();

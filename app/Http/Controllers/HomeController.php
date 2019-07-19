@@ -85,6 +85,7 @@ class HomeController extends Controller
         }
     }
     public function attemptRegister(Request $request) {
+        //  dd($request->all());
         $this->validate($request, [
             'full_name' => 'required|min:4',
             'phone' => 'required|unique:users',
@@ -92,6 +93,15 @@ class HomeController extends Controller
         ]);
         $user = new User();
         $user->fill($request->input());
+        if($request->new_village_name){
+            $village = new Village();
+            $village->name = $request->new_village_name;
+            $village->district_id = $request->district_id;
+            $village->thana_id = $request->thana_id;
+            $village->police_station_id = $request->police_station_id;
+            $village->save();
+            $user->village_id = $village->id;
+        }
         $user->password = bcrypt($request->password);
         $user->save();
         $user->assignRole('user');
@@ -123,7 +133,7 @@ class HomeController extends Controller
 
     public function GetVillage(Request $request)
     {
-        $villages = Village::where('police_stations_id', $request->policeStationId)->orderBy('name')->get();
+        $villages = Village::where('police_station_id', $request->policeStationId)->orderBy('name')->get();
         return response()->json($villages);
     }
     public function GetProfessionTypeCbo()
