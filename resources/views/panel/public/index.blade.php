@@ -235,7 +235,7 @@
                     <div class="col-xs-12">
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <select class="form-control select2" ng-model="advanceSearchData.DistrictId" ng-options="item.id as item.name for item in districtList" id="DistrictId" name="District" ng-change="getThana()">
+                                <select class="form-control " ng-model="advanceSearchData.DistrictId" ng-options="item.id as item.name for item in districtList" id="DistrictId" name="District" ng-change="getThana()">
                                     <option value="">District</option>
                                 </select>
                             </div>
@@ -245,7 +245,7 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="select-style">
-                                    <select class="form-control select2 ha-dbbl" ng-disabled="!advanceSearchData.DistrictId" ng-model="advanceSearchData.ThanaId" ng-options="item.id as item.name for item in thanaList" id="ThanaId" name="Thana" ng-change="getPoliceStation()">
+                                    <select class="form-control  ha-dbbl" ng-disabled="!advanceSearchData.DistrictId" ng-model="advanceSearchData.ThanaId" ng-options="item.id as item.name for item in thanaList" id="ThanaId" name="Thana" ng-change="getPoliceStation()">
                                         <option value="">Thana</option>
                                     </select>
                                 </div>
@@ -257,7 +257,7 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="select-style">
-                                    <select class="form-control select2" ng-disabled="!advanceSearchData.ThanaId" ng-model="advanceSearchData.PoliceStationId" ng-options="item.id as item.name for item in policeStationList" id="PoliceStationId" name="PoliceStation" ng-change="getVillage()">
+                                    <select class="form-control " ng-disabled="!advanceSearchData.ThanaId" ng-model="advanceSearchData.PoliceStationId" ng-options="item.id as item.name for item in policeStationList" id="PoliceStationId" name="PoliceStation" ng-change="getVillage()">
                                         <option value="">Union</option>
                                     </select>
                                 </div>
@@ -269,7 +269,7 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="select-style">
-                                    <select class="form-control select2 ha-dbbl" ng-disabled="!advanceSearchData.PoliceStationId" ng-model="advanceSearchData.VillageId" ng-options="item.id as item.name for item in villageList" id="VillageId" name="Village" required tabindex="1">
+                                    <select class="form-control  ha-dbbl" ng-disabled="!advanceSearchData.PoliceStationId" ng-model="advanceSearchData.VillageId" ng-options="item.id as item.name for item in villageList" id="VillageId" name="Village" required tabindex="1">
                                         <option value="">Village</option>
                                     </select>
                                 </div>

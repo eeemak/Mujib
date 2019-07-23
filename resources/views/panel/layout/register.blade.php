@@ -53,7 +53,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group" show-errors>
                                         <div class="show-message">
-                                            <select name="district_id" class="form-control select2" ng-model="registerModel.DistrictId" id="DistrictId" ng-change="getThana()">
+                                            <select name="district_id" class="form-control" ng-model="registerModel.DistrictId" id="DistrictId" ng-change="getThana()">
                                                 <option value="">Select District</option>
                                                 <option ng-repeat="item in districtList" value="@{{ item.id }}">@{{ item.name }}</option>
                                             </select>
@@ -64,7 +64,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group" show-errors>
                                         <div class="show-message">
-                                            <select name="thana_id" class="form-control select2" ng-disabled="!registerModel.DistrictId" ng-model="registerModel.ThanaId" id="ThanaId" ng-change="getPoliceStation()">
+                                            <select name="thana_id" class="form-control" ng-disabled="!registerModel.DistrictId" ng-model="registerModel.ThanaId" id="ThanaId" ng-change="getPoliceStation()">
                                                 <option value="">Select Thana</option>
                                                 <option ng-repeat="item in thanaList" value="@{{ item.id }}">@{{ item.name }}</option>
                                             </select>
@@ -74,7 +74,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group" show-errors>
                                         <div class="show-message">
-                                            <select name="police_station_id" class="form-control select2" ng-disabled="!registerModel.ThanaId" ng-model="registerModel.PoliceStationId" id="PoliceStationId" ng-change="getVillage()">
+                                            <select name="police_station_id" class="form-control" ng-disabled="!registerModel.ThanaId" ng-model="registerModel.PoliceStationId" id="PoliceStationId" ng-change="getVillage()">
                                                 <option value="">Select Union</option>
                                                 <option ng-repeat="item in policeStationList" value="@{{ item.id }}">@{{ item.name }}</option>
                                             </select>
@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <select name="village_id" class="form-control select2" ng-disabled="!registerModel.PoliceStationId" ng-model="registerModel.VillageId" id="VillageId" tabindex="1">
+                                        <select name="village_id" class="form-control" ng-disabled="!registerModel.PoliceStationId" ng-model="registerModel.VillageId" id="VillageId" tabindex="1">
                                             <option value="">Select Village</option>
                                             <option ng-repeat="item in villageList" value="@{{ item.id }}">@{{ item.name }}</option>
                                         </select>
@@ -106,7 +106,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group" show-errors>
                                         <div class="show-message">
-                                            <select name="ProfessionTypeId" class="form-control select2" ng-model="registerModel.ProfessionTypeId" id="ProfessionId" tabindex="1">
+                                            <select name="ProfessionTypeId" class="form-control" ng-model="registerModel.ProfessionTypeId" id="ProfessionId" tabindex="1">
                                                 <option value="">Select Your Profession</option>
                                                 <option ng-repeat="item in professionTypeList" value="@{{ item.id }}">@{{ item.professionTypeName }}</option>
                                             </select>

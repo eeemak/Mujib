@@ -8,6 +8,7 @@ use Session;
 use App\Model\UserInstitutions;
 use Illuminate\Support\Facades\Storage;
 use App\Model\Gallary;
+use App\Model\PostType;
 
 class AdminDashboardHomeController extends Controller
 {
@@ -83,6 +84,10 @@ public function DeleteGallary(Request $request){
   {
     //Todo:: Id will get from login session and data will retun along with this id
     return [];
+  }
+  public function GetPostType(){
+    $postTypes = FileType::select('id as value','fileTypeName as text')->orderBy('postTypeName')->get();
+    return response()->json($postTypes);
   }
   public function GetUserFileModelById()
   {
