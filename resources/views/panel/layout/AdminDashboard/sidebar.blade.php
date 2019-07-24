@@ -41,7 +41,9 @@
         <li class="{{ Request::is('upload') ? 'active':'' }}">
             <a href="{{ route('upload') }}"><span class="fa fa-user"></span> <span class="xn-text">Upload</span></a>
         </li>
-    
+        <li class="{{ Request::is('news-panel') ? 'active':'' }}">
+            <a href="{{ route('news-panel') }}"><span class="fa fa-user"></span> <span class="xn-text">News Management</span></a>
+        </li>
         @endrole
         @role('user')
         <li class="{{ Request::is('gallary') ? 'active':'' }}">

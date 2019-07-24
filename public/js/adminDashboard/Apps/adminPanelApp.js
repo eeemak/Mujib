@@ -1,5 +1,5 @@
 ﻿'use strict';
-var adminPanelApp = angular.module('adminPanelApp', ['ngRoute', 'ngCookies', 'angularUtils.directives.dirPagination']);
+var adminPanelApp = angular.module('adminPanelApp', ['ngRoute', 'ngCookies', 'angularUtils.directives.dirPagination','summernote']);
 adminPanelApp.controller('AdminDashboardController', AdminDashboardController)
 adminPanelApp.controller('UserManageController', UserManageController)
 adminPanelApp.controller('GallaryController', GallaryController)

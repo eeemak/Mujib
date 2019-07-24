@@ -66,6 +66,8 @@
         <script type="text/javascript" src="{{asset('assets/js/plugins/noty/jquery.noty.js')}}"></script>
         <script type="text/javascript" src="{{asset('assets/js/plugins/noty/layouts/topRight.js')}}"></script>
         <script type="text/javascript" src="{{asset('assets/js/plugins/noty/themes/default.js')}}"></script>
+        <script type="text/javascript" src="{{asset('assets/js/plugins/summernote/summernote.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('assets/js/plugins/summernote/angular-summernote.min.js')}}"></script>
         <!-- END THIS PAGE PLUGINS -->       
         
         <!-- START TEMPLATE -->

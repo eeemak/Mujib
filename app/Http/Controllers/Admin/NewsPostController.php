@@ -12,9 +12,9 @@ class NewsPostController extends Controller
 
   public function index()
   {
-    return redirect()->route('news');
+    return redirect()->route('news-panel');
   }
-  public function viewUpload()
+  public function viewNews()
   {
     $view = view('panel.layout.adminDashboard.view_news');
     $view->with('ControllerName', "NewsPostController");
