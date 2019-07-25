@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNewsPostWithCategoryTable extends Migration
+class CreatePostWithCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateNewsPostWithCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('news_post_with_category', function (Blueprint $table) {
+        Schema::create('post_with_category', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('news_post_id')->unsigned()->nullable();
-            $table->foreign('news_post_id')->references('id')->on('news_post')->onDelete('cascade');
+            $table->bigInteger('post_id')->unsigned()->nullable();
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->bigInteger('post_category_id')->unsigned()->nullable();
             $table->foreign('post_category_id')->references('id')->on('post_category')->onDelete('cascade');
             $table->timestamps();

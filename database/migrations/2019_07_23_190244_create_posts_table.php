@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNewsPostTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateNewsPostTable extends Migration
      */
     public function up()
     {
-        Schema::create('news_post', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('post_detail')->nullable();
@@ -22,6 +22,8 @@ class CreateNewsPostTable extends Migration
             $table->string('file_path',150)->unique();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('post_types_id')->unsigned();
+            $table->foreign('post_types_id')->references('id')->on('post_types')->onDelete('cascade');
             $table->string('added_from_ip')->nullable();
             $table->timestamps();
         });
@@ -34,6 +36,6 @@ class CreateNewsPostTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news_post');
+        Schema::dropIfExists('news_posts');
     }
 }

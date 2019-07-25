@@ -4,7 +4,7 @@
     <!-- START TABS -->
     <div class="panel panel-default tabs">
         <ul class="nav nav-tabs" role="tablist">
-            <li class="active"><a href="#tab-first" role="tab" data-toggle="tab">Blog Post</a></li>
+            <li class="active"><a href="#tab-first" role="tab" data-toggle="tab">News Post</a></li>
             <li><a href="#tab-second" role="tab" data-toggle="tab">All PostList</a></li>
         </ul>
         <div class="panel-body tab-content">
@@ -36,8 +36,8 @@
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <div>
-                                                <img ng-if="imageSrc===null" src="~/Images/default.jpg" class="profileImage" />
-                                                <img ng-if="imageSrc !=null" id="uploadImageSrc" ng-src="{{imageSrc}}" style=" border: 1px solid; height: 200px; width: 200px;" />
+                                                <img ng-if="imageSrc===null" src="{{ asset('img/default.jpg') }}" class="profileImage" />
+                                                <img ng-if="imageSrc !=null" id="uploadImageSrc" ng-src="@{{imageSrc}}" style=" border: 1px solid; height: 200px; width: 200px;" />
                                             </div>
                                             <input type="file" id="uploadImage" title="Upload Image" ng-file-select="onFileSelect($files)" class="upload fileinput btn-primary" file-upload multiple />
                                         </div>
@@ -75,27 +75,27 @@
                                 <div class="col-md-12">
                                     <div class="post-item">
                                         <div class="post-title">
-                                            <a class="col-sm-11" href="/BlogPost/AdminPostDetail?id={{x.Id}}">{{x.Title}}</a>
+                                            <a class="col-sm-11" href="/BlogPost/AdminPostDetail?id=@{{x.Id}}">@{{x.Title}}</a>
                                             <div class="dropdown col-sm-1" ng-show="x.UserId===globalUserInfo.UserId">
                                                 <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
                                                     ...
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a href="/BlogPost/EditAdminPost?id={{x.Id}}" title="edit post">Edit</a></li>
+                                                    <li><a href="/BlogPost/EditAdminPost?id=@{{x.Id}}" title="edit post">Edit</a></li>
                                                     <li><a style="cursor:pointer" ng-click="deletePost(x.Id)" title="delete post">Delete</a></li>
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="post-date"><span class="fa fa-calendar"></span>  {{x.AddedDate| haDateFilter | date}}  / <a href="pages-profile.html">by {{x.AuthorName}}</a></div>
+                                        <div class="post-date"><span class="fa fa-calendar"></span>  @{{x.AddedDate| haDateFilter | date}}  / <a href="pages-profile.html">by @{{x.AuthorName}}</a></div>
                                         <div class="post-text">
-                                            <img ng-if="x.TempSrc !=null" src="{{x.TempSrc}}" class="img-responsive img-text" style="height:225px" />
+                                            <img ng-if="x.TempSrc !=null" src="@{{x.TempSrc}}" class="img-responsive img-text" style="height:225px" />
                                             <p compile="truncString(x.PostText,1500,'...')"></p>
                                         </div>
                                         <div class="post-row">
                                             <div class="post-info">
                                                 <span class="fa fa-thumbs-up"></span> 15 - <span class="fa fa-eye"></span> 15,332 - <span class="fa fa-star"></span> 322
                                             </div>
-                                            <a href="/BlogPost/AdminPostDetail?id={{x.Id}}" class="btn btn-default btn-rounded pull-right">Read more &RightArrow;</a>
+                                            <a href="/BlogPost/AdminPostDetail?id=@{{x.Id}}" class="btn btn-default btn-rounded pull-right">Read more &RightArrow;</a>
                                         </div>
 
                                     </div>
@@ -117,7 +117,7 @@
             <div class="tab-pane" id="tab-second">
                 <div class="form-horizontal">
                     <div class="col-md-12">
-                        <span>Total Post: </span> <i class="badge badge-success">{{allBlogPostListSearchParameters.Total_Count}}</i>
+                        <span>Total Post: </span> <i class="badge badge-success">@{{allBlogPostListSearchParameters.Total_Count}}</i>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -133,11 +133,11 @@
                                     <td>
                                         <div>
                                             <img ng-if="x.TempSrc===null || x.TempSrc===''" src="~/Images/default.jpg" class=" image img-thumbnail img-circle" style="width:11%" />
-                                            <img ng-if="x.TempSrc !=''" id="uploadImageSrc" ng-src="{{x.TempSrc}}" class=" image img-thumbnail img-circle" style="width:11%" alt="{{x.Title}}" />
+                                            <img ng-if="x.TempSrc !=''" id="uploadImageSrc" ng-src="@{{x.TempSrc}}" class=" image img-thumbnail img-circle" style="width:11%" alt="@{{x.Title}}" />
                                         </div>
                                     </td>
-                                    <td>{{x.Title}}</td>
-                                    <td>{{x.ViewFor}}</td>
+                                    <td>@{{x.Title}}</td>
+                                    <td>@{{x.ViewFor}}</td>
                                     <td><a href="#" ng-click="getPostDetail(x)" class="btn single-small-btn btn-primary">Detail</a></td>
                                     <td><a href="#" ng-click="deletePost(x.Id)" class="btn single-small-btn btn-primary">Delete</a></td>
                                 </tr>
@@ -172,11 +172,11 @@
                         <div class="col-md-12">
                             <div class="post-item">
                                 <div class="post-title">
-                                    {{postDetailOb.Title}}
+                                    @{{postDetailOb.Title}}
                                 </div>
-                                <div class="post-date"><a href="#">by {{postDetailOb.AuthorName}}</a></div>
+                                <div class="post-date"><a href="#">by @{{postDetailOb.AuthorName}}</a></div>
                                 <div class="post-text">
-                                    <img src="{{postDetailOb.TempSrc}}" class="img-responsive img-text" style="height:225px" />
+                                    <img src="@{{postDetailOb.TempSrc}}" class="img-responsive img-text" style="height:225px" />
                                     <p compile="postDetailOb.PostText"></p>
                                 </div>
                             </div>
