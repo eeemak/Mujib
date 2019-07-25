@@ -1,10 +1,14 @@
-﻿.ha-masanomy-grid .row {
+﻿.text-area-input-group-addon{
+    vertical-align: middle !important;
+}
+.ha-masanomy-grid .row {
     display: -ms-flexbox; /* IE10 */
     display: flex;
     -ms-flex-wrap: wrap; /* IE10 */
     flex-wrap: wrap;
     padding: 0 4px;
 }
+
 .post-text p {
     line-height: 27px;
 }

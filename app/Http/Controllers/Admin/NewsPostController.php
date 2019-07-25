@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Session;
-use App\Model\NewsPost;
+use App\Model\Post;
 
 class NewsPostController extends Controller
 {
@@ -48,9 +48,10 @@ class NewsPostController extends Controller
     }
     return response()->json($data);
   }
-  public function UploadFile(Request $request) {
+  public function SaveNews(Request $request) {
     if ($request->file) {
       $file = $request->file;
+      $newsPostOb = json_decode($request->newsPostOb, true);
       $allow_extensions = ['jpg', 'jpeg', 'png', 'pdf'];
       $file_extension = $file->getClientOriginalExtension();
       if(!in_array($file_extension, $allow_extensions)){
@@ -59,13 +60,16 @@ class NewsPostController extends Controller
       $file_directory = 'upload/files/';
       $file_path = $file_directory . time() . "-" . $file->getClientOriginalName();
       $file->move($file_directory, $file_path);
-      $uploadfile = new FileUpload();
-      $uploadfile->file_title = $request->title;
-      $uploadfile->file_path = $file_path;
-      $uploadfile->user_id = Auth::id();
-      $uploadfile->file_extension = $file_extension;
-      $uploadfile->save();
-      return response()->json($uploadfile);
+      $post = new Post();
+      $post->title = $newsPostOb['Title'];
+      $post->post_detail = $newsPostOb['PostDetail'];
+      $post->short_post = $newsPostOb['ShortPost'];
+      $post->post_types_id = 1;
+      $post->file_path = $file_path;
+      $post->user_id = Auth::id();
+      $post->file_extension = $file_extension;
+      $post->save();
+      return response()->json($post);
     }
   }
   public function DeleteNewsPostById($id){

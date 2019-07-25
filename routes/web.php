@@ -47,6 +47,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/UploadGallary', 'AdminDashboardHomeController@UploadGallary');
         Route::post('/DeleteGallary', 'AdminDashboardHomeController@DeleteGallary');
         Route::post('/DeleteUserFileById/{id}', 'AdminUploadController@DeleteUserFileById');
+        Route::post('/SaveNews', 'NewsPostController@SaveNews');
+        Route::get('/GetPostCategory', 'AdminDashboardHomeController@GetPostCategory');
+
+
     });
     //=======Admin=======
     Route::group(['middleware' => ['role:admin']], function () {

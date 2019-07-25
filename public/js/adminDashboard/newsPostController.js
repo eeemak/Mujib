@@ -1,26 +1,20 @@
 ﻿'use strict';
 NewsPostController.$inject = ['$scope', '$rootScope', '$http', '$location', '$routeParams', '$cookies', '$cookieStore', '$filter', 'fileReader', '$compile', '$window'];
 function NewsPostController($scope, $rootScope, $http, $location, $routeParams, $cookies, $cookieStore, $filter, fileReader, $compile, $window) {
-    $scope.title = "Blog Post";
+    $scope.title = "News Post";
     $scope.action = 'Save';
     $scope.showEditButton = false;
-    $scope.blogPostList = [];
-    $scope.blogPostOb = {
+    $scope.newsPostList = [];
+    $scope.newsPostOb = {
         Id: null,
         Title: null,
-        Active: true,
-        CategoryId: 1,
+        PostDetail: null,
+        ShortPost:null,
         FileName: null,
-        FileId: null,
         UserId: null,
-        IsFetured: true
     }
-    $scope.blogPostDetail = {
-        Id: null,
-        Sequence: null,
-        PostText: null
-    }
-
+    $scope.postCategoryList=[];
+    $scope.postCategorySelectedList=[];
     $scope.options = {
         height: 150,
         //toolbar: [
@@ -42,130 +36,140 @@ function NewsPostController($scope, $rootScope, $http, $location, $routeParams, 
             //['help', ['help']]
         ]
     };
-    function splitter(str, l) {
-        var strs = [];
-        while (str.length > l) {
-            var pos = str.substring(0, l).lastIndexOf(' ');
-            pos = pos <= 0 ? l : pos;
-            strs.push(str.substring(0, pos));
-            var i = str.indexOf(' ', pos) + 1;
-            if (i < pos || i > pos + l)
-                i = pos;
-            str = str.substring(i);
-        }
-        strs.push(str);
-        return strs;
+    $scope.getPostCategory = function () {
+        $http({
+            method: 'GET',
+            url: 'api/GetPostCategory'
+        }).then(function successCallback(response) {
+            $scope.postCategoryList = response.data;
+        })
     }
+    $scope.getPostCategory();
     $scope.PostListSearchParameters = {
         PageSize: 10,
         Total_Count: 0,
         CurrentPage: 1,
         PageNo: 1
     }
-    $scope.getAllPersonalBlogPostList = [];
+    $scope.getAllPersonalnewsPostList = [];
     $scope.getPersonalList = function () {
         $scope.pageChangeHandler = function (num) {
             $scope.PostListSearchParameters.PageNo = num != undefined ? num : 1;
             $http({
                 method: 'GET',
-                url: '/BlogPost/GetBlogPostListWithUserId?pageNo=' + $scope.PostListSearchParameters.PageNo + '&pageSize=' + $scope.PostListSearchParameters.PageSize
+                url: '/newsPost/GetnewsPostListWithUserId?pageNo=' + $scope.PostListSearchParameters.PageNo + '&pageSize=' + $scope.PostListSearchParameters.PageSize
             }).then(function successCallback(result) {
                 if (result.data.Items.length > 0) {
                     angular.forEach(result.data.Items, function (item) {
                         item.TempSrc = getFileUrl(item.FileId, item.FileName);
                     });
                 }
-                $scope.getAllPersonalBlogPostList = result.data.Items;
+                $scope.getAllPersonalnewsPostList = result.data.Items;
                 $scope.PostListSearchParameters.Total_Count = result.data.Pager.TotalItems;
             })
         };
         $scope.pageChangeHandler();
     }
     $scope.getPersonalList();
-    $scope.blogPostDetailList = [];
-    //**AllBlogPostList**/
-    $scope.allBlogPostList = [];
-    $scope.allBlogPostListSearchParameters = {
+    $scope.newsPostDetailList = [];
+    //**AllnewsPostList**/
+    $scope.allnewsPostList = [];
+    $scope.allnewsPostListSearchParameters = {
         PageSize: 10,
         Total_Count: 0,
         CurrentPage: 1,
         PageNo: 1
     }
     $scope.getPostList = function () {
-        $scope.pageAllBlogPostChangeHandler = function (num) {
-            $scope.allBlogPostListSearchParameters.PageNo = num != undefined ? num : 1;
+        $scope.pageAllnewsPostChangeHandler = function (num) {
+            $scope.allnewsPostListSearchParameters.PageNo = num != undefined ? num : 1;
             $http({
                 method: 'GET',
-                url: '/BlogPost/GetBlogPostList?pageNo=' + $scope.allBlogPostListSearchParameters.PageNo + '&pageSize=' + $scope.allBlogPostListSearchParameters.PageSize
+                url: '/newsPost/GetnewsPostList?pageNo=' + $scope.allnewsPostListSearchParameters.PageNo + '&pageSize=' + $scope.allnewsPostListSearchParameters.PageSize
             }).then(function successCallback(response) {
                 if (response.data.Items.length > 0) {
                     angular.forEach(response.data.Items, function (item) {
                         item.TempSrc = getFileUrl(item.FileId, item.FileName);
                     });
-                    $scope.allBlogPostList = response.data.Items;
+                    $scope.allnewsPostList = response.data.Items;
                 }
-                $scope.allBlogPostListSearchParameters.Total_Count = response.data.Pager.TotalItems;
+                $scope.allnewsPostListSearchParameters.Total_Count = response.data.Pager.TotalItems;
             })
         };
-        $scope.pageAllBlogPostChangeHandler();
+        $scope.pageAllnewsPostChangeHandler();
     }
     $scope.getPostList();
     $scope.Save = function () {
-        var textList = [];
-        textList = splitter($scope.blogPostDetail.PostText, 20000);
-        $scope.blogPostDetailList = [];
-        angular.forEach(textList, function (item, i) {
-            $scope.blogPostDetailList.push({
-                Id: null,
-                Sequence: i,
-                PostText: item
-            });
-        });
         if ($scope.filedata != null) {
-            $scope.addBlogPost();
+            $scope.addnewsPost();
         }
         var formData = new FormData();
-        $http({
-            method: "post",
-            url: '/BlogPost/Save/',
-            headers: { 'Content-Type': undefined },
-            transformRequest: function (data) {
-                formData.append('blogPost', JSON.stringify(data.blogPost));
-                formData.append('postDetailList', JSON.stringify(data.postDetailList));
-                for (var i = 0; i < data.postFile.length; i++) {
-                    formData.append('postFile[' + i + ']', data.postFile[i]);
-                }
-                return formData;
+        formData.append('newsPostOb', JSON.stringify($scope.newsPostOb));
+        formData.append('file', $scope.filedata);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {
-                'blogPost': $scope.blogPostOb
-                , 'postDetailList': $scope.blogPostDetailList
-                , 'postFile': $scope.inputFileList
+            type: "POST",
+            url: "/api/SaveNews",
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (response) {
+                console.log(response);
+                if(response.error == true){
+                    noty({ text: "This file format is not allowed to upload", layout: 'topRight', type: 'error' });
+                }else{
+                    $scope.adminUploadFileOb.Title=null;
+                    noty({ text: response.file_title +" has uploaded!", layout: 'topRight', type: 'success' });
+                    $scope.getUserFileById();
+                }
             },
-            dataType: "json"
-        }).then(function successCallback(response) {
-            if (response.data.Error === true) {
-                noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
+            error: function () {
+                noty({ text: "Something went wrong!", layout: 'topRight', type: 'error' });
             }
-            else {
-                noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
-                $scope.getPersonalList();
-                $scope.getPostList();
-                $scope.blogPostOb = {
-                    Id: null,
-                    Title: null,
-                    Active: true,
-                    CategoryId: 1
-                }
-                $scope.blogPostDetail = {
-                    Id: null,
-                    Sequence: null,
-                    PostText: null
-                }
-            }
-        }), function errorCallBack(response) {
-            noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
-        }
+        });
+        // $http({
+        //     method: "post",
+        //     url: '/newsPost/Save/',
+        //     headers: { 'Content-Type': undefined },
+        //     transformRequest: function (data) {
+        //         formData.append('newsPost', JSON.stringify(data.newsPost));
+        //       //  formData.append('postDetailList', JSON.stringify(data.postDetailList));
+        //         for (var i = 0; i < data.postFile.length; i++) {
+        //             formData.append('postFile[' + i + ']', data.postFile[i]);
+        //         }
+        //         return formData;
+        //     },
+        //     data: {
+        //         'newsPost': $scope.newsPostOb
+        //        // , 'postDetailList': $scope.newsPostDetailList
+        //         , 'postFile': $scope.inputFileList
+        //     },
+        //     dataType: "json"
+        // }).then(function successCallback(response) {
+        //     if (response.data.Error === true) {
+        //         noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
+        //     }
+        //     else {
+        //         noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
+        //         $scope.getPersonalList();
+        //         $scope.getPostList();
+        //         $scope.newsPostOb = {
+        //             Id: null,
+        //             Title: null,
+        //             Active: true,
+        //             CategoryId: 1
+        //         }
+        //         $scope.newsPostDetail = {
+        //             Id: null,
+        //             Sequence: null,
+        //             PostText: null
+        //         }
+        //     }
+        // }), function errorCallBack(response) {
+        //     noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
+        // }
     }
     $scope.imageSrc = null;
     $scope.filedata = null;
@@ -181,10 +185,10 @@ function NewsPostController($scope, $rootScope, $http, $location, $routeParams, 
     };
 
     $scope.inputFileList = [];
-    $scope.addBlogPost = function () {
+    $scope.addnewsPost = function () {
         var file = $scope.filedata;
-        $scope.blogPostOb.FileName = file.name,
-            $scope.blogPostOb.FileId = Math.random().toString(36).substr(2, 16),
+        $scope.newsPostOb.FileName = file.name,
+            $scope.newsPostOb.FileId = Math.random().toString(36).substr(2, 16),
             $scope.inputFileList.push(file);
         var file = [];
         $scope.fileDoc = [];
@@ -211,7 +215,7 @@ function NewsPostController($scope, $rootScope, $http, $location, $routeParams, 
         if (id != null || id != undefined) {
             $http({
                 method: 'POST',
-                url: '/BlogPost/DeletePost/' + id,
+                url: '/newsPost/DeletePost/' + id,
                 dataType: 'JSON'
             }).then(function successCallback(response) {
                 if (response.data.Error === true) {
@@ -219,17 +223,17 @@ function NewsPostController($scope, $rootScope, $http, $location, $routeParams, 
                 }
                 else {
                     noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
-                    for (var i = 0; i < $scope.getAllPersonalBlogPostList.length; i++) {
-                        var ob = $scope.getAllPersonalBlogPostList[i];
+                    for (var i = 0; i < $scope.getAllPersonalnewsPostList.length; i++) {
+                        var ob = $scope.getAllPersonalnewsPostList[i];
                         if (ob.Id === id) {
-                            $scope.getAllPersonalBlogPostList.splice(i, 1)
+                            $scope.getAllPersonalnewsPostList.splice(i, 1)
                         }
                     }
-                    for (var i = 0; i < $scope.allBlogPostList.length; i++) {
-                        var ob = $scope.allBlogPostList[i];
+                    for (var i = 0; i < $scope.allnewsPostList.length; i++) {
+                        var ob = $scope.allnewsPostList[i];
                         if (ob.Id === id) {
-                            $scope.allBlogPostList.splice(i, 1)
-                            $scope.allBlogPostListSearchParameters.Total_Count = $scope.allBlogPostListSearchParameters.Total_Count -1;
+                            $scope.allnewsPostList.splice(i, 1)
+                            $scope.allnewsPostListSearchParameters.Total_Count = $scope.allnewsPostListSearchParameters.Total_Count -1;
                         }
                     }
                 }
@@ -246,7 +250,7 @@ function NewsPostController($scope, $rootScope, $http, $location, $routeParams, 
     $scope.getPostDetail = function (data) {
         $http({
             method: 'GET',
-            url: '/BlogPost/GetPostDetailWithId?id=' + data.Id
+            url: '/newsPost/GetPostDetailWithId?id=' + data.Id
         }).then(function successCallback(response) {
             if (response.data !== '') {
                 var elements = [];
@@ -269,7 +273,7 @@ function NewsPostController($scope, $rootScope, $http, $location, $routeParams, 
         if (fileName != null) {
             var str = fileName;
             var extention = str.substr(str.indexOf('.'));
-            return '/UploadFiles/UsersFilePhoto/Blog/' + fileId + extention;
+            return '/UploadFiles/UsersFilePhoto/news/' + fileId + extention;
         } else {
             return fileName;
         }

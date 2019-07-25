@@ -9,6 +9,7 @@ use App\Model\UserInstitutions;
 use Illuminate\Support\Facades\Storage;
 use App\Model\Gallary;
 use App\Model\PostType;
+use App\Model\PostCategory;
 
 class AdminDashboardHomeController extends Controller
 {
@@ -86,7 +87,11 @@ public function DeleteGallary(Request $request){
     return [];
   }
   public function GetPostType(){
-    $postTypes = FileType::select('id as value','fileTypeName as text')->orderBy('postTypeName')->get();
+    $postTypes = FileType::select('id as value','fileTypeName as text')->orderBy('fileTypeName')->get();
+    return response()->json($postTypes);
+  }
+  public function GetPostCategory(){
+    $postTypes = PostCategory::select('id as value','categoryName as text')->orderBy('categoryName')->get();
     return response()->json($postTypes);
   }
   public function GetUserFileModelById()
