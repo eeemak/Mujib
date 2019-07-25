@@ -45,7 +45,7 @@
 <div>
 <div ng-repeat="x in postCategoryList">
         <div class="checkbox">
-                <label><input type="checkbox" ng-model="x.value">{{x.text}}</label>
+                <label><input type="checkbox" ng-model="x.value">@{{x.text}}</label>
               </div>
 </div>
 </div>
