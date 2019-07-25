@@ -18,7 +18,7 @@ class CreatePostWithCategoryTable extends Migration
             $table->bigInteger('post_id')->unsigned()->nullable();
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->bigInteger('post_category_id')->unsigned()->nullable();
-            $table->foreign('post_category_id')->references('id')->on('post_category')->onDelete('cascade');
+            $table->foreign('post_category_id')->references('id')->on('post_categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreatePostWithCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news_post_with_category');
+        Schema::dropIfExists('post_with_category');
     }
 }

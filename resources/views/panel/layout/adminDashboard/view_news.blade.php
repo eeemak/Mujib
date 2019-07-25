@@ -42,19 +42,19 @@
                                             <input type="file" id="uploadImage" title="Upload Image" ng-file-select="onFileSelect($files)" class="upload fileinput btn-primary" file-upload multiple />
                                         </div>
                                         <div class="col-md-6">
-<div>
-<div ng-repeat="x in postCategoryList">
-        <div class="checkbox">
-                <label><input type="checkbox" ng-model="x.value">@{{x.text}}</label>
-              </div>
-</div>
-</div>
+                                        <div>
+                                        <div ng-repeat="x in postCategoryList">
+                                                <div class="checkbox">
+                                                        <label><input type="checkbox" ng-model="newsPostOb.categoryIds[$index]" ng-true-value="@{{ x.value }}">@{{x.text}}</label>
+                                                    </div>
+                                        </div>
+                                        </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <div class="">
-                                                <summernote config="options" ng-model="newsPostDetail.PostDetail"></summernote>
+                                                <summernote config="options" ng-model="newsPostOb.PostDetail"></summernote>
                                             </div>
                                         </div>
                                     </div>

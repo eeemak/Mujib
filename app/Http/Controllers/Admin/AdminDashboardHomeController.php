@@ -91,7 +91,7 @@ public function DeleteGallary(Request $request){
     return response()->json($postTypes);
   }
   public function GetPostCategory(){
-    $postTypes = PostCategory::select('id as value','categoryName as text')->orderBy('categoryName')->get();
+    $postTypes = PostCategory::select('id as value','name as text')->orderBy('name')->get();
     return response()->json($postTypes);
   }
   public function GetUserFileModelById()

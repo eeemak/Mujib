@@ -14,8 +14,8 @@ class PostCategoryTableSeeder extends Seeder
     public function run()
     {
         PostCategory::insert([
-            ['categoryName'=> 'general'],
-            ['categoryName'=> 'dhaka']
+            ['name'=> 'general'],
+            ['name'=> 'dhaka']
          ]);
     }
 }

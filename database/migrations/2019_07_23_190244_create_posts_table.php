@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('post_detail')->nullable();
             $table->string('short_post')->nullable();
             $table->string('file_extension')->nullable();
-            $table->string('file_path',150)->unique();
+            $table->string('file_path',150)->unique()->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('post_types_id')->unsigned();

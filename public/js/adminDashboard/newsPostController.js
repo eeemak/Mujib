@@ -120,8 +120,10 @@ function NewsPostController($scope, $rootScope, $http, $location, $routeParams, 
                 if(response.error == true){
                     noty({ text: "This file format is not allowed to upload", layout: 'topRight', type: 'error' });
                 }else{
-                    $scope.adminUploadFileOb.Title=null;
-                    noty({ text: response.file_title +" has uploaded!", layout: 'topRight', type: 'success' });
+                    $scope.newsPostOb.Title=null;
+                    $scope.newsPostOb.PostDetail=null;
+                    $scope.newsPostOb.ShortPost=null;
+                    noty({ text: response.title +" has saved!", layout: 'topRight', type: 'success' });
                     $scope.getUserFileById();
                 }
             },
