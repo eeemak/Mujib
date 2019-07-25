@@ -103,8 +103,14 @@ function NewsPostController($scope, $rootScope, $http, $location, $routeParams, 
         if ($scope.filedata != null) {
             $scope.addnewsPost();
         }
+        $scope.postCategorySelectedList = [];
+        angular.forEach($scope.postCategoryList, function(ob){
+          if (ob.selected) $scope.postCategorySelectedList.push(ob.value);
+        });
+        
         var formData = new FormData();
         formData.append('newsPostOb', JSON.stringify($scope.newsPostOb));
+        formData.append('newsPostCategory',JSON.stringify( $scope.postCategorySelectedList));
         formData.append('file', $scope.filedata);
         $.ajax({
             headers: {

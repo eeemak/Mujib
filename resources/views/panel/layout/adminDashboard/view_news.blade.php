@@ -43,9 +43,10 @@
                                         </div>
                                         <div class="col-md-6">
                                         <div>
+                                                <label for="shortdescription">Select Category:</label>
                                         <div ng-repeat="x in postCategoryList">
                                                 <div class="checkbox">
-                                                        <label><input type="checkbox" ng-model="newsPostOb.categoryIds[$index]" ng-true-value="@{{ x.value }}">@{{x.text}}</label>
+                                                        <label><input type="checkbox" ng-model="x.selected" value="@{{ x.value }}">@{{x.text}}</label>
                                                     </div>
                                         </div>
                                         </div>

@@ -49,7 +49,7 @@ class NewsPostController extends Controller
     return response()->json($data);
   }
   public function SaveNews(Request $request) {
-    // return $request->all();
+    //return $request->all();
     if ($request->file != 'null') {
       $file = $request->file;
       $allow_extensions = ['jpg', 'jpeg', 'png', 'pdf'];
@@ -66,6 +66,7 @@ class NewsPostController extends Controller
     }
     $post = new Post();
     $newsPostOb = json_decode($request->newsPostOb, true);
+    $postCategory=json_decode($request->newsPostCategory, true);
     $post->title = $newsPostOb['Title'];
     $post->post_detail = $newsPostOb['PostDetail'];
     $post->short_post = $newsPostOb['ShortPost'];
@@ -73,7 +74,7 @@ class NewsPostController extends Controller
     $post->file_path = $file_path;
     $post->user_id = Auth::id();
     $post->file_extension = $file_extension;
-    // $post->post_categories()->sync([1,2]);
+    $post->post_categories()->sync($postCategory);
     $post->save();
     return response()->json($post);
   }
