@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostWithCategoryTable extends Migration
+class CreatePostWithCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePostWithCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('post_with_category', function (Blueprint $table) {
+        Schema::create('post_with_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('post_id')->unsigned()->nullable();
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
@@ -30,6 +30,6 @@ class CreatePostWithCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_with_category');
+        Schema::dropIfExists('post_with_categories');
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Session;
 use App\Model\Post;
+use App\Model\PostWithCategory;
 
 class NewsPostController extends Controller
 {
@@ -65,6 +66,7 @@ class NewsPostController extends Controller
       $file_path = null;
     }
     $post = new Post();
+
     $newsPostOb = json_decode($request->newsPostOb, true);
     $postCategory=json_decode($request->newsPostCategory, true);
     $post->title = $newsPostOb['Title'];
@@ -74,8 +76,15 @@ class NewsPostController extends Controller
     $post->file_path = $file_path;
     $post->user_id = Auth::id();
     $post->file_extension = $file_extension;
-    $post->post_categories()->sync($postCategory);
     $post->save();
+    $postWithCategoryList = [];
+    foreach ($postCategory as $item) {
+      $postWithCat = new PostWithCategory();
+      $postWithCat->post_category_id = $item;
+      $postWithCat->post_id=  $post->id;
+      $postWithCategoryList[]=$postWithCat;
+    }
+    $post->post_categories()->saveMany($postWithCategoryList);
     return response()->json($post);
   }
   public function DeleteNewsPostById($id){
