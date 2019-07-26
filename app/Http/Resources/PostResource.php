@@ -28,8 +28,8 @@ class PostResource extends JsonResource
             'post_type_name' => $this->post_type->name,
             'post_categories' => $this->post_categories,
             'added_from_ip' => $this->added_from_ip,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'created_at' => \Carbon\Carbon::parse($this->created_at)->format('d-F-Y'),
+            'updated_at' => \Carbon\Carbon::parse($this->updated_at)->format('d-F-Y'),
         ];
     }
 }
