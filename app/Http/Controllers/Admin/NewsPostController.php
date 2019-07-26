@@ -84,6 +84,7 @@ class NewsPostController extends Controller
       $postWithCat->post_id=  $post->id;
       $postWithCategoryList[]=$postWithCat;
     }
+   // $post->post_categories()->delete();
     $post->post_categories()->saveMany($postWithCategoryList);
     return response()->json($post);
   }
