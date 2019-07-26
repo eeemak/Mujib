@@ -64,6 +64,7 @@ function NewsPostController($scope, $rootScope, $http, $location, $routeParams, 
                 //         item.TempSrc = getFileUrl(item.FileId, item.FileName);
                 //     });
                 // }
+
                 $scope.getAllPersonalnewsPostList = result.data.data;
                 $scope.PostListSearchParameters.Total_Count = result.data.meta.total;
             })
