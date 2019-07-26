@@ -1,9 +1,10 @@
 ﻿'use strict';
-DetailAdminPostController.$inject = ['$scope', '$rootScope', '$http', '$location', '$routeParams', '$cookies', '$cookieStore', '$filter', '$compile'];
-function DetailAdminPostController($scope, $rootScope, $http, $location, $routeParams, $cookies, $cookieStore, $filter, $compile) {
-    $scope.title = "Edit Post";
+DetailNewsPostController.$inject = ['$scope', '$rootScope', '$http', '$location', '$routeParams', '$cookies', '$cookieStore', '$filter', '$compile'];
+function DetailNewsPostController($scope, $rootScope, $http, $location, $routeParams, $cookies, $cookieStore, $filter, $compile) {
+    $scope.title = "Detail Post";
     $scope.action = 'Save';
     $scope.showEditButton = false;
+    $scope.param1 = $routeParams.id;
     $scope.blogPostList = [];
     $scope.blogPostOb = {
         Id: null,
@@ -17,10 +18,10 @@ function DetailAdminPostController($scope, $rootScope, $http, $location, $routeP
         AddedDate: null,
         UpdatedDate: null
     }
-    $scope.getPostDetailList = function (data) {
+    $scope.getPostDetailList = function () {
         $http({
             method: 'GET',
-            url: '/BlogPost/GetPostDetailWithId?id=' + data.PostId
+            url: 'api/GetNewsPostById?id=' + $scope.param1
         }).then(function successCallback(response) {
             if (response.data !== '') {
                 var elements = [];
