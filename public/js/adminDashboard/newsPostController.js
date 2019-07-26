@@ -57,7 +57,7 @@ function NewsPostController($scope, $rootScope, $http, $location, $routeParams, 
             $scope.PostListSearchParameters.PageNo = num != undefined ? num : 1;
             $http({
                 method: 'GET',
-                url: '/newsPost/GetnewsPostListWithUserId?pageNo=' + $scope.PostListSearchParameters.PageNo + '&pageSize=' + $scope.PostListSearchParameters.PageSize
+                url: 'api/GetAllNewsPosts?pageNo=' + $scope.PostListSearchParameters.PageNo + '&pageSize=' + $scope.PostListSearchParameters.PageSize
             }).then(function successCallback(result) {
                 if (result.data.Items.length > 0) {
                     angular.forEach(result.data.Items, function (item) {
