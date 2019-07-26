@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
+use Actuallymab\LaravelComment\CanComment;
 use App\Model\UserInstitutions;
 use App\Model\District;
 use App\Model\Thana;
@@ -16,6 +17,8 @@ class User extends Authenticatable
 {
     use HasRoles;
     use Notifiable;
+
+    use CanComment;
 
     /**
      * The attributes that are mass assignable.
