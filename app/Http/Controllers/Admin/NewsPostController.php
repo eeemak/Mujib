@@ -78,14 +78,6 @@ class NewsPostController extends Controller
     $post->file_extension = $file_extension;
     $post->save();
     $post->post_categories()->sync($postCategory);
-    // $postWithCategoryList = [];
-    // foreach ($postCategory as $item) {
-    //   $postWithCat = new PostWithCategory();
-    //   $postWithCat->post_category_id = $item;
-    //   $postWithCat->post_id=  $post->id;
-    //   $postWithCategoryList[]=$postWithCat;
-    // }
-    // $post->post_categories()->saveMany($postWithCategoryList);
     return response()->json($post);
   }
   public function DeleteNewsPostById($id){
