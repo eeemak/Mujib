@@ -49,8 +49,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/DeleteUserFileById/{id}', 'AdminUploadController@DeleteUserFileById');
         Route::get('/GetPostCategory', 'AdminDashboardHomeController@GetPostCategory');
         Route::post('/SaveNews', 'NewsPostController@SaveNews');
-        Route::get('/GetAllNewses', 'NewsPostController@GetAllNewses');
+        Route::get('/GetAllNewsPosts', 'NewsPostController@GetAllNewsPosts');
         Route::get('/GetNewsPostById/{id}', 'NewsPostController@GetNewsPostById');
+        Route::get('/GetNewsPostByCategoryId/{id}', 'NewsPostController@GetNewsPostByCategoryId');
 
 
     });

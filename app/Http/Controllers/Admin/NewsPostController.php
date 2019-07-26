@@ -8,6 +8,7 @@ use Session;
 use App\Model\Post;
 use App\Model\PostWithCategory;
 use App\Http\Resources\PostResource;
+use App\Model\PostCategory;
 
 class NewsPostController extends Controller
 {
@@ -25,7 +26,7 @@ class NewsPostController extends Controller
   public function GetNewsPostById($id){
     return new PostResource(Post::find($id));
   }
-  public function GetAllNewses(){
+  public function GetAllNewsPosts(){
     return PostResource::collection(Post::orderBy('title')->get());
   }
   public function SaveNews(Request $request) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
@@ -64,5 +65,8 @@ class NewsPostController extends Controller
     unlink($uploadfile->file_path);
     $uploadfile->delete();
     return response()->json($uploadfile);
+  }
+  public function GetNewsPostByCategoryId($id){
+    return PostResource::collection(PostCategory::find($id)->posts);
   }
 }
