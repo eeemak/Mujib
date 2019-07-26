@@ -27,7 +27,7 @@ class NewsPostController extends Controller
     return new PostResource(Post::find($id));
   }
   public function GetAllNewsPosts(){
-    return PostResource::collection(Post::where('post_type_id', 1)->orderBy('title')->get());
+    return PostResource::collection(Post::where('post_type_id', 1)->where('user_id', Auth::id())->orderBy('title')->get());
   }
   public function SaveNews(Request $request) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
     //return $request->all();
