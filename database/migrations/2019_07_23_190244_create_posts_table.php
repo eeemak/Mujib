@@ -22,8 +22,8 @@ class CreatePostsTable extends Migration
             $table->string('file_path',150)->unique()->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->bigInteger('post_types_id')->unsigned();
-            $table->foreign('post_types_id')->references('id')->on('post_types')->onDelete('cascade');
+            $table->bigInteger('post_type_id')->unsigned();
+            $table->foreign('post_type_id')->references('id')->on('post_types')->onDelete('cascade');
             $table->string('added_from_ip')->nullable();
             $table->timestamps();
         });

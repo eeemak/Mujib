@@ -13,8 +13,8 @@ class PostTypeTableSeeder extends Seeder
     public function run()
     {
         PostType::insert([
-            ['postTypeName'=> 'news'],
-            ['postTypeName'=> 'motamot']
+            ['name'=> 'news'],
+            ['name'=> 'motamot']
          ]);
     }
 }

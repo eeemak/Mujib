@@ -7,6 +7,7 @@ use Auth;
 use Session;
 use App\Model\Post;
 use App\Model\PostWithCategory;
+use App\Http\Resources\PostResource;
 
 class NewsPostController extends Controller
 {
@@ -21,33 +22,11 @@ class NewsPostController extends Controller
     $view->with('ControllerName', "NewsPostController");
     return $view;
   }
-  public function GetNewsPostById(){
-    $adminFile=FileUpload::where('user_id', Auth::id())->orderBy('id', 'desc')->get();
-    $data = [];
-    foreach($adminFile as $item){
-      $data[] =[
-        'id' => $item->id,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-        'FileName' => $item->file_title,
-        'FileNo' => $item->file_title,
-        'FileExtension' => $item->file_extension,
-        'FilePath' => $item->file_path,
-      ];
-    }
-    return response()->json($data);
+  public function GetNewsPostById($id){
+    return new PostResource(Post::find($id));
   }
-  public function GetNewsPostAll(){
-    $adminFile=FileUpload::orderBy('id', 'desc')->get();
-    $data = [];
-    foreach($adminFile as $item){
-      $data[] =[
-        'id' => $item->id,
-        'FileName' => $item->file_title,
-        'FileNo' => $item->file_title,
-        'FileExtension' => $item->file_extension,
-        'FilePath' => $item->file_path,
-      ];
-    }
-    return response()->json($data);
+  public function GetAllNewses(){
+    return PostResource::collection(Post::orderBy('title')->get());
   }
   public function SaveNews(Request $request) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
     //return $request->all();
@@ -72,7 +51,7 @@ class NewsPostController extends Controller
     $post->title = $newsPostOb['Title'];
     $post->post_detail = $newsPostOb['PostDetail'];
     $post->short_post = $newsPostOb['ShortPost'];
-    $post->post_types_id = 1;
+    $post->post_type_id = 1;
     $post->file_path = $file_path;
     $post->user_id = Auth::id();
     $post->file_extension = $file_extension;
