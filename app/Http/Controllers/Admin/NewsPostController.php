@@ -26,8 +26,8 @@ class NewsPostController extends Controller
   public function GetNewsPostById($id){
     return new PostResource(Post::find($id));
   }
-  public function GetAllNewsPosts(){
-    return PostResource::collection(Post::where('post_type_id', 1)->where('user_id', Auth::id())->orderBy('title')->get());
+  public function GetAllNewsPosts($take){
+    return PostResource::collection(Post::where('post_type_id', 1)->where('user_id', Auth::id())->orderBy('title')->paginate($take));
   }
   public function GetNewsPostByCategoryId($id, $take){
     return PostResource::collection(PostCategory::find($id)->posts()->where('post_type_id', 1)->paginate($take));
