@@ -85,7 +85,7 @@
                                 <div class="col-md-12">
                                     <div class="post-item">
                                         <div class="post-title">
-                                            <a class="col-sm-11" href="/news-detail?id=@{{x.id}}">@{{x.title}}</a>
+                                            <a class="col-sm-11" href="/news-detail/@{{x.id}}">@{{x.title}}</a>
                                             <div class="dropdown col-sm-1" ng-show="x.UserId===globalUserInfo.UserId">
                                                 <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
                                                     ...

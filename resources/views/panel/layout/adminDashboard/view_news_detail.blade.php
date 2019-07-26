@@ -12,7 +12,7 @@
                                 </div>
                                 <div class="post-date"><span class="fa fa-calendar"></span>  @{{blogPostOb.AddedDate| dateFilter | date}}  / <a href="pages-profile.html">by @{{blogPostOb.AuthorName}}</a></div>
                                 <div class="post-text">
-                                    <img ng-if="blogPostOb.TempSrc !=null" src="{{blogPostOb.TempSrc}}" class="img-responsive img-text" style="height:225px" />
+                                    <img ng-if="blogPostOb.TempSrc !=null" src="@{{blogPostOb.TempSrc}}" class="img-responsive img-text" style="height:225px" />
                                     <p compile="blogPostOb.PostText"></p>
                                 </div>
                                 <div class="post-row">
