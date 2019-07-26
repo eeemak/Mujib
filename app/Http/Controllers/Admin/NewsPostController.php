@@ -26,7 +26,7 @@ class NewsPostController extends Controller
     $data = [];
     foreach($adminFile as $item){
       $data[] =[
-        'id' => $item->id,
+        'id' => $item->id,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
         'FileName' => $item->file_title,
         'FileNo' => $item->file_title,
         'FileExtension' => $item->file_extension,
@@ -49,7 +49,7 @@ class NewsPostController extends Controller
     }
     return response()->json($data);
   }
-  public function SaveNews(Request $request) {
+  public function SaveNews(Request $request) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
     //return $request->all();
     if ($request->file != 'null') {
       $file = $request->file;
