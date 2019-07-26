@@ -27,7 +27,7 @@ class NewsPostController extends Controller
     return new PostResource(Post::find($id));
   }
   public function GetAllNewsPosts(){
-    return PostResource::collection(Post::orderBy('title')->get());
+    return PostResource::collection(Post::where('post_type_id', 1)->orderBy('title')->get());
   }
   public function SaveNews(Request $request) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
     //return $request->all();
@@ -66,7 +66,7 @@ class NewsPostController extends Controller
     $uploadfile->delete();
     return response()->json($uploadfile);
   }
-  public function GetNewsPostByCategoryId($id){
-    return PostResource::collection(PostCategory::find($id)->posts);
+  public function GetNewsPostByCategoryId($id, $take){
+    return PostResource::collection(PostCategory::find($id)->posts()->where('post_type_id', 1)->paginate($take));
   }
 }
