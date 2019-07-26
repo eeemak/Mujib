@@ -57,15 +57,16 @@ function NewsPostController($scope, $rootScope, $http, $location, $routeParams, 
             $scope.PostListSearchParameters.PageNo = num != undefined ? num : 1;
             $http({
                 method: 'GET',
-                url: 'api/GetAllNewsPosts?pageNo=' + $scope.PostListSearchParameters.PageNo + '&pageSize=' + $scope.PostListSearchParameters.PageSize
+                url: 'api/GetAllNewsPosts/'+ $scope.PostListSearchParameters.PageSize + '?page=' + $scope.PostListSearchParameters.PageNo
             }).then(function successCallback(result) {
-                if (result.data.Items.length > 0) {
-                    angular.forEach(result.data.Items, function (item) {
-                        item.TempSrc = getFileUrl(item.FileId, item.FileName);
-                    });
-                }
-                $scope.getAllPersonalnewsPostList = result.data.Items;
-                $scope.PostListSearchParameters.Total_Count = result.data.Pager.TotalItems;
+                // if (result.data.Items.length > 0) {
+                //     angular.forEach(result.data.Items, function (item) {
+                //         item.TempSrc = getFileUrl(item.FileId, item.FileName);
+                //     });
+                // }
+
+                $scope.getAllPersonalnewsPostList = result.data.data;
+                $scope.PostListSearchParameters.Total_Count = result.data.meta.total;
             })
         };
         $scope.pageChangeHandler();

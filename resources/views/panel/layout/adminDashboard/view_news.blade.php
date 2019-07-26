@@ -85,7 +85,7 @@
                                 <div class="col-md-12">
                                     <div class="post-item">
                                         <div class="post-title">
-                                            <a class="col-sm-11" href="/newsPost/AdminPostDetail?id=@{{x.Id}}">@{{x.Title}}</a>
+                                            <a class="col-sm-11" href="/newsPost/AdminPostDetail?id=@{{x.id}}">@{{x.title}}</a>
                                             <div class="dropdown col-sm-1" ng-show="x.UserId===globalUserInfo.UserId">
                                                 <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
                                                     ...
@@ -96,10 +96,10 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="post-date"><span class="fa fa-calendar"></span>  @{{x.AddedDate| haDateFilter | date}}  / <a href="pages-profile.html">by @{{x.AuthorName}}</a></div>
+                                        <div class="post-date"><span class="fa fa-calendar"></span>  @{{x.created_at| haDateFilter | date}} / @{{x.post_categories[0].name}} / <a href="pages-profile.html">by @{{x.user_full_name}}</a></div>
                                         <div class="post-text">
-                                            <img ng-if="x.TempSrc !=null" src="@{{x.TempSrc}}" class="img-responsive img-text" style="height:225px" />
-                                            <p compile="truncString(x.PostText,1500,'...')"></p>
+                                                <img  ng-if="x.file_path !=null" src="@{{x.file_path}}" class="img-responsive img-text" width="304" height="236">
+                                            <p compile="truncString(x.post_detail,1500,'...')"></p>
                                         </div>
                                         <div class="post-row">
                                             <div class="post-info">
