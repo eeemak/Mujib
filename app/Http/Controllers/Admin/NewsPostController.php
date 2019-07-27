@@ -30,6 +30,13 @@ class NewsPostController extends Controller
     $view->with('detailId', $id);
     return $view;
   }
+  public function viewEditNews($id)
+  {
+    $view = view('panel.layout.adminDashboard.view_news_edit');
+    $view->with('ControllerName', "EditNewsPostController");
+    $view->with('detailId', $id);
+    return $view;
+  }
   public function GetNewsPostById($id){
     return new PostResource(Post::find($id));
   }

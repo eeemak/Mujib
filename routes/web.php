@@ -64,6 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('upload-management', ['as' => 'upload', 'uses' => 'AdminUploadController@viewUpload']);
         Route::get('news-management', ['as' => 'news-panel', 'uses' => 'NewsPostController@viewNews']);
         Route::get('news-management/{id}', 'NewsPostController@viewDetailNews');
+        Route::get('news-edit/{id}', 'NewsPostController@viewEditNews');
     });
     //=======User=======
     Route::group(['middleware' => ['role:user']], function () { 
