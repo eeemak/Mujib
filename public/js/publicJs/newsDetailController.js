@@ -1,6 +1,7 @@
-﻿'use strict';
-DetailNewsPostController.$inject = ['$scope', '$rootScope', '$http', '$location', '$routeParams', '$cookies', '$cookieStore', '$filter', '$compile'];
-function DetailNewsPostController($scope, $rootScope, $http, $location, $routeParams, $cookies, $cookieStore, $filter, $compile) {
+﻿
+'use strict';
+NewsDetailController.$inject = ['$scope', '$rootScope', '$http', '$location', '$routeParams', '$cookies', '$cookieStore', '$compile','$window'];
+function NewsDetailController($scope, $rootScope, $http, $location, $routeParams, $cookies, $cookieStore,$compile,  $window) {
     $scope.title = "Detail Post";
     $scope.action = 'Save';
     $scope.showEditButton = false;
@@ -17,7 +18,7 @@ function DetailNewsPostController($scope, $rootScope, $http, $location, $routePa
     $scope.getPostDetailList = function (id) {
         $http({
             method: 'GET',
-            url: '/api/GetNewsPostById/'+id,
+            url: '/api/GetNewsPublicPostById/'+id,
         }).then(function successCallback(response) {
             if (response.data !== '') {
                 var item = response.data.data;
@@ -31,4 +32,4 @@ function DetailNewsPostController($scope, $rootScope, $http, $location, $routePa
             }
         })
     }
-};
+}

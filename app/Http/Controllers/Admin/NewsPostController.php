@@ -27,6 +27,7 @@ class NewsPostController extends Controller
   {
     $view = view('panel.layout.adminDashboard.view_news_detail');
     $view->with('ControllerName', "DetailNewsPostController");
+    $view->with('detailId', $id);
     return $view;
   }
   public function GetNewsPostById($id){
@@ -34,6 +35,9 @@ class NewsPostController extends Controller
   }
   public function GetAllNewsPosts($take){
     return PostResource::collection(Post::where('post_type_id', 1)->where('user_id', Auth::id())->orderBy('title')->paginate($take));
+  }
+  public function GetAllPublicNewsPosts($take){
+    return PostResource::collection(Post::where('post_type_id', 1)->orderBy('title')->paginate($take));
   }
   public function GetNewsPostByCategoryId($id, $take){
     return PostResource::collection(PostCategory::find($id)->posts()->where('post_type_id', 1)->paginate($take));

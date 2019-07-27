@@ -80,7 +80,6 @@
                     <!-- END PANEL WITH CONTROL CLASSES -->
                     <div class="panel panel-default">
                         <div class="panel-body posts">
-
                             <div class="row" dir-paginate="x in getAllPersonalnewsPostList | itemsPerPage:PostListSearchParameters.PageSize" current-page="PostListSearchParameters.PageNo" pagination-id="metaData.name + 'getAllPostList'" total-items='PostListSearchParameters.Total_Count'>
                                 <div class="col-md-12">
                                     <div class="post-item">
@@ -105,7 +104,7 @@
                                             <div class="post-info">
                                                 <span class="fa fa-thumbs-up"></span> 15 - <span class="fa fa-eye"></span> 15,332 - <span class="fa fa-star"></span> 322
                                             </div>
-                                            <a href="/newsPost/AdminPostDetail?id=@{{x.Id}}" class="btn btn-default btn-rounded pull-right">Read more &RightArrow;</a>
+                                            <a href="/news-management/@{{x.id}}" class="btn btn-default btn-rounded pull-right">Read more &RightArrow;</a>
                                         </div>
 
                                     </div>
@@ -202,30 +201,5 @@
 @endsection
 @section('script')
 <script>
-    $(function(){
-        $("#file-simple").fileinput({
-                showUpload: false,
-                showCaption: false,
-                browseClass: "btn btn-danger",
-                fileType: "any"
-        });            
-        $("#filetree").fileTree({
-            root: '/',
-            script: 'assets/filetree/jqueryFileTree.php',
-            expandSpeed: 100,
-            collapseSpeed: 100,
-            multiFolder: false                    
-        }, function(file) {
-            alert(file);
-        }, function(dir){
-            setTimeout(function(){
-                page_content_onresize();
-            },200);                    
-        });                
-    });  
-    <!-- Initialize the plugin: -->
-    $(document).ready(function() {
-        $('#example-getting-started').multiselect();
-    });
 </script>
 @endsection

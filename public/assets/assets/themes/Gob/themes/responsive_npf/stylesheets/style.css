@@ -85,6 +85,26 @@
 	float: left;
 	font-size: 1em;
 	color: #666;
+	margin-bottom: 5px;
+}
+
+/**hasan**/
+.post-title{
+	font-size: 20px;
+    font-weight: 600;
+    padding-left: 0px;
+}
+.post-date{
+	font-size: 11px;
+    font-family: sans-serif !important;
+    color: #aaa;
+}
+.bangla-font p{
+	font-family:"SolaimanLipiNormal" !important;
+	}
+.img-text{
+	margin-bottom: 10px;
+    margin-top: 10px;
 }
 @media only screen and (min-width: 960px) {
 	body{
@@ -126,6 +146,9 @@ a.list-group-item {
     float: left;
 }
 /* Smaller than standard 960 (devices and browsers) */
+
+
+
 @media only screen and (max-width: 959px) {
     .footer-artwork {
 		height: 15px;

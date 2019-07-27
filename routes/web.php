@@ -10,6 +10,8 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/AdvanceSearchUsers', 'HomeController@AdvanceSearchUsers');
     Route::get('/CheckUserExist', 'HomeController@CheckUserExist');
     Route::get('/GetPublicGallary', 'HomeController@GetPublicGallary');
+    Route::get('/GetAllPublicNewsPosts/{take}', 'NewsPostController@GetAllPublicNewsPosts');
+    Route::get('/GetNewsPublicPostById/{id}', 'NewsPostController@GetNewsPostById');
 });
 //=======Guest=======
 Route::group(['middleware' => 'guest'], function () {
@@ -27,6 +29,8 @@ Route::group(['middleware' => 'guest'], function () {
         Route::post('RegisterUser', ['as' => 'attempt_register', 'uses' => 'HomeController@attemptRegister']);
     });
     Route::get('photoGallery', ['as' => 'photoGallery', 'uses' => 'HomeController@publicGallery']);
+    Route::get('news-detail/{id}', 'HomeController@newsdetail');
+
 });
 //=======All User=======
 Route::group(['middleware' => 'auth'], function () {

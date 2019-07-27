@@ -34,8 +34,15 @@ class HomeController extends Controller
     }
     public function news(){
         $view = view('panel.public.news');
-        $view->with('ControllerName', "HomeController");
+        $view->with('ControllerName', "NewsController");
         return $view;
+    }
+    public function newsdetail($id)
+    {
+      $view = view('panel.public.news_detail');
+      $view->with('ControllerName', "NewsDetailController");
+      $view->with('detailId', $id);
+      return $view;
     }
     public function kroibikroi(){
         $view = view('panel.public.kroibikroi');

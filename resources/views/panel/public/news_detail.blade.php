@@ -1,4 +1,4 @@
-@extends('panel.layout.adminDashboard.master')
+@extends('panel.public.master')
 @section('content')
 <div class="row" data-ng-init="getPostDetailList({{$detailId}})">
         <div class="col-md-12">
@@ -10,10 +10,10 @@
                                 <div class="post-title" ng-mouseover="showEditButton=true" ng-mouseleave="showEditButton=false">
                                     @{{newsPostOb.Title}} <a ng-show="showEditButton && newsPostOb.UserId===globalUserInfo.UserId" href="/newsPost/EditPost?id=@{{newsPostOb.Id}}" class="btn btn-default btn-rounded  pull-right"><i class="fa fa-edit"></i></a>
                                 </div>
-                                <div class="post-date"><span class="fa fa-calendar"></span>  @{{newsPostOb.CreatedAt| haDateFilter | date}} / @{{newsPostOb.CategoryName}} / <a href="pages-profile.html">by @{{newsPostOb.UserFullName}}</a></div>
+                                <div class="post-date"><span class="fa fa-calendar"></span>  @{{newsPostOb.CreatedAt}} / @{{newsPostOb.CategoryName}} / <a href="pages-profile.html">by @{{newsPostOb.UserFullName}}</a></div>
                                 <div class="post-text">
                                     <img ng-if="newsPostOb.FilePath !=null" src="@{{newsPostOb.FilePath}}" class="img-responsive img-text" style="height:225px" />
-                                    <p compile="newsPostOb.PostDetail"></p>
+                                    <div class="bangla-font" compile="newsPostOb.PostDetail"></div>
                                 </div>
                                 <div class="post-row">
                                     <div class="post-info">

@@ -374,6 +374,8 @@
     <script type="text/javascript" src="{{asset('assets/js/dirPagination.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/publicJs/homeController.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/publicJs/accountController.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/publicJs/newsController.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/publicJs/newsDetailController.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/adminDashboard/gallaryController.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/publicJs/Apps/publicpanelApp.js')}}"></script>
 

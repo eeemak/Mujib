@@ -1,8 +1,10 @@
 ﻿'use strict';
 var publicpanelApp = angular.module('publicpanelApp', ['ngRoute', 'ngCookies', 'angularUtils.directives.dirPagination'])
     .controller('HomeController', HomeController)
+    .controller('NewsController', NewsController)
     .controller('AccountController', AccountController)
     .controller('GallaryController', GallaryController)
+    .controller('NewsDetailController', NewsDetailController)
 publicpanelApp.factory('LoginService', function ($http) {
     var fac = {};
     fac.GetUser = function (d) {
@@ -22,6 +24,7 @@ publicpanelApp.directive('showErrors', showErrors)
 publicpanelApp.directive('manualValidation', manualValidation)
 publicpanelApp.directive('onlyNumbers', onlyNumbers)
 publicpanelApp.directive('nDecimals', nDecimals)
+publicpanelApp.directive('compile', compile)
 publicpanelApp.directive('ngEnter', function () {
     return function (scope, element, attrs) {
         element.bind("keydown keypress", function (event) {
@@ -250,6 +253,20 @@ function nDecimals() {
                 }
             });
         }
+    };
+}
+compile.$inject = ['$compile'];
+function compile($compile) {
+    return function (scope, element, attrs) {
+        scope.$watch(
+            function (scope) {
+                return scope.$eval(attrs.compile);
+            },
+            function (value) {
+                element.html(value);
+                $compile(element.contents())(scope);
+            }
+        );
     };
 }
 //publicpanelApp.config(['$locationProvider', function ($locationProvider) { $locationProvider.html5Mode({ enabled: true, requireBase: false }); }])
