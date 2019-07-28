@@ -29,7 +29,7 @@
                                         <img class="media-object img-text" width="64" ng-if="x.commented_user.photo_path !=''" src="/@{{ x.commented_user.photo_path }}" alt="John Doe" />
                                     </a>
                                     <div class="media-body">
-                                        <h4 class="media-heading">@{{x.commented_user.full_name}} </h4><span>@{{x.AddedDate | date}}</span>
+                                        <h4 class="media-heading">@{{ x.commented_user.full_name }} </h4><span>@{{x.created_at | date}}</span>
                                         <p>@{{ x.comment }}</p>
                                         <a ng-click="showCommentBox(x.id,$index)">Reply</a>
     
@@ -39,7 +39,7 @@
                                                 <img class="media-object img-text" width="64" ng-if="x.commented_user.photo_path !=''" src="/@{{ x.commented_user.photo_path }}" alt="John Doe" />
                                             </a>
                                             <div class="media-body">
-                                                <h4 class="media-heading">@{{y.AuthorName}}</h4><span> @{{y.AddedDate| date}}</span>
+                                                <h4 class="media-heading">@{{ y.commented_user.full_name }}</h4><span> @{{y.created_at| date}}</span>
                                                 <p>@{{y.comment}}</p>
                                                 <a ng-click="showCommentBox(x.Id,$index)">Reply</a>
                                             </div>
