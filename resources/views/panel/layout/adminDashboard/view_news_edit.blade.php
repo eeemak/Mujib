@@ -5,7 +5,7 @@
         <!-- START NEW RECORD -->
         <div class="panel panel-default">
             <div class="panel-body">
-                <h3>Something on your mind?</h3>
+                <h3>Edit your news</h3>
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
                         <div class="col-md-12">
@@ -27,23 +27,25 @@
                     <div class="form-group">
                         <div class="col-md-12">
                             <div class="">
-                                <summernote config="options" ng-model="newsPostDetail.PostText"></summernote>
+                                <summernote config="options" ng-model="newsPostOb.PostDetail"></summernote>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-12">
-                            <div class="btn-group pull-left">
-                                <button class="btn btn-primary"><span class="fa fa-camera"></span></button>
-                                <button class="btn btn-primary"><span class="fa fa-map-marker"></span></button>
-                                <button class="btn btn-primary"><span class="fa fa-calendar"></span></button>
-                            </div>
-                            <div class="pull-right">
-                                <button class="btn btn-danger" ng-click="Save()"><span class="fa fa-send-o"></span> Update</button>
+                            <label for="shortdescription">News Short Description:</label>
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon text-area-input-group-addon"><span class="fa fa-pencil"></span></span>
+                                    <textarea class="form-control" rows="5" name="shortdescription" ng-model="newsPostOb.ShortPost" id="shortdescription" placeholder="Write something"></textarea>
+                                </div>
                             </div>
                         </div>
-                    </div>
                 </form>
+            </div>
+            <div class="panel-footer">
+                    <div class="pull-right">
+                            <button class="btn btn-danger" ng-click="Save()"><span class="fa fa-send-o"></span> Update</button>
+                        </div>
             </div>
         </div>
         <!-- END NEW RECORD -->
@@ -65,10 +67,10 @@
                                 <div class="post-title">
                                     @{{postDetailOb.Title}}
                                 </div>
-                                <div class="post-date"><a href="#">by @{{postDetailOb.AuthorName}}</a></div>
+                                <div class="post-date"><a href="#">by @{{postDetailOb.UserFullName}}</a></div>
                                 <div class="post-text">
-                                    <img src="@{{postDetailOb.TempSrc}}" class="img-responsive img-text" style="height:225px" />
-                                    <p compile="postDetailOb.PostText"></p>
+                                        <img  ng-if="postDetailOb.FilePath !=null" src="@{{postDetailOb.FilePath}}" class="img-responsive img-text" width="304" height="236">
+                                    <p compile="postDetailOb.PostDetail"></p>
                                 </div>
                             </div>
                         </div>

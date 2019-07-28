@@ -56,6 +56,7 @@ function EditNewsPostController($scope, $rootScope, $http, $location, $routePara
                 $scope.newsPostOb.FilePath = "/"+item.file_path
                 $scope.newsPostOb.CategoryName = item.post_categories[0].name
                 $scope.newsPostOb.CreatedAt = item.created_at
+                $scope.imageSrc = $scope.newsPostOb.FilePath;
             }
         })
     }
