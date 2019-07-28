@@ -56,7 +56,7 @@
                                                     </div>
                                                 </div>
                                                 @else
-                                                <p>Please <a href="{{ route('login') }}">Login</a> to comment</p>
+                                                <p>Please <a href="{{ route('login', ['redirect_url'=>Request::url()]) }}">Login</a> to comment</p>
                                                 @endif
                                             </div>
                                         </div>
@@ -73,7 +73,7 @@
                                                 </div>
                                             </div>
                                             @else
-                                            <p>Please <a href="{{ route('login') }}">Login</a> to reply</p>
+                                            <p>Please <a href="{{ route('login', ['redirect_url'=>Request::url()]) }}">Login</a> to reply</p>
                                             @endif
                                         </div>
                                     </div>
@@ -93,7 +93,7 @@
                                     </div>
                                 </div>
                                 @else
-                                <p>Please <a href="{{ route('login') }}">Login</a> to comment</p>
+                                <p>Please <a href="{{ route('login', ['redirect_url'=>Request::url()]) }}">Login</a> to comment</p>
                                 @endif
                             </div>
                         </div>

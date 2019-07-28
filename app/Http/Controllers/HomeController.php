@@ -69,7 +69,10 @@ class HomeController extends Controller
         $view->with('ControllerName', "EmployeeController");
         return $view;
     }
-    public function login(){
+    public function login(Request $request){
+        if($request->redirect_url){
+            Session::put('redirect_url', $request->redirect_url);
+        }
         $view = view('panel.layout.login');
         $view->with('ControllerName', "AccountController");
         return $view;
@@ -83,9 +86,15 @@ class HomeController extends Controller
     }
     public function attemptLogin(Request $request) {
         if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
-            return redirect()->route('profile');
+            if(Session::has('redirect_url')){
+                return redirect(Session::pull('redirect_url'));
+            }
+            return redirect()->intended('/profile');
         }else if (Auth::attempt(['phone' => $request->input('username'), 'password' => $request->input('password')])) {
-            return redirect()->route('profile');
+            if(Session::has('redirect_url')){
+                return redirect(Session::pull('redirect_url'));
+            }
+            return redirect()->intended('/profile');
         } else {
             Session::put('alert-danger', 'Invalid username or password');
             return redirect()->back();

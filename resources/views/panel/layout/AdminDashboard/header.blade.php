@@ -11,11 +11,15 @@
         </form>
     </li>
     <!-- END SEARCH -->
+    
     <!-- SIGN OUT -->
     <li class="xn-icon-button pull-right">
-        <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
+        <a href="#" class="mb-control" data-box="#mb-signout" title="Logout"><span class="fa fa-sign-out"></span></a>
     </li>
     <!-- END SIGN OUT -->
+    <li class="xn-icon-button pull-right">
+        <a href="{{ route('home') }}" title="Visit Site"><span class="fa fa-home"></span></a>
+    </li>
 </ul>
 <!-- MESSAGE BOX-->
 <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
