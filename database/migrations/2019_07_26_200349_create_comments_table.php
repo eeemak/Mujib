@@ -9,7 +9,7 @@ class CreateCommentsTable extends Migration
     public function up(): void
     {
         Schema::create($this->commentsTable(), function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('commentable_id')->nullable();
             $table->string('commentable_type')->nullable();
             $table->index(['commentable_id', 'commentable_type']);
@@ -19,6 +19,8 @@ class CreateCommentsTable extends Migration
             $table->longText('comment');
             $table->boolean('approved')->default(true);
             $table->double('rate', 15, 8)->nullable();
+            $table->bigInteger('parent_id')->unsigned()->nullable();
+            $table->foreign('parent_id')->references('id')->on($this->commentsTable())->onDelete('cascade');
             $table->timestamps();
         });
     }

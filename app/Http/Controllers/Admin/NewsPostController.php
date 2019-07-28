@@ -9,6 +9,7 @@ use App\Model\Post;
 use App\Model\PostWithCategory;
 use App\Http\Resources\PostResource;
 use App\Model\PostCategory;
+use App\Http\Resources\CommentResource;
 
 class NewsPostController extends Controller
 {
@@ -85,6 +86,16 @@ class NewsPostController extends Controller
     unlink($uploadfile->file_path);
     $uploadfile->delete();
     return response()->json($uploadfile);
+  }
+  public function GetCommentListWithPostId(Request $request){
+    $post = Post::find($request->postId);
+    // return response()->json($post->comments);
+    return CommentResource::collection($post->comments);
+  }
+  public function CommentInsert(Request $request){
+    $post = Post::find($request->PostId);
+    $comment = Auth::user()->comment($post, $request->CommentText, 0, $request->ParentId);
+    return $comment;
   }
 
 }

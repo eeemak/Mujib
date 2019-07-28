@@ -8,7 +8,7 @@
                         <div class="col-md-12">
                             <div class="post-item">
                                 <div class="post-title" ng-mouseover="showEditButton=true" ng-mouseleave="showEditButton=false">
-                                    @{{newsPostOb.Title}} <a ng-show="showEditButton" href="/news-edit/@{{newsPostOb.id}}" class="btn btn-default btn-rounded  pull-right"><i class="fa fa-edit"></i></a>
+                                    @{{ newsPostOb.Title }} <a ng-show="showEditButton" href="/news-edit/@{{newsPostOb.id}}" class="btn btn-default btn-rounded  pull-right"><i class="fa fa-edit"></i></a>
                                 </div>
                                 <div class="post-date"><span class="fa fa-calendar"></span>  @{{newsPostOb.CreatedAt| haDateFilter | date}} / @{{newsPostOb.CategoryName}} / <a href="pages-profile.html">by @{{newsPostOb.UserFullName}}</a></div>
                                 <div class="post-text">
@@ -25,22 +25,22 @@
                             <ul class="media-list" ng-repeat="x in commentList">
                                 <li class="media">
                                     <a class="pull-left" href="#">
-                                        <img class="media-object img-text" width="64" ng-if="x.PhotoPath==''" src="~/Images/no_image.png" />
-                                        <img class="media-object img-text" width="64" ng-if="x.PhotoPath !=''" src="@{{x.PhotoPath}}" alt="John Doe" />
+                                        <img class="media-object img-text" width="64" ng-if="x.commented_user.photo_path==''" src="{{ asset('img/no-image.jpg') }}" />
+                                        <img class="media-object img-text" width="64" ng-if="x.commented_user.photo_path !=''" src="/@{{ x.commented_user.photo_path }}" alt="John Doe" />
                                     </a>
                                     <div class="media-body">
-                                        <h4 class="media-heading">@{{x.AuthorName}} </h4><span>@{{x.AddedDate | date}}</span>
-                                        <p>@{{x.CommentText}}</p>
-                                        <a ng-click="showCommentBox(x.Id,$index)">Reply</a>
+                                        <h4 class="media-heading">@{{x.commented_user.full_name}} </h4><span>@{{x.AddedDate | date}}</span>
+                                        <p>@{{ x.comment }}</p>
+                                        <a ng-click="showCommentBox(x.id,$index)">Reply</a>
     
                                         <div class="media" ng-repeat="y in x.ChildCommentList">
                                             <a class="pull-left" href="#">
-                                                <img class="media-object img-text" width="64" ng-if="x.PhotoPath==''" src="~/Images/no_image.png" />
-                                                <img class="media-object img-text" width="64" ng-if="x.PhotoPath !=''" src="@{{x.PhotoPath}}" alt="John Doe" />
+                                                <img class="media-object img-text" width="64" ng-if="x.commented_user.photo_path==''" src="{{ asset('img/no-image.jpg') }}" />
+                                                <img class="media-object img-text" width="64" ng-if="x.commented_user.photo_path !=''" src="/@{{ x.commented_user.photo_path }}" alt="John Doe" />
                                             </a>
                                             <div class="media-body">
                                                 <h4 class="media-heading">@{{y.AuthorName}}</h4><span> @{{y.AddedDate| date}}</span>
-                                                <p>@{{y.CommentText}}</p>
+                                                <p>@{{y.comment}}</p>
                                                 <a ng-click="showCommentBox(x.Id,$index)">Reply</a>
                                             </div>
                                             <div class="form-horizontal col-sm-12" ng-show="y.ShowNewCommentBox">
@@ -123,7 +123,7 @@
 </div>
 @endsection
 @section('script')
-<script>
+{{-- <script>
     $(function(){
         $("#filetree").fileTree({
             root: '/',
@@ -143,5 +143,5 @@
     $(document).ready(function() {
         $('#example-getting-started').multiselect();
     });
-</script>
+</script> --}}
 @endsection

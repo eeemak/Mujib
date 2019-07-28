@@ -56,6 +56,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/GetAllNewsPosts/{take}', 'NewsPostController@GetAllNewsPosts');
         Route::get('/GetNewsPostById/{id}', 'NewsPostController@GetNewsPostById');
         Route::get('/GetNewsPostByCategoryId/{id}/{take}', 'NewsPostController@GetNewsPostByCategoryId');
+        Route::get('/GetCommentListWithPostId', 'NewsPostController@GetCommentListWithPostId');
+        Route::post('/CommentInsert', 'NewsPostController@CommentInsert');
 
 
     });
