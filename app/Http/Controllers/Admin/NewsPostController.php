@@ -81,6 +81,36 @@ class NewsPostController extends Controller
     $post->post_categories()->sync($postCategory);
     return response()->json($post);
   }
+  public function UpdateNews(Request $request) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+    if ($request->file != 'null') {
+      $file = $request->file;
+      $allow_extensions = ['jpg', 'jpeg', 'png', 'pdf'];
+      $file_extension = $file->getClientOriginalExtension();
+      if(!in_array($file_extension, $allow_extensions)){
+        return response()->json(['error'=>true]);
+      }
+      $file_directory = 'upload/files/';
+      $file_path = $file_directory . time() . "-" . $file->getClientOriginalName();
+      $file->move($file_directory, $file_path);
+    }else{
+      $file_extension = null;
+      $file_path = null;
+    }
+    $post = new Post();
+
+    $newsPostOb = json_decode($request->newsPostOb, true);
+    $postCategory=json_decode($request->newsPostCategory, true);
+    $post->title = $newsPostOb['Title'];
+    $post->post_detail = $newsPostOb['PostDetail'];
+    $post->short_post = $newsPostOb['ShortPost'];
+    if($file_path !=null){
+      $post->file_path = $file_path;
+      $post->file_extension = $file_extension;
+    }
+    $post->update();
+    $post->post_categories()->sync($postCategory);
+    return response()->json($post);
+  }
   public function DeleteNewsPostById($id){
     $uploadfile = FileUpload::find($id);
     unlink($uploadfile->file_path);

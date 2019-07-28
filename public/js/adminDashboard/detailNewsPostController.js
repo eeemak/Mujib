@@ -25,6 +25,7 @@ function DetailNewsPostController($scope, $rootScope, $http, $location, $routePa
                 $scope.newsPostOb.Id = item.id
                 $scope.newsPostOb.Title = item.title
                 $scope.newsPostOb.PostDetail = item.post_detail
+                $scope.newsPostOb.ShortPost = item.short_post
                 $scope.newsPostOb.UserFullName = item.user_full_name
                 $scope.newsPostOb.FilePath = item.file_path
                 $scope.newsPostOb.CategoryName = item.post_categories.length > 0 ? item.post_categories[0].name : null

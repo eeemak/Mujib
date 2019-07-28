@@ -73,33 +73,7 @@ function NewsPostController($scope, $rootScope, $http, $location, $routeParams, 
     }
     $scope.getPersonalList();
     $scope.newsPostDetailList = [];
-    //**AllnewsPostList**/
-    $scope.allnewsPostList = [];
-    $scope.allnewsPostListSearchParameters = {
-        PageSize: 10,
-        Total_Count: 0,
-        CurrentPage: 1,
-        PageNo: 1
-    }
-    $scope.getPostList = function () {
-        $scope.pageAllnewsPostChangeHandler = function (num) {
-            $scope.allnewsPostListSearchParameters.PageNo = num != undefined ? num : 1;
-            $http({
-                method: 'GET',
-                url: '/newsPost/GetnewsPostList?pageNo=' + $scope.allnewsPostListSearchParameters.PageNo + '&pageSize=' + $scope.allnewsPostListSearchParameters.PageSize
-            }).then(function successCallback(response) {
-                if (response.data.Items.length > 0) {
-                    angular.forEach(response.data.Items, function (item) {
-                        item.TempSrc = getFileUrl(item.FileId, item.FileName);
-                    });
-                    $scope.allnewsPostList = response.data.Items;
-                }
-                $scope.allnewsPostListSearchParameters.Total_Count = response.data.Pager.TotalItems;
-            })
-        };
-        $scope.pageAllnewsPostChangeHandler();
-    }
-    $scope.getPostList();
+
     $scope.Save = function () {
         if ($scope.filedata != null) {
             $scope.addnewsPost();
@@ -131,54 +105,13 @@ function NewsPostController($scope, $rootScope, $http, $location, $routeParams, 
                     $scope.newsPostOb.PostDetail=null;
                     $scope.newsPostOb.ShortPost=null;
                     noty({ text: response.title +" has saved!", layout: 'topRight', type: 'success' });
-                    $scope.getUserFileById();
+                    $scope.getPersonalList();
                 }
             },
             error: function () {
                 noty({ text: "Something went wrong!", layout: 'topRight', type: 'error' });
             }
         });
-        // $http({
-        //     method: "post",
-        //     url: '/newsPost/Save/',
-        //     headers: { 'Content-Type': undefined },
-        //     transformRequest: function (data) {
-        //         formData.append('newsPost', JSON.stringify(data.newsPost));
-        //       //  formData.append('postDetailList', JSON.stringify(data.postDetailList));
-        //         for (var i = 0; i < data.postFile.length; i++) {
-        //             formData.append('postFile[' + i + ']', data.postFile[i]);
-        //         }
-        //         return formData;
-        //     },
-        //     data: {
-        //         'newsPost': $scope.newsPostOb
-        //        // , 'postDetailList': $scope.newsPostDetailList
-        //         , 'postFile': $scope.inputFileList
-        //     },
-        //     dataType: "json"
-        // }).then(function successCallback(response) {
-        //     if (response.data.Error === true) {
-        //         noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
-        //     }
-        //     else {
-        //         noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
-        //         $scope.getPersonalList();
-        //         $scope.getPostList();
-        //         $scope.newsPostOb = {
-        //             Id: null,
-        //             Title: null,
-        //             Active: true,
-        //             CategoryId: 1
-        //         }
-        //         $scope.newsPostDetail = {
-        //             Id: null,
-        //             Sequence: null,
-        //             PostText: null
-        //         }
-        //     }
-        // }), function errorCallBack(response) {
-        //     noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
-        // }
     }
     $scope.imageSrc = null;
     $scope.filedata = null;

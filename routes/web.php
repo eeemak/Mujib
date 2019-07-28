@@ -57,6 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/DeleteGallary', 'AdminDashboardHomeController@DeleteGallary');
         Route::post('/DeleteUserFileById/{id}', 'AdminUploadController@DeleteUserFileById');
         Route::post('/SaveNews', 'NewsPostController@SaveNews');
+        Route::post('/UpdateNews', 'NewsPostController@UpdateNews');
         Route::post('/CommentInsert', 'NewsPostController@CommentInsert');
 
 
