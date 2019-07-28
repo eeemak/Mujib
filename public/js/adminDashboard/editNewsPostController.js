@@ -8,17 +8,13 @@ function EditNewsPostController($scope, $rootScope, $http, $location, $routePara
     $scope.newsPostOb = {
         Id: null,
         Title: null,
-        Active: true,
-        CategoryId: 1,
+        PostDetail: null,
+        ShortPost: null,
+        FileName: null,
         UserId: null,
-        AddedDate: null,
-        UpdatedDate: null
     }
-    $scope.newsPostDetail = {
-        Id: null,
-        Sequence: null,
-        PostText: null
-    }
+    $scope.postCategoryList = [];
+    $scope.postCategorySelectedList = [];
     $scope.options = {
         height: 450,
         //toolbar: [
@@ -40,12 +36,20 @@ function EditNewsPostController($scope, $rootScope, $http, $location, $routePara
             //['help', ['help']]
         ]
     };
-
+    $scope.getPostCategory = function () {
+        $http({
+            method: 'GET',
+            url: '/api/GetPostCategory'
+        }).then(function successCallback(response) {
+            $scope.postCategoryList = response.data;
+        })
+    }
+    $scope.getPostCategory();
     $scope.getPostInfo = [];
     $scope.getPostDetailList = function (id) {
         $http({
             method: 'GET',
-            url: '/api/GetNewsPostById/'+id,
+            url: '/api/GetNewsPostById/' + id,
         }).then(function successCallback(response) {
             if (response.data !== '') {
                 var item = response.data.data;
@@ -54,10 +58,17 @@ function EditNewsPostController($scope, $rootScope, $http, $location, $routePara
                 $scope.newsPostOb.PostDetail = item.post_detail
                 $scope.newsPostOb.ShortPost = item.short_post
                 $scope.newsPostOb.UserFullName = item.user_full_name
-                $scope.newsPostOb.FilePath = "/"+item.file_path
+                $scope.newsPostOb.FilePath = "/" + item.file_path
                 $scope.newsPostOb.CategoryName = item.post_categories[0].name
                 $scope.newsPostOb.CreatedAt = item.created_at
                 $scope.imageSrc = $scope.newsPostOb.FilePath;
+                angular.forEach($scope.postCategoryList, function (ob) {
+                    angular.forEach(response.data.data.post_categories, function (x) {
+                        if (ob.value === x.id) {
+                            ob.selected = true;
+                        }
+                    })
+                });
             }
         })
     }
@@ -68,13 +79,13 @@ function EditNewsPostController($scope, $rootScope, $http, $location, $routePara
             $scope.addnewsPost();
         }
         $scope.postCategorySelectedList = [];
-        angular.forEach($scope.postCategoryList, function(ob){
-          if (ob.selected) $scope.postCategorySelectedList.push(ob.value);
+        angular.forEach($scope.postCategoryList, function (ob) {
+            if (ob.selected) $scope.postCategorySelectedList.push(ob.value);
         });
-        
+
         var formData = new FormData();
         formData.append('newsPostOb', JSON.stringify($scope.newsPostOb));
-        formData.append('newsPostCategory',JSON.stringify( $scope.postCategorySelectedList));
+        formData.append('newsPostCategory', JSON.stringify($scope.postCategorySelectedList));
         formData.append('file', $scope.filedata);
         $.ajax({
             headers: {
@@ -87,13 +98,13 @@ function EditNewsPostController($scope, $rootScope, $http, $location, $routePara
             data: formData,
             success: function (response) {
                 console.log(response);
-                if(response.error == true){
+                if (response.error == true) {
                     noty({ text: "This file format is not allowed to upload", layout: 'topRight', type: 'error' });
-                }else{
-                    $scope.newsPostOb.Title=null;
-                    $scope.newsPostOb.PostDetail=null;
-                    $scope.newsPostOb.ShortPost=null;
-                    noty({ text: response.title +" has saved!", layout: 'topRight', type: 'success' });
+                } else {
+                    $scope.newsPostOb.Title = null;
+                    $scope.newsPostOb.PostDetail = null;
+                    $scope.newsPostOb.ShortPost = null;
+                    noty({ text: response.title + " has saved!", layout: 'topRight', type: 'success' });
                     $scope.getPersonalList();
                 }
             },

@@ -16,13 +16,23 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div>
                                 <img ng-if="imageSrc===null" src="~/Images/default.jpg" class="profileImage" />
                                 <img ng-if="imageSrc !=null" id="uploadImageSrc" ng-src="@{{imageSrc}}" style=" border: 1px solid; height: 200px; width: 200px;" />
                             </div>
                             <input type="file" id="uploadImage" title="Upload Image" ng-file-select="onFileSelect($files)" class="upload fileinput btn-primary" file-upload multiple />
                         </div>
+                        <div class="col-md-6">
+                                <div>
+                                        <label for="shortdescription">Select Category:</label>
+                                <div ng-repeat="x in postCategoryList">
+                                        <div class="checkbox">
+                                                <label><input type="checkbox" ng-model="x.selected" value="@{{ x.value }}">@{{x.text}}</label>
+                                            </div>
+                                </div>
+                                </div>
+                                </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-12">
