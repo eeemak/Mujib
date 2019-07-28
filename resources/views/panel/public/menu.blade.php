@@ -87,12 +87,21 @@
                 <li class="col8 {{ Request::is('motamot') ? 'active':'' }}">
                     <a href="{{ route('motamot') }}">মতামত</a>
                 </li>
+                @if (Auth::check())
+                <li class="col1 {{ Request::is('dashboard') ? 'active':'' }}">
+                    <a href="{{  route('dashboard') }}">ড্যাশবোর্ড</a>
+                </li>
+                <li class="col9 {{ Request::is('logout') ? 'active':'' }}">
+                    <a href="{{  route('logout') }}">প্রস্থান</a>
+                </li>
+                @else
                 <li class="col1 {{ Request::is('login') ? 'active':'' }}0">
                     <a href="{{ route('login') }}">লগইন</a>
                 </li>
                 <li class="col9 {{ Request::is('register') ? 'active':'' }}">
                     <a href="{{  route('register') }}">রেজিস্ট্রেশন</a>
                 </li>
+                @endif
 
             </ul>
         </div>

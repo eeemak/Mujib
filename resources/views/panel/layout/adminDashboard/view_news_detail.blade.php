@@ -12,7 +12,7 @@
                                 </div>
                                 <div class="post-date"><span class="fa fa-calendar"></span>  @{{newsPostOb.CreatedAt| haDateFilter | date}} / @{{newsPostOb.CategoryName}} / <a href="pages-profile.html">by @{{newsPostOb.UserFullName}}</a></div>
                                 <div class="post-text">
-                                    <img ng-if="newsPostOb.FilePath !=null" src="@{{newsPostOb.FilePath}}" class="img-responsive img-text" style="height:225px" />
+                                    <img ng-if="newsPostOb.FilePath" src="/@{{newsPostOb.FilePath}}" class="img-responsive img-text" style="height:225px" />
                                     <p compile="newsPostOb.PostDetail"></p>
                                 </div>
                                 <div class="post-row">

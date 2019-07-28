@@ -25,6 +25,9 @@ publicpanelApp.directive('manualValidation', manualValidation)
 publicpanelApp.directive('onlyNumbers', onlyNumbers)
 publicpanelApp.directive('nDecimals', nDecimals)
 publicpanelApp.directive('compile', compile)
+publicpanelApp.filter('dateFiltering', dateFiltering)
+publicpanelApp.filter('dateFilter', dateFilter)
+publicpanelApp.filter('haDateFilter', haDateFilter)
 publicpanelApp.directive('ngEnter', function () {
     return function (scope, element, attrs) {
         element.bind("keydown keypress", function (event) {
@@ -267,6 +270,35 @@ function compile($compile) {
                 $compile(element.contents())(scope);
             }
         );
+    };
+}
+dateFiltering.$inject = ['$filter'];
+function dateFiltering($filter) {
+    return function (input) {
+        if (input === null) { return ""; }
+        return $filter('date')(new Date(input), 'dd-MMM-yyyy');
+    };
+}
+dateFiltering.$inject = ['$filter'];
+function dateFilter($filter) {
+    return function (val) {
+        if (val != null || val != undefined) {
+            return new Date(parseInt(val.substr(6)));
+        }
+        else return null;
+        //var date = new Date(input);
+        //return ($filter('dateFilter')(date, 'EEE MMM dd yyyy HH:mm:ss'));
+    };
+}
+haDateFilter.$inject = ['$filter'];
+function haDateFilter($filter) {
+    return function (val) {
+        if (val != null || val != undefined) {
+            return new Date(val);
+        }
+        else return null;
+        //var date = new Date(input);
+        //return ($filter('dateFilter')(date, 'EEE MMM dd yyyy HH:mm:ss'));
     };
 }
 //publicpanelApp.config(['$locationProvider', function ($locationProvider) { $locationProvider.html5Mode({ enabled: true, requireBase: false }); }])

@@ -1,6 +1,13 @@
 <?php
 //=======All User & Guest =======
 Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
+Route::get('komiti', ['as' => 'komiti', 'uses' => 'HomeController@komitishomuho']);
+Route::get('karjokrom', ['as' => 'karjokrom', 'uses' => 'HomeController@karjokrom']);
+Route::get('news', ['as' => 'news', 'uses' => 'HomeController@news']);
+Route::get('kroibikroi', ['as' => 'kroibikroi', 'uses' => 'HomeController@kroibikroi']);
+Route::get('biggopti', ['as' => 'biggopti', 'uses' => 'HomeController@biggopti']);
+Route::get('motamot', ['as' => 'motamot', 'uses' => 'HomeController@motamot']);
+Route::get('news-detail/{id}', 'HomeController@newsdetail');
 Route::group(['prefix' => 'api'], function () {
     Route::get('/GetDistrict', 'HomeController@GetDistrict');
     Route::get('/GetThana', 'HomeController@GetThana');
@@ -12,15 +19,14 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/GetPublicGallary', 'HomeController@GetPublicGallary');
     Route::get('/GetAllPublicNewsPosts/{take}', 'NewsPostController@GetAllPublicNewsPosts');
     Route::get('/GetNewsPublicPostById/{id}', 'NewsPostController@GetNewsPostById');
+    Route::get('/GetPostCategory', 'AdminDashboardHomeController@GetPostCategory');
+    Route::get('/GetAllNewsPosts/{take}', 'NewsPostController@GetAllNewsPosts');
+    Route::get('/GetNewsPostById/{id}', 'NewsPostController@GetNewsPostById');
+    Route::get('/GetNewsPostByCategoryId/{id}/{take}', 'NewsPostController@GetNewsPostByCategoryId');
+    Route::get('/GetCommentListWithPostId', 'NewsPostController@GetCommentListWithPostId');
 });
-//=======Guest=======
+//=======Only Guest=======
 Route::group(['middleware' => 'guest'], function () {
-    Route::get('komiti', ['as' => 'komiti', 'uses' => 'HomeController@komitishomuho']);
-    Route::get('karjokrom', ['as' => 'karjokrom', 'uses' => 'HomeController@karjokrom']);
-    Route::get('news', ['as' => 'news', 'uses' => 'HomeController@news']);
-    Route::get('kroibikroi', ['as' => 'kroibikroi', 'uses' => 'HomeController@kroibikroi']);
-    Route::get('biggopti', ['as' => 'biggopti', 'uses' => 'HomeController@biggopti']);
-    Route::get('motamot', ['as' => 'motamot', 'uses' => 'HomeController@motamot']);
     Route::get('login', ['as' => 'login', 'uses' => 'HomeController@login']);
     Route::post('login', ['as' => 'attempt_login', 'uses' => 'HomeController@attemptLogin']);
     Route::get('register', ['as' => 'register', 'uses' => 'HomeController@register']);
@@ -29,7 +35,6 @@ Route::group(['middleware' => 'guest'], function () {
         Route::post('RegisterUser', ['as' => 'attempt_register', 'uses' => 'HomeController@attemptRegister']);
     });
     Route::get('photoGallery', ['as' => 'photoGallery', 'uses' => 'HomeController@publicGallery']);
-    Route::get('news-detail/{id}', 'HomeController@newsdetail');
 
 });
 //=======All User=======
@@ -51,12 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/UploadGallary', 'AdminDashboardHomeController@UploadGallary');
         Route::post('/DeleteGallary', 'AdminDashboardHomeController@DeleteGallary');
         Route::post('/DeleteUserFileById/{id}', 'AdminUploadController@DeleteUserFileById');
-        Route::get('/GetPostCategory', 'AdminDashboardHomeController@GetPostCategory');
         Route::post('/SaveNews', 'NewsPostController@SaveNews');
-        Route::get('/GetAllNewsPosts/{take}', 'NewsPostController@GetAllNewsPosts');
-        Route::get('/GetNewsPostById/{id}', 'NewsPostController@GetNewsPostById');
-        Route::get('/GetNewsPostByCategoryId/{id}/{take}', 'NewsPostController@GetNewsPostByCategoryId');
-        Route::get('/GetCommentListWithPostId', 'NewsPostController@GetCommentListWithPostId');
         Route::post('/CommentInsert', 'NewsPostController@CommentInsert');
 
 

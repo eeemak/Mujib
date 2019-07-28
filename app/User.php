@@ -7,6 +7,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Actuallymab\LaravelComment\CanComment;
+use Actuallymab\LaravelComment\Contracts\Commentable;
+use Actuallymab\LaravelComment\Models\Comment;
 use App\Model\UserInstitutions;
 use App\Model\District;
 use App\Model\Thana;
@@ -68,5 +70,22 @@ class User extends Authenticatable
     }
     public function village(){
         return $this->belongsTo(Village::class);
+    }
+    public function comment(Commentable $commentable, string $commentText = '', int $rate = 0, int $parent_id = null): Comment
+    {
+        $commentModel = config('comment.model');
+
+        $comment = new $commentModel([
+            'comment'        => $commentText,
+            'rate'           => $commentable->canBeRated() ? $rate : null,
+            'approved'       => $commentable->mustBeApproved() && !$this->canCommentWithoutApprove() ? false : true,
+            'commented_id'   => $this->primaryId(),
+            'commented_type' => get_class(),
+            'parent_id' => $parent_id,
+        ]);
+
+        $commentable->comments()->save($comment);
+
+        return $comment;
     }
 }
