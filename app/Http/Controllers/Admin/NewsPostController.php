@@ -103,7 +103,6 @@ class NewsPostController extends Controller
     $post->title = $newsPostOb['Title'];
     $post->post_detail = $newsPostOb['PostDetail'];
     $post->short_post = $newsPostOb['ShortPost'];
-    $post->user_id = Auth::id();
     if($file_path !=null){
       $post->file_path = $file_path;
       $post->file_extension = $file_extension;
