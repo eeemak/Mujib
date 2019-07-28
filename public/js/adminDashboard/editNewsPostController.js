@@ -1,6 +1,6 @@
 ﻿'use strict';
-EditNewsPostController.$inject = ['$scope', '$rootScope', '$http', '$location', '$routeParams', '$cookies', '$cookieStore', '$filter', '$compile'];
-function EditNewsPostController($scope, $rootScope, $http, $location, $routeParams, $cookies, $cookieStore, $filter, $compile) {
+EditNewsPostController.$inject = ['$scope', '$rootScope', '$http', '$location', '$routeParams', '$cookies', '$cookieStore', '$filter', '$compile', 'fileReader'];
+function EditNewsPostController($scope, $rootScope, $http, $location, $routeParams, $cookies, $cookieStore, $filter, $compile, fileReader) {
     $scope.title = "Edit Post";
     $scope.action = 'Save';
     $scope.showEditButton = false;
@@ -63,48 +63,43 @@ function EditNewsPostController($scope, $rootScope, $http, $location, $routePara
     // $scope.getPostDetailList();
     $scope.newsPostDetailList = [];
     $scope.Save = function () {
-        var textList = [];
-        textList = splitter($scope.newsPostDetail.PostText, 20000);
-        $scope.newsPostDetailList = [];
-        angular.forEach(textList, function (item, i) {
-            $scope.newsPostDetailList.push({
-                Id: null,
-                Sequence: i,
-                PostText: item
-            });
-        });
         if ($scope.filedata != null) {
             $scope.addnewsPost();
         }
+        $scope.postCategorySelectedList = [];
+        angular.forEach($scope.postCategoryList, function(ob){
+          if (ob.selected) $scope.postCategorySelectedList.push(ob.value);
+        });
+        
         var formData = new FormData();
-        $http({
-            method: "post",
-            url: '/newsPost/Save/',
-            headers: { 'Content-Type': undefined },
-            transformRequest: function (data) {
-                formData.append('newsPost', JSON.stringify(data.newsPost));
-                formData.append('postDetailList', JSON.stringify(data.postDetailList));
-                for (var i = 0; i < data.postFile.length; i++) {
-                    formData.append('postFile[' + i + ']', data.postFile[i]);
+        formData.append('newsPostOb', JSON.stringify($scope.newsPostOb));
+        formData.append('newsPostCategory',JSON.stringify( $scope.postCategorySelectedList));
+        formData.append('file', $scope.filedata);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: "POST",
+            url: "/api/UpdateNews",
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (response) {
+                console.log(response);
+                if(response.error == true){
+                    noty({ text: "This file format is not allowed to upload", layout: 'topRight', type: 'error' });
+                }else{
+                    $scope.newsPostOb.Title=null;
+                    $scope.newsPostOb.PostDetail=null;
+                    $scope.newsPostOb.ShortPost=null;
+                    noty({ text: response.title +" has saved!", layout: 'topRight', type: 'success' });
+                    $scope.getPersonalList();
                 }
-                return formData;
             },
-            data: {
-                'newsPost': $scope.newsPostOb
-                , 'postDetailList': $scope.newsPostDetailList
-                , 'postFile': $scope.inputFileList
-            },
-            dataType: "json"
-        }).then(function successCallback(response) {
-            if (response.data.Error === true) {
-                noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
+            error: function () {
+                noty({ text: "Something went wrong!", layout: 'topRight', type: 'error' });
             }
-            else {
-                noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
-            }
-        }), function errorCallBack(response) {
-            noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
-        }
+        });
     }
     $scope.imageSrc = null;
     $scope.filedata = null;
