@@ -3,7 +3,13 @@ NewsController.$inject = ['$scope', '$rootScope', '$http', '$location', '$routeP
 function NewsController($scope, $rootScope, $http, $location, $routeParams, $cookies, $cookieStore,$compile,  $window) {
     $rootScope.title = "News";
     $scope.newsList=[];
-
+    $scope.showPane = function() {
+        $scope.isPaneShown = true;
+      };
+      $scope.showPane();
+      $scope.hidePane = function() {
+        $scope.isPaneShown = false;
+      };
     $scope.PostListSearchParameters = {
         PageSize: 10,
         Total_Count: 0,
