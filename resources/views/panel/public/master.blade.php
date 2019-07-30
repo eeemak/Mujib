@@ -42,11 +42,17 @@
     {{-- Select2 --}}
     <link href="{{ asset('assets/vendor/select2/select2.min.css') }}" rel="stylesheet" />
     <script src="{{ asset('assets/vendor/select2/select2.min.js') }}"></script>
+
+    <link href="{{ asset('assets/vendor/waitMe/waitMe.min.css') }}" rel="stylesheet" />
+    <script src="{{ asset('assets/vendor/waitMe/waitMe.min.js') }}"></script>
     
     <link rel="shortcut icon" href="ico/favicon.png" />
     <style>
         #pageloading {
             display: none;
+        }
+        .waitMe_container{
+            height: 100vh;
         }
     </style>
     <script type="text/javascript">
@@ -59,11 +65,14 @@
     </script>
 </head>
 
-<body class="bangabhaban-portal-gov-bd" oncopy="return OnCopy()" ng-controller="{{$ControllerName}}">
+<body class="bangabhaban-portal-gov-bd waitMe_body" id="loader" oncopy="return OnCopy()" ng-controller="{{$ControllerName}}" onload="hideLoader()">
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
     <!-- Add your site or application content here -->
+    <div class="waitMe_container progress" style="background: url('/img/mujib_sketch.jpg')">
+        <div style="background:#5d3cbb"></div>
+        </div>
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId=124282877582285&autoLogAppEvents=1"></script>
     <div class="container">
@@ -365,6 +374,24 @@
             //$(this).show();
         });
         // =============== End dropdown design =======
+        // $('.container').hide();
+        $('#loader').waitMe({
+            effect : 'bounce',
+            text : '',
+            // bg : rgba(255,255,255,0.7),
+            // color : #000,
+            maxSize : '',
+            waitTime : -1,
+            textPos : 'vertical',
+            fontSize : '',
+            source : '',
+            onClose : function() {
+                $('.container').show();
+            }
+        });
+        function hideLoader(){
+            $('#loader').waitMe("hide");
+        }
     </script>
 
     <!-- Template Custom JavaScript File -->
