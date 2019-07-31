@@ -65,14 +65,14 @@
     </script>
 </head>
 
-<body class="bangabhaban-portal-gov-bd waitMe_body" id="loader" oncopy="return OnCopy()" ng-controller="{{$ControllerName}}" onload="hideLoader()">
+<body class="bangabhaban-portal-gov-bd" id="loader" oncopy="return OnCopy()" ng-controller="{{$ControllerName}}" onload="hideLoader()">
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
     <!-- Add your site or application content here -->
-    <div class="waitMe_container progress" style="background: url('/img/mujib_sketch.jpg')">
+    {{-- <div class="waitMe_container progress" style="background: url('/img/mujib_sketch.jpg')">
         <div style="background:#5d3cbb"></div>
-        </div>
+        </div> --}}
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId=124282877582285&autoLogAppEvents=1"></script>
     <div class="container">
@@ -378,7 +378,7 @@
         $('#loader').waitMe({
             effect : 'bounce',
             text : '',
-            // bg : rgba(255,255,255,0.7),
+            bg : 'rgba(255,255,255,1)',
             // color : #000,
             maxSize : '',
             waitTime : -1,
