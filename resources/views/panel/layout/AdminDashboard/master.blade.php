@@ -13,9 +13,20 @@
         <!-- CSS INCLUDE -->        
         <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/css/theme-default.css')}}"/>
             <link rel="stylesheet" type="text/css" id="theme" href="{{asset('assets/css/dashBoardCustom.css')}}"/>
-        <!-- EOF CSS INCLUDE -->                 
+        <link href="{{ asset('assets/vendor/waitMe/waitMe.min.css') }}" rel="stylesheet" />
+
+        <!-- EOF CSS INCLUDE -->      
+
+    <style>
+        #pageloading {
+            display: none;
+        }
+        .waitMe_container{
+            height: 100vh;
+        }
+    </style>           
     </head>
-    <body id="page-top" ng-controller="{{$ControllerName}}">
+    <body id="page-top" class="loader" ng-controller="{{$ControllerName}}" onload="hideLoader()">
         <!-- START PAGE CONTAINER -->
         <div class="page-container">
             
@@ -49,7 +60,27 @@
         <!-- START PLUGINS -->
         <script type="text/javascript" src="{{asset('assets/js/plugins/jquery/jquery.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('assets/js/plugins/jquery/jquery-ui.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('assets/js/plugins/bootstrap/bootstrap.min.js')}}"></script>                
+        <script type="text/javascript" src="{{asset('assets/js/plugins/bootstrap/bootstrap.min.js')}}"></script>    
+        <script src="{{ asset('assets/vendor/waitMe/waitMe.min.js') }}"></script> 
+        <script type="text/javascript">
+            $('.loader').waitMe({
+             effect : 'bounce',
+             text : '',
+             bg : 'rgba(255,255,255,1)',
+             // color : #000,
+             maxSize : '',
+             waitTime : -1,
+             textPos : 'vertical',
+             fontSize : '',
+             source : '',
+             onClose : function() {
+                 $('.page-container').show();
+             }
+         });
+         function hideLoader(){
+             $('.loader').waitMe("hide");
+         }
+     </script>           
         <script type="text/javascript" src="{{asset('assets/js/angular.js')}}"></script>                
         <!-- END PLUGINS -->
         
@@ -91,6 +122,7 @@
     <script  type="text/javascript" src="{{asset('js/adminDashboard/detailNewsPostController.js')}}"></script>
     <script  type="text/javascript" src="{{asset('js/adminDashboard/editNewsPostController.js')}}"></script>
     <script  type="text/javascript" src="{{asset('js/adminDashboard/Apps/adminPanelApp.js')}}"></script>
+
     <!--End Angular Ctrl-->
     @yield('script')
     <!-- END SCRIPTS -->                   
