@@ -24,6 +24,14 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/GetNewsPostById/{id}', 'NewsPostController@GetNewsPostById');
     Route::get('/GetNewsPostByCategoryId/{id}/{take}', 'NewsPostController@GetNewsPostByCategoryId');
     Route::get('/GetCommentListWithPostId', 'NewsPostController@GetCommentListWithPostId');
+    Route::get('/GetAllMotamotPosts/{take}', 'MotamotPostController@GetAllMotamotPosts');
+    Route::get('/GetMotamotPostById/{id}', 'MotamotPostController@GetMotamotPostById');
+    Route::get('/GetMotamotPostByCategoryId/{id}/{take}', 'MotamotPostController@GetMotamotPostByCategoryId');
+    Route::get('/GetMotamotCommentListWithPostId', 'MotamotPostController@GetCommentListWithPostId');
+
+
+
+
 });
 //=======Only Guest=======
 Route::group(['middleware' => 'guest'], function () {
@@ -59,6 +67,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/SaveNews', 'NewsPostController@SaveNews');
         Route::post('/UpdateNews', 'NewsPostController@UpdateNews');
         Route::post('/CommentInsert', 'NewsPostController@CommentInsert');
+        Route::post('/SaveMotamot', 'MotamotPostController@SaveMotamot');
+        Route::post('/UpdateNews', 'MotamotPostController@UpdateMotamot');
+        Route::post('/CommentInsert', 'MotamotPostController@CommentInsert');
 
 
     });
@@ -72,6 +83,9 @@ Route::group(['middleware' => 'auth'], function () {
     //=======User=======
     Route::group(['middleware' => ['role:user']], function () { 
         Route::get('dwonload-management', ['as' => 'dwonload', 'uses' => 'AdminUploadController@viewUserDwonload']);
+        Route::get('motamot-management', ['as' => 'motamot-panel', 'uses' => 'MotamotPostController@viewMotamot']);
+        Route::get('motamot-management/{id}', 'MotamotPostController@viewDetailMotamot');
+        Route::get('motamot-edit/{id}', 'MotamotPostController@viewEditMotamot');
     });
 });
 

@@ -52,6 +52,9 @@
         <li class="{{ Request::is('dwonload') ? 'active':'' }}">
             <a href="{{ route('dwonload') }}"><span class="fa fa-user"></span> <span class="xn-text">Dwonload</span></a>
         </li>
+        <li class="{{ Request::is('motamot-panel') ? 'active':'' }}">
+            <a href="{{ route('motamot-panel') }}"><span class="fa fa-user"></span> <span class="xn-text">Motamot Management</span></a>
+        </li>
         @endrole
  
     </ul>
