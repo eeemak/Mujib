@@ -57,7 +57,7 @@ function MotamotPostController($scope, $rootScope, $http, $location, $routeParam
             $scope.PostListSearchParameters.PageNo = num != undefined ? num : 1;
             $http({
                 method: 'GET',
-                url: 'api/GetAllMotamotPosts/'+ $scope.PostListSearchParameters.PageSize + '?page=' + $scope.PostListSearchParameters.PageNo
+                url: 'api/GetAllMotamotPostsByUserId/'+ $scope.PostListSearchParameters.PageSize + '?page=' + $scope.PostListSearchParameters.PageNo
             }).then(function successCallback(result) {
                 // if (result.data.Items.length > 0) {
                 //     angular.forEach(result.data.Items, function (item) {
@@ -71,9 +71,26 @@ function MotamotPostController($scope, $rootScope, $http, $location, $routeParam
         };
         $scope.pageChangeHandler();
     }
-    $scope.getPersonalList();
-    $scope.motamotPostDetailList = [];
-
+    $scope.MotamotAllPostListSearchParameters = {
+        PageSize: 10,
+        Total_Count: 0,
+        CurrentPage: 1,
+        PageNo: 1
+    }
+    $scope.getAllMotamotPostList = [];
+    $scope.getAllMotamotPostList = function () {
+        $scope.pageAllmotamotPostChangeHandler = function (num) {
+            $scope.MotamotAllPostListSearchParameters.PageNo = num != undefined ? num : 1;
+            $http({
+                method: 'GET',
+                url: 'GetAllMotamotPosts/'+ $scope.MotamotAllPostListSearchParameters.PageSize + '?page=' + $scope.MotamotAllPostListSearchParameters.PageNo
+            }).then(function successCallback(result) {
+                $scope.getAllMotamotPostList = result.data.data;
+                $scope.MotamotAllPostListSearchParameters.Total_Count = result.data.meta.total;
+            })
+        };
+        $scope.pageAllmotamotPostChangeHandler();
+    }
     $scope.Save = function () {
         if ($scope.filedata != null) {
             $scope.addmotamotPost();
@@ -104,8 +121,8 @@ function MotamotPostController($scope, $rootScope, $http, $location, $routeParam
                     $scope.motamotPostOb.Title=null;
                     $scope.motamotPostOb.PostDetail=null;
                     $scope.motamotPostOb.ShortPost=null;
-                    noty({ text: response.title +" has saved!", layout: 'topRight', type: 'success' });
                     $scope.getPersonalList();
+                    noty({ text: response.title +" has saved!", layout: 'topRight', type: 'success' });
                 }
             },
             error: function () {

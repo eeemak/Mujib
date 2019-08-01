@@ -8,6 +8,7 @@ Route::get('kroibikroi', ['as' => 'kroibikroi', 'uses' => 'HomeController@kroibi
 Route::get('biggopti', ['as' => 'biggopti', 'uses' => 'HomeController@biggopti']);
 Route::get('motamot', ['as' => 'motamot', 'uses' => 'HomeController@motamot']);
 Route::get('news-detail/{id}', 'HomeController@newsdetail');
+Route::get('motamot-detail/{id}', 'HomeController@motamotdetail');
 Route::group(['prefix' => 'api'], function () {
     Route::get('/GetDistrict', 'HomeController@GetDistrict');
     Route::get('/GetThana', 'HomeController@GetThana');
@@ -18,13 +19,14 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/CheckUserExist', 'HomeController@CheckUserExist');
     Route::get('/GetPublicGallary', 'HomeController@GetPublicGallary');
     Route::get('/GetAllPublicNewsPosts/{take}', 'NewsPostController@GetAllPublicNewsPosts');
+    Route::get('/GetAllPublicMotamotPosts/{take}', 'MotamotPostController@GetAllPublicMotamotPosts');
     Route::get('/GetNewsPublicPostById/{id}', 'NewsPostController@GetNewsPostById');
     Route::get('/GetPostCategory', 'AdminDashboardHomeController@GetPostCategory');
     Route::get('/GetAllNewsPosts/{take}', 'NewsPostController@GetAllNewsPosts');
     Route::get('/GetNewsPostById/{id}', 'NewsPostController@GetNewsPostById');
     Route::get('/GetNewsPostByCategoryId/{id}/{take}', 'NewsPostController@GetNewsPostByCategoryId');
     Route::get('/GetCommentListWithPostId', 'NewsPostController@GetCommentListWithPostId');
-    Route::get('/GetAllMotamotPosts/{take}', 'MotamotPostController@GetAllMotamotPosts');
+    Route::get('/GetAllMotamotPostsByUserId/{take}', 'MotamotPostController@GetAllMotamotPostsByUserId');
     Route::get('/GetMotamotPostById/{id}', 'MotamotPostController@GetMotamotPostById');
     Route::get('/GetMotamotPostByCategoryId/{id}/{take}', 'MotamotPostController@GetMotamotPostByCategoryId');
     Route::get('/GetMotamotCommentListWithPostId', 'MotamotPostController@GetCommentListWithPostId');
@@ -51,6 +53,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'AdminDashboardHomeController@dashboard']);
     Route::get('profile', ['as' => 'profile', 'uses' => 'AdminDashboardHomeController@viewProfile']);
     Route::get('gallary', ['as' => 'gallary', 'uses' => 'AdminDashboardHomeController@Gallary']);
+    Route::get('motamot-management/{id}', 'MotamotPostController@viewDetailMotamot');
+    Route::get('motamot-edit/{id}', 'MotamotPostController@viewEditMotamot');
     Route::group(['prefix' => 'api'], function () {
         Route::get('/GetUserById', 'AdminDashboardHomeController@GetUserById');
         Route::get('/GetUserInstructionList', 'HomeController@GetUserInstructionList');
@@ -80,14 +84,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('news-management/{id}', 'NewsPostController@viewDetailNews');
         Route::get('news-edit/{id}', 'NewsPostController@viewEditNews');
         Route::get('motamot-management-admin', ['as' => 'motamot-panel-admin', 'uses' => 'MotamotPostController@viewAdminMotamot']);
+        Route::get('/GetAllMotamotPosts/{take}', 'MotamotPostController@GetAllMotamotPosts');
 
     });
     //=======User=======
     Route::group(['middleware' => ['role:user']], function () { 
         Route::get('dwonload-management', ['as' => 'dwonload', 'uses' => 'AdminUploadController@viewUserDwonload']);
         Route::get('motamot-management', ['as' => 'motamot-panel', 'uses' => 'MotamotPostController@viewMotamot']);
-        Route::get('motamot-management/{id}', 'MotamotPostController@viewDetailMotamot');
-        Route::get('motamot-edit/{id}', 'MotamotPostController@viewEditMotamot');
+
     });
 });
 

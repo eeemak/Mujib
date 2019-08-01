@@ -56,8 +56,15 @@ class HomeController extends Controller
     }
     public function motamot(){
         $view = view('panel.public.motamot');
-        $view->with('ControllerName', "HomeController");
+        $view->with('ControllerName', "MotamotController");
         return $view;
+    }
+    public function motamotdetail($id)
+    {
+      $view = view('panel.public.motamot_detail');
+      $view->with('ControllerName', "MotamotDetailController");
+      $view->with('detailId', $id);
+      return $view;
     }
     public function publicGallery(){
         $view = view('panel.public.gallery');

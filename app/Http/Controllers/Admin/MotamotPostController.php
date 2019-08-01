@@ -44,10 +44,13 @@ class MotamotPostController extends Controller
     $view->with('detailId', $id);
     return $view;
   }
+  public function GetAllMotamotPosts($take){
+    return PostResource::collection(Post::where('post_type_id', 2)->orderBy('title')->paginate($take));
+  }
   public function GetMotamotPostById($id){
     return new PostResource(Post::find($id));
   }
-  public function GetAllMotamotPosts($take){
+  public function GetAllMotamotPostsByUserId($take){
     return PostResource::collection(Post::where('post_type_id', 2)->where('user_id', Auth::id())->orderBy('title')->paginate($take));
   }
   public function GetAllPublicMotamotPosts($take){

@@ -44,6 +44,9 @@
         <li class="{{ Request::is('news-panel') ? 'active':'' }}">
             <a href="{{ route('news-panel') }}"><span class="fa fa-user"></span> <span class="xn-text">News Management</span></a>
         </li>
+        <li class="{{ Request::is('motamot-panel-admin') ? 'active':'' }}">
+            <a href="{{ route('motamot-panel-admin') }}"><span class="fa fa-user"></span> <span class="xn-text">Motamot Management</span></a>
+        </li>
         @endrole
         @role('user')
         <li class="{{ Request::is('gallary') ? 'active':'' }}">

@@ -1,14 +1,49 @@
 @extends('panel.layout.adminDashboard.master')
 @section('content')
-<div class="row">
+<div class="row" ng-init="getAllMotamotPostList()">
     <!-- START TABS -->
     <div class="panel panel-default tabs">
         <ul class="nav nav-tabs" role="tablist">
-            <li class="active"><a href="#tab-first" role="tab" data-toggle="tab">Motamot Post</a></li>
-            <li><a href="#tab-second" role="tab" data-toggle="tab">All PostList</a></li>
+            <li class="active"><a href="#tab-first" role="tab" data-toggle="tab">All PostList</a></li>
+            <li><a href="#tab-second" role="tab" data-toggle="tab">Motamot Post</a></li>
         </ul>
         <div class="panel-body tab-content">
             <div class="tab-pane active" id="tab-first">
+                <div class="form-horizontal">
+                    <div class="col-md-12">
+                        <span>Total Post: </span> <i class="badge badge-success">@{{allmotamotPostListSearchParameters.Total_Count}}</i>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Category</th>
+                                    <th>Author Name</th>
+                                    <th>Detail</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr dir-paginate="x in getAllMotamotPostList| itemsPerPage:MotamotAllPostListSearchParameters.PageSize" current-page="MotamotAllPostListSearchParameters.PageNo" pagination-id="metaData.name + 'allmotamotPostList'" total-items='MotamotAllPostListSearchParameters.Total_Count'>
+                                    <td>@{{x.title}}</td>
+                                    <td>@{{x.post_categories[0].name}}</td>
+                                    <td>@{{x.user_full_name}}</td>
+                                    <td><a href="#" ng-click="getPostDetail(x)" class="btn single-small-btn btn-primary">Detail</a></td>
+                                    <td><a href="#" ng-click="deletePost(x.Id)" class="btn single-small-btn btn-primary">Delete</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <dir-pagination-controls max-size="10"
+                                                 pagination-id="metaData.name + 'getAllMotamotPostList'"
+                                                 direction-links="true"
+                                                 boundary-links="true"
+                                                 on-page-change="pageAllmotamotPostChangeHandler(newPageNumber)">
+                        </dir-pagination-controls>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="tab-second">
                 <div class="col-md-12">
                     <!-- START PANEL WITH CONTROL CLASSES -->
                     <div class="panel panel-warning">
@@ -119,46 +154,6 @@
                                                  boundary-links="true"
                                                  @*template-url="dirPagination.tpl.cshtml"*@
                                                  on-page-change="pageChangeHandler(newPageNumber)">
-                        </dir-pagination-controls>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane" id="tab-second">
-                <div class="form-horizontal">
-                    <div class="col-md-12">
-                        <span>Total Post: </span> <i class="badge badge-success">@{{allmotamotPostListSearchParameters.Total_Count}}</i>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Image</th>
-                                    <th>Title</th>
-                                    <th>View For</th>
-                                    <th>Detail</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr dir-paginate="x in allmotamotPostList| itemsPerPage:allmotamotPostListSearchParameters.PageSize" current-page="allmotamotPostListSearchParameters.PageNo" pagination-id="metaData.name + 'allmotamotPostList'" total-items='allmotamotPostListSearchParameters.Total_Count'>
-                                    <td>
-                                        <div>
-                                            <img ng-if="x.TempSrc===null || x.TempSrc===''" src="~/Images/default.jpg" class=" image img-thumbnail img-circle" style="width:11%" />
-                                            <img ng-if="x.TempSrc !=''" id="uploadImageSrc" ng-src="@{{x.TempSrc}}" class=" image img-thumbnail img-circle" style="width:11%" alt="@{{x.Title}}" />
-                                        </div>
-                                    </td>
-                                    <td>@{{x.Title}}</td>
-                                    <td>@{{x.ViewFor}}</td>
-                                    <td><a href="#" ng-click="getPostDetail(x)" class="btn single-small-btn btn-primary">Detail</a></td>
-                                    <td><a href="#" ng-click="deletePost(x.Id)" class="btn single-small-btn btn-primary">Delete</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-12">
-                        <dir-pagination-controls max-size="10"
-                                                 pagination-id="metaData.name + 'allmotamotPostList'"
-                                                 direction-links="true"
-                                                 boundary-links="true"
-                                                 on-page-change="pageAllmotamotPostChangeHandler(newPageNumber)">
                         </dir-pagination-controls>
                     </div>
                 </div>
