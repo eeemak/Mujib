@@ -34,7 +34,9 @@
         <li class="{{ Request::is('upload') ? 'active':'' }}">
             <a href="{{ route('upload') }}"><span class="fa fa-user"></span> <span class="xn-text">Upload</span></a>
         </li>
-        
+        <li class="{{ Request::is('motamot-management-admin') ? 'active':'' }}">
+            <a href="{{ route('motamot-management-admin') }}"><span class="fa fa-user"></span> <span class="xn-text">Motamot Management</span></a>
+        </li>       
         <li class="xn-openable">
             <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Master Data</span></a>
             <ul>

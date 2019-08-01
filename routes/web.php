@@ -79,6 +79,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('news-management', ['as' => 'news-panel', 'uses' => 'NewsPostController@viewNews']);
         Route::get('news-management/{id}', 'NewsPostController@viewDetailNews');
         Route::get('news-edit/{id}', 'NewsPostController@viewEditNews');
+        Route::get('motamot-management-admin', ['as' => 'motamot-panel-admin', 'uses' => 'MotamotPostController@viewAdminMotamot']);
+
     });
     //=======User=======
     Route::group(['middleware' => ['role:user']], function () { 

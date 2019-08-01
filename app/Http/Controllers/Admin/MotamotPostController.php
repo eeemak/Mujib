@@ -18,6 +18,12 @@ class MotamotPostController extends Controller
   {
     return redirect()->route('motamot-panel');
   }
+  public function viewAdminMotamot()
+  {
+    $view = view('panel.layout.adminDashboard.view_motamot_admin');
+    $view->with('ControllerName', "MotamotPostController");
+    return $view;
+  }
   public function viewMotamot()
   {
     $view = view('panel.layout.adminDashboard.view_motamot');
