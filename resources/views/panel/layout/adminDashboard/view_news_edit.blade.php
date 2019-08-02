@@ -21,7 +21,7 @@
                                 <img ng-if="imageSrc===null" src="~/Images/default.jpg" class="profileImage" />
                                 <img ng-if="imageSrc !=null" id="uploadImageSrc" ng-src="@{{imageSrc}}" style=" border: 1px solid; height: 200px; width: 200px;" />
                             </div>
-                            <input type="file" id="uploadImage" title="Upload Image" ng-file-select="onFileSelect($files)" class="upload fileinput btn-primary" file-upload multiple />
+                            <input type="file" id="uploadImage" title="Upload Image" ng-file-select="onFileSelect($files)" class="upload fileinput btn-primary" file-upload/>
                         </div>
                         <div class="col-md-6">
                                 <div>
@@ -94,7 +94,7 @@
 </div>
 @endsection
 @section('script')
-<script>
+{{-- <script>
     $(function(){
         $("#filetree").fileTree({
             root: '/',
@@ -114,5 +114,5 @@
     $(document).ready(function() {
         $('#example-getting-started').multiselect();
     });
-</script>
+</script> --}}
 @endsection

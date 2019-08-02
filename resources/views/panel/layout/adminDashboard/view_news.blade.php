@@ -90,8 +90,8 @@
                                                     ...
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a href="/newsPost/EditAdminPost?id=@{{x.Id}}" title="edit post">Edit</a></li>
-                                                    <li><a style="cursor:pointer" ng-click="deletePost(x.Id)" title="delete post">Delete</a></li>
+                                                    <li><a href="/news-management/@{{x.id}}/edit" title="edit post">Edit</a></li>
+                                                    <li><a style="cursor:pointer" ng-click="deletePost(x.id)" title="delete post">Delete</a></li>
                                                 </ul>
                                             </div>
                                         </div>

@@ -92,7 +92,7 @@ function EditNewsPostController($scope, $rootScope, $http, $location, $routePara
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type: "POST",
-            url: "/api/UpdateNews",
+            url: "/api/UpdateNews/"+ $scope.newsPostOb.Id,
             contentType: false,
             processData: false,
             data: formData,
@@ -101,11 +101,8 @@ function EditNewsPostController($scope, $rootScope, $http, $location, $routePara
                 if (response.error == true) {
                     noty({ text: "This file format is not allowed to upload", layout: 'topRight', type: 'error' });
                 } else {
-                    $scope.newsPostOb.Title = null;
-                    $scope.newsPostOb.PostDetail = null;
-                    $scope.newsPostOb.ShortPost = null;
-                    noty({ text: response.title + " has saved!", layout: 'topRight', type: 'success' });
-                    $scope.getPersonalList();
+                    noty({ text: response.title + " has updated!", layout: 'topRight', type: 'success' });
+                    // $scope.getPersonalList();
                 }
             },
             error: function () {

@@ -157,28 +157,13 @@ function NewsPostController($scope, $rootScope, $http, $location, $routeParams, 
         if (id != null || id != undefined) {
             $http({
                 method: 'POST',
-                url: '/newsPost/DeletePost/' + id,
+                url: '/api/DeletePost/' + id,
                 dataType: 'JSON'
             }).then(function successCallback(response) {
-                if (response.data.Error === true) {
-                    noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
-                }
-                else {
-                    noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
-                    for (var i = 0; i < $scope.getAllPersonalnewsPostList.length; i++) {
-                        var ob = $scope.getAllPersonalnewsPostList[i];
-                        if (ob.Id === id) {
-                            $scope.getAllPersonalnewsPostList.splice(i, 1)
-                        }
-                    }
-                    for (var i = 0; i < $scope.allnewsPostList.length; i++) {
-                        var ob = $scope.allnewsPostList[i];
-                        if (ob.Id === id) {
-                            $scope.allnewsPostList.splice(i, 1)
-                            $scope.allnewsPostListSearchParameters.Total_Count = $scope.allnewsPostListSearchParameters.Total_Count -1;
-                        }
-                    }
-                }
+                console.log('res', response);
+                noty({ text: response.data.title +" has deleted!", layout: 'topRight', type: 'success' });
+                $scope.getPersonalList();
+
             }, function errorCallback(response) {
                 noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
             });

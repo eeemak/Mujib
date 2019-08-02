@@ -69,10 +69,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/DeleteGallary', 'AdminDashboardHomeController@DeleteGallary');
         Route::post('/DeleteUserFileById/{id}', 'AdminUploadController@DeleteUserFileById');
         Route::post('/SaveNews', 'NewsPostController@SaveNews');
-        Route::post('/UpdateNews', 'NewsPostController@UpdateNews');
+        Route::post('/UpdateNews/{id}', 'NewsPostController@UpdateNews');
+        Route::post('/DeletePost/{id}', 'NewsPostController@DeletePost');
         Route::post('/CommentInsert', 'NewsPostController@CommentInsert');
         Route::post('/SaveMotamot', 'MotamotPostController@SaveMotamot');
-        Route::post('/UpdateNews', 'MotamotPostController@UpdateMotamot');
+        Route::post('/UpdateMotamot', 'MotamotPostController@UpdateMotamot');
         Route::post('/CommentInsert', 'MotamotPostController@CommentInsert');
 
 
@@ -82,7 +83,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('upload-management', ['as' => 'upload', 'uses' => 'AdminUploadController@viewUpload']);
         Route::get('news-management', ['as' => 'news-panel', 'uses' => 'NewsPostController@viewNews']);
         Route::get('news-management/{id}', 'NewsPostController@viewDetailNews');
-        Route::get('news-edit/{id}', 'NewsPostController@viewEditNews');
+        Route::get('news-management/{id}/edit', 'NewsPostController@viewEditNews');
         Route::get('motamot-management-admin', ['as' => 'motamot-panel-admin', 'uses' => 'MotamotPostController@viewAdminMotamot']);
         Route::get('/GetAllMotamotPosts/{take}', 'MotamotPostController@GetAllMotamotPosts');
 
