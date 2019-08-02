@@ -35,8 +35,7 @@ category();
                     },
                     type: "POST",
                     url: "/api/SaveCategory",
-                    contentType: false,
-                    processData: false,
+                    dataType: "json",
                     data: $scope.categoryOb,
                     success: function () {
                         noty({ text: "category added!", layout: 'topRight', type: 'success',timeout:5000 });

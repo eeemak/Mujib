@@ -207,26 +207,16 @@ function MotamotPostController($scope, $rootScope, $http, $location, $routeParam
     };
     $scope.postDetailOb = {};
     $scope.getPostDetail = function (data) {
-        $http({
-            method: 'GET',
-            url: '/motamotPost/GetPostDetailWithId?id=' + data.Id
-        }).then(function successCallback(response) {
-            if (response.data !== '') {
-                var elements = [];
-                angular.forEach(response.data, function (item, i) {
-                    $scope.postDetailOb.Id = item.Id
-                    $scope.postDetailOb.Title = item.Title
-                    $scope.postDetailOb.UserId = item.UserId
-                    $scope.postDetailOb.CategoryId = item.CategoryId
-                    $scope.postDetailOb.AddedDate = item.AddedDate
-                    $scope.postDetailOb.AuthorName = item.AuthorName
-                    $scope.postDetailOb.TempSrc = getFileUrl(item.FileId, item.FileName);
-                    elements.push(item.PostText);
-                });
-                $scope.postDetailOb.PostText = elements.join(' ');
-                angular.element(document.querySelector('#modal_basic')).modal('show');
-            }
-        })
+        $scope.postDetailOb.Id = data.id
+        $scope.postDetailOb.Title = data.title
+        $scope.postDetailOb.UserId = data.user_id
+        $scope.postDetailOb.CategoryId = data.post_categories[0].id
+        $scope.postDetailOb.CategoryName = data.post_categories[0].name
+        $scope.postDetailOb.AddedDate = data.created_at
+        $scope.postDetailOb.AuthorName = data.user_full_name
+        $scope.postDetailOb.TempSrc = data.file_path;
+        $scope.postDetailOb.PostText=data.post_detail;
+        angular.element(document.querySelector('#modal_basic')).modal('show');
     }
     function getFileUrl(fileId, fileName) {
         if (fileName != null) {

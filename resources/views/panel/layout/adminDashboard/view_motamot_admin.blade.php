@@ -178,7 +178,7 @@
                                 <div class="post-title">
                                     @{{postDetailOb.Title}}
                                 </div>
-                                <div class="post-date"><a href="#">by @{{postDetailOb.AuthorName}}</a></div>
+                                <div class="post-date"><span class="fa fa-calendar"></span>  @{{postDetailOb.AddedDate| haDateFilter | date}} / @{{postDetailOb.CategoryName}} / <a href="pages-profile.html">by @{{postDetailOb.AuthorName}}</a></div>
                                 <div class="post-text">
                                     <img src="@{{postDetailOb.TempSrc}}" class="img-responsive img-text" style="height:225px" />
                                     <p compile="postDetailOb.PostText"></p>
