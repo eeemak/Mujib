@@ -59,12 +59,6 @@ function MotamotPostController($scope, $rootScope, $http, $location, $routeParam
                 method: 'GET',
                 url: 'api/GetAllMotamotPostsByUserId/'+ $scope.PostListSearchParameters.PageSize + '?page=' + $scope.PostListSearchParameters.PageNo
             }).then(function successCallback(result) {
-                // if (result.data.Items.length > 0) {
-                //     angular.forEach(result.data.Items, function (item) {
-                //         item.TempSrc = getFileUrl(item.FileId, item.FileName);
-                //     });
-                // }
-
                 $scope.getAllPersonalmotamotPostList = result.data.data;
                 $scope.PostListSearchParameters.Total_Count = result.data.meta.total;
             })
@@ -116,17 +110,17 @@ function MotamotPostController($scope, $rootScope, $http, $location, $routeParam
             success: function (response) {
                 console.log(response);
                 if(response.error == true){
-                    noty({ text: "This file format is not allowed to upload", layout: 'topRight', type: 'error' });
+                    noty({ text: "This file format is not allowed to upload", layout: 'topRight', type: 'error',timeout:5000  });
                 }else{
                     $scope.motamotPostOb.Title=null;
                     $scope.motamotPostOb.PostDetail=null;
                     $scope.motamotPostOb.ShortPost=null;
                     $scope.getPersonalList();
-                    noty({ text: response.title +" has saved!", layout: 'topRight', type: 'success' });
+                    noty({ text: response.title +" has saved!", layout: 'topRight', type: 'success',timeout:5000  });
                 }
             },
             error: function () {
-                noty({ text: "Something went wrong!", layout: 'topRight', type: 'error' });
+                noty({ text: "Something went wrong!", layout: 'topRight', type: 'error',timeout:5000  });
             }
         });
     }
@@ -174,34 +168,22 @@ function MotamotPostController($scope, $rootScope, $http, $location, $routeParam
         if (id != null || id != undefined) {
             $http({
                 method: 'POST',
-                url: '/motamotPost/DeletePost/' + id,
+                url: '/api/DeleteMotamotPost/' + id,
                 dataType: 'JSON'
             }).then(function successCallback(response) {
-                if (response.data.Error === true) {
-                    noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
-                }
-                else {
-                    noty({ text: response.data.Message, layout: 'topRight', type: 'success' });
-                    for (var i = 0; i < $scope.getAllPersonalmotamotPostList.length; i++) {
-                        var ob = $scope.getAllPersonalmotamotPostList[i];
-                        if (ob.Id === id) {
-                            $scope.getAllPersonalmotamotPostList.splice(i, 1)
-                        }
-                    }
-                    for (var i = 0; i < $scope.allmotamotPostList.length; i++) {
-                        var ob = $scope.allmotamotPostList[i];
-                        if (ob.Id === id) {
-                            $scope.allmotamotPostList.splice(i, 1)
-                            $scope.allmotamotPostListSearchParameters.Total_Count = $scope.allmotamotPostListSearchParameters.Total_Count -1;
-                        }
-                    }
-                }
+                console.log('res', response);
+                noty({ text: response.data.title +" has deleted!", layout: 'topRight', type: 'success',timeout:5000  });
+                $scope.getPersonalList();
+                $scope.getAllMotamotPostList=  $scope.getAllMotamotPostList.filter(function(ob) {
+                    return ob.id !=id;
+                  });
+
             }, function errorCallback(response) {
-                noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
+                noty({ text: response.data.Message, layout: 'topRight', type: 'error',timeout:5000  });
             });
         }
         else {
-            noty({ text: "No Post Found to delete", layout: 'topRight', type: 'error' });
+            noty({ text: "No Post Found to delete", layout: 'topRight', type: 'error',timeout:5000  });
         }
         return true;
     };

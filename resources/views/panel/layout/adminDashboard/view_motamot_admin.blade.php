@@ -1,6 +1,6 @@
 @extends('panel.layout.adminDashboard.master')
 @section('content')
-<div class="row" ng-init="getAllMotamotPostList()">
+<div class="row" ng-init="getAllMotamotPostList();getPersonalList()">
     <!-- START TABS -->
     <div class="panel panel-default tabs">
         <ul class="nav nav-tabs" role="tablist">
@@ -28,7 +28,7 @@
                                     <td>@{{x.post_categories[0].name}}</td>
                                     <td>@{{x.user_full_name}}</td>
                                     <td><a href="#" ng-click="getPostDetail(x)" class="btn single-small-btn btn-primary">Detail</a></td>
-                                    <td><a href="#" ng-click="deletePost(x.Id)" class="btn single-small-btn btn-primary">Delete</a></td>
+                                    <td><a href="#" ng-click="deletePost(x.id)" class="btn single-small-btn btn-primary">Delete</a></td>
                                 </tr>
                             </tbody>
                         </table>
