@@ -150,7 +150,20 @@ public function DeleteGallary(Request $request){
     return false;
     
   }
-  
+  public function viewCategory()
+  {
+    $view = view('panel.layout.adminDashboard.category');
+    $view->with('ControllerName', 'CategoryController');
+    return $view;
+  }
+  public function CategoryCreate(Request $request) {
+
+      $uploadfile = new FileUpload();
+      $uploadfile->file_title = $request->title;
+      $uploadfile->user_id = Auth::id();
+      $uploadfile->save();
+      return response()->json($uploadfile);
+  }
   //   public function UpdateUser(UserProfile model, List<UserInstitutions> userInstructions, List<UserMobile> userMobile, List<EmailLink> emailLink, List<FamilyAndFriendPhone> familyAndFriendPhone, List<SocialLink> socialLink, List<UserLink> userLink)
   //   {
   //      return;

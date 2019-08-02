@@ -86,6 +86,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('news-management/{id}/edit', 'NewsPostController@viewEditNews');
         Route::get('motamot-management-admin', ['as' => 'motamot-panel-admin', 'uses' => 'MotamotPostController@viewAdminMotamot']);
         Route::get('/GetAllMotamotPosts/{take}', 'MotamotPostController@GetAllMotamotPosts');
+        Route::get('category', ['as' => 'category', 'uses' => 'AdminDashboardHomeController@viewCategory']);
+        Route::get('advertise', ['as' => 'advertise', 'uses' => 'AdvertiseController@viewAdvertise']);
+
 
     });
     //=======User=======

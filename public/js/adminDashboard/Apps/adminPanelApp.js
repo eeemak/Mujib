@@ -3,6 +3,8 @@ var adminPanelApp = angular.module('adminPanelApp', ['ngRoute', 'ngCookies', 'an
 adminPanelApp.controller('AdminDashboardController', AdminDashboardController)
 adminPanelApp.controller('UserManageController', UserManageController)
 adminPanelApp.controller('GallaryController', GallaryController)
+adminPanelApp.controller('AdvertiseController', AdvertiseController)
+adminPanelApp.controller('CategoryController', CategoryController)
 adminPanelApp.controller('NewsPostController', NewsPostController)
 adminPanelApp.controller('DetailNewsPostController', DetailNewsPostController)
 adminPanelApp.controller('EditNewsPostController', EditNewsPostController)
