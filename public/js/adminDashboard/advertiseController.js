@@ -13,13 +13,13 @@ function AdvertiseController($scope, $rootScope, $http, $location, $routeParams,
     }
     $scope.getFileTypeOb();
 
-    $scope.getUserFileById = function () {
+    $scope.getAdvertisements = function () {
         $http({
             method: 'GET',
-            url: 'api/GetUserFileById'
+            url: 'api/advertisement?page=1&take=10'
         }).then(function successCallback(response) {
             if (response.data !== '') {
-                $scope.userFileList = response.data;
+                $scope.advertisementList = response.data.data;
             }
         })
     }
@@ -57,7 +57,7 @@ function AdvertiseController($scope, $rootScope, $http, $location, $routeParams,
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: "POST",
-                url: "/api/UploadFile",
+                url: "/api/advertisement",
                 contentType: false,
                 processData: false,
                 data: formData,
@@ -68,7 +68,7 @@ function AdvertiseController($scope, $rootScope, $http, $location, $routeParams,
                     }else{
                         $scope.adminUploadFileOb.Title=null;
                         noty({ text: response.file_title +" has uploaded!", layout: 'topRight', type: 'success' });
-                        $scope.getUserFileById();
+                        $scope.getAdvertisements();
                     }
                 },
                 error: function () {
@@ -87,7 +87,7 @@ function AdvertiseController($scope, $rootScope, $http, $location, $routeParams,
                 $scope.imageSrc = result;
             });
     };
-    $scope.deleteUserFile = function (id, index) {
+    $scope.delete = function (id) {
         // angular.forEach($scope.userFileList, function (item, i) {
         //     if (item.FileId == data.FileId) {
         //         $scope.userFileList.splice(i, 1);
@@ -97,13 +97,13 @@ function AdvertiseController($scope, $rootScope, $http, $location, $routeParams,
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            type: "POST",
-            url: "/api/DeleteUserFileById/" + id,
+            type: "DELETE",
+            url: "/api/advertisement/" + id,
             contentType: false,
             processData: false,
-            success: function (imgSrc) {
-                noty({ text: imgSrc.file_title +" has deleted!", layout: 'topRight', type: 'success' });
-                $scope.getUserFileById();
+            success: function (response) {
+                noty({ text: response.data.file_title +" has deleted!", layout: 'topRight', type: 'success' });
+                $scope.getAdvertisements();
             },
             error: function () {
             }

@@ -5,8 +5,8 @@ function CategoryController($scope, $rootScope, $http, $location, $routeParams, 
     $scope.categoryList = [];
 function category() {
     $scope.categoryOb ={
-        Id:null,
-        Name:null
+        id:null,
+        name:null
     }
 }
 category();
@@ -16,31 +16,31 @@ category();
         CurrentPage: 1,
         PageNo: 1
     }
-    $scope.getcategoryById = function () {
+    $scope.getAllCategories = function () {
         $scope.pagecategoryChangeHandler = function (num) {
             $scope.categorySearchParameters.PageNo = num != undefined ? num : 1;
             $http({
                 method: 'GET',
-                url: '/api/GetCategory?pageNo=' + $scope.categorySearchParameters.PageNo + '&pageSize=' + $scope.categorySearchParameters.PageSize
+                url: '/api/post-category?page=' + $scope.categorySearchParameters.PageNo + '&take=' + $scope.categorySearchParameters.PageSize
             }).then(function successCallback(response) {
-                $scope.categoryList = response.data;
+                $scope.categoryList = response.data.data;
             })
         };
         $scope.pagecategoryChangeHandler();
     }
-    $scope.saveCategory = function () {
+    $scope.save = function () {
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: "POST",
-                    url: "/api/SaveCategory",
+                    url: "/api/post-category",
                     dataType: "json",
                     data: $scope.categoryOb,
-                    success: function () {
-                        noty({ text: "category added!", layout: 'topRight', type: 'success',timeout:5000 });
+                    success: function (response) {
+                        noty({ text: response.data.name +" added!", layout: 'topRight', type: 'success',timeout:5000 });
                         category();
-                        $scope.getcategoryById();
+                        $scope.getAllCategories();
                     },
                     error: function () {
                     }
@@ -48,20 +48,20 @@ category();
            
     }
   
-    $scope.deleteCategory = function (data) {
-        if (data.id != null || data.id != undefined) {
+    $scope.delete = function (id) {
+        if (id != null || id != undefined) {
             $http({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                method: 'POST',
-                url: '/api/DeleteCategory?categoryId=' + data.id,
+                method: 'DELETE',
+                url: '/api/post-category/' + id,
                 dataType: 'JSON'
             }).then(function successCallback(response) {
-                noty({ text: response.data.title + ' has deleted!', layout: 'topRight', type: 'success',timeout:5000 });
-                $scope.getcategoryById();
+                noty({ text: response.data.data.name + ' has deleted!', layout: 'topRight', type: 'success',timeout:5000 });
+                $scope.getAllCategories();
             }, function errorCallback(response) {
-                noty({ text: response.data.Message, layout: 'topRight', type: 'error',timeout:5000 });
+                noty({ text: 'Something went wrong!', layout: 'topRight', type: 'error',timeout:5000 });
             });
         }
         else {

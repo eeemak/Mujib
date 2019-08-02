@@ -1,6 +1,6 @@
 @extends('panel.layout.adminDashboard.master')
 @section('content')
-<div class="col-md-12" ng-init="getcategoryById()">
+<div class="col-md-12" ng-init="getAllCategories()">
     <div class="form-horizontal" ng-form="adminPhotoAlbum">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -17,14 +17,14 @@
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="fa fa-edit"></span></span>
-                                <input type="text" class="form-control" ng-model="categoryOb.Name" placeholder="Input link title" />
+                                <input type="text" class="form-control" ng-model="categoryOb.name" placeholder="Input link title" />
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label"></label>
                         <div class="col-md-6 col-xs-12">
-                            <button type="button" class="btn btn-info" ng-click="saveCategory();">
+                            <button type="button" class="btn btn-info" ng-click="save();">
                                 <span class="fa fa-floppy-o"></span> Save
                             </button>
          
@@ -55,9 +55,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="x in userFileList">
+                            <tr ng-repeat="x in categoryList">
                                 <td><p>@{{x.name}}</p></td>
-                                <td style="width:50px" class="text-center"><button class="btn single-small-btn btn-danger" ng-click="deleteUserFile(x.id,$index)"><i class="fa fa-trash-o"></i></button></td>
+                                <td style="width:50px" class="text-center"><button class="btn single-small-btn btn-danger" ng-click="delete(x.id)"><i class="fa fa-trash-o"></i></button></td>
                             </tr>
                         </tbody>
                     </table>

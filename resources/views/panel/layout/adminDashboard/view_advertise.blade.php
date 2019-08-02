@@ -1,7 +1,7 @@
 @extends('panel.layout.adminDashboard.master')
 @section('content')
 <div class="row">
-    <div class="col-md-12"  ng-init="getUserFileById()">
+    <div class="col-md-12"  ng-init="getAdvertisements()">
 
         <form class="form-horizontal">
             <div class="panel panel-default">
@@ -34,7 +34,7 @@
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label"></label>
                         <div class="col-md-6 col-xs-12">
-                            <button ng-disabled="!adminUploadFileOb.Title" type="button" class="btn btn-info" ng-click="uploadFile();">
+                            <button ng-disabled="!adminUploadFileOb.Title || !filedata" type="button" class="btn btn-info" ng-click="uploadFile();">
                                 <span class="fa fa-floppy-o"></span> Save
                             </button>
          
@@ -58,13 +58,13 @@
                         </div>
                         <div class="panel-body posts ha-masanomy-grid">
                             <div class="row">
-                                <div class="column-3" dir-paginate="x in userFeaturePhotoFileList | itemsPerPage:UserFeaturePhotoFileListSearchParameters.PageSize" current-page="UserFeaturePhotoFileListSearchParameters.PageNo" pagination-id="metaData.name + 'userFeaturePhotoFileList'" total-items='UserFeaturePhotoFileListSearchParameters.Total_Count'>
-                                    <a href="@{{x.Link}}" title="@{{x.Title}}">
-                                        <img src="@{{x.TempSrc}}" class="img-thumbnail img-responsive" width="304" height="236">
+                                <div class="column-3" dir-paginate="x in advertisementList | itemsPerPage:UserFeaturePhotoFileListSearchParameters.PageSize" current-page="UserFeaturePhotoFileListSearchParameters.PageNo" pagination-id="metaData.name + 'userFeaturePhotoFileList'" total-items='UserFeaturePhotoFileListSearchParameters.Total_Count'>
+                                    <a href="@{{x.Link}}" title="@{{x.file_title}}">
+                                        <img src="/@{{x.file_path}}" class="img-thumbnail img-responsive" width="304" height="236">
                                     </a>
                                     <h4>@{{x.Title}}</h4>
                                     <div class="ha-space"></div>
-                                    <button type="button" class="btn btn-danger" ng-click="deleteUserFile(x)">
+                                    <button type="button" class="btn btn-danger" ng-click="delete(x.id)">
                                         <span class="fa fa-trash-o"> Delete</span>
                                     </button>
                                 </div>
@@ -83,7 +83,7 @@
 </div>
 @endsection
 @section('script')
-<script>
+{{-- <script>
     $(function(){
         $("#file-simple").fileinput({
                 showUpload: false,
@@ -105,5 +105,5 @@
             },200);                    
         });                
     });            
-</script>
+</script> --}}
 @endsection

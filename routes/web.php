@@ -90,7 +90,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/GetAllMotamotPosts/{take}', 'MotamotPostController@GetAllMotamotPosts');
         Route::get('category', ['as' => 'category', 'uses' => 'AdminDashboardHomeController@viewCategory']);
         Route::get('advertise', ['as' => 'advertise', 'uses' => 'AdvertiseController@viewAdvertise']);
-
+        Route::group(['prefix' => 'api'], function () {
+            Route::apiResource('advertisement', 'AdvertisementController');
+            Route::apiResource('post-category', 'PostCategoryController');
+        });
 
     });
     //=======User=======
