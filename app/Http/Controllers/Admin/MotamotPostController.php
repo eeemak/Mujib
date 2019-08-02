@@ -90,7 +90,8 @@ class MotamotPostController extends Controller
     $post->post_categories()->sync($postCategory);
     return response()->json($post);
   }
-  public function UpdateMotamot(Request $request) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+  public function UpdateMotamot($id,Request $request) {  
+    $post = Post::find($id);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
     if ($request->file != 'null') {
       $file = $request->file;
       $allow_extensions = ['jpg', 'jpeg', 'png', 'pdf'];
@@ -100,31 +101,25 @@ class MotamotPostController extends Controller
       }
       $file_directory = 'upload/files/';
       $file_path = $file_directory . time() . "-" . $file->getClientOriginalName();
+      $post->file_path ? unlink($post->file_path) : null;
       $file->move($file_directory, $file_path);
-    }else{
-      $file_extension = null;
-      $file_path = null;
+      $post->file_path = $file_path;
+      $post->file_extension = $file_extension;
     }
-    $post = new Post();
-
     $motamotPostOb = json_decode($request->motamotPostOb, true);
     $postCategory=json_decode($request->motamotPostCategory, true);
     $post->title = $motamotPostOb['Title'];
     $post->post_detail = $motamotPostOb['PostDetail'];
     $post->short_post = $motamotPostOb['ShortPost'];
-    if($file_path !=null){
-      $post->file_path = $file_path;
-      $post->file_extension = $file_extension;
-    }
     $post->update();
     $post->post_categories()->sync($postCategory);
     return response()->json($post);
   }
-  public function DeleteMotamotPostById($id){
-    $uploadfile = FileUpload::find($id);
-    unlink($uploadfile->file_path);
-    $uploadfile->delete();
-    return response()->json($uploadfile);
+  public function DeletePost($id){
+    $motamot_post = Post::find($id);
+    $motamot_post->file_path ? unlink($motamot_post->file_path) : null;
+    $motamot_post->delete();
+    return response()->json($motamot_post);
   }
   public function GetCommentListWithPostId(Request $request){
     $post = Post::find($request->postId);

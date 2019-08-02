@@ -93,24 +93,24 @@ function EditMotamotPostController($scope, $rootScope, $http, $location, $routeP
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type: "POST",
-            url: "/api/UpdateMotamot",
+            url: "/api/UpdateMotamot/"+ $scope.motamotPostOb.Id,
             contentType: false,
             processData: false,
             data: formData,
             success: function (response) {
                 console.log(response);
                 if (response.error == true) {
-                    noty({ text: "This file format is not allowed to upload", layout: 'topRight', type: 'error' });
+                    noty({ text: "This file format is not allowed to upload", layout: 'topRight', type: 'error',timeout:5000  });
                 } else {
                     $scope.motamotPostOb.Title = null;
                     $scope.motamotPostOb.PostDetail = null;
                     $scope.motamotPostOb.ShortPost = null;
-                    noty({ text: response.title + " has saved!", layout: 'topRight', type: 'success' });
+                    noty({ text: response.title + " has saved!", layout: 'topRight', type: 'success',timeout:5000  });
                     $scope.getPersonalList();
                 }
             },
             error: function () {
-                noty({ text: "Something went wrong!", layout: 'topRight', type: 'error' });
+                noty({ text: "Something went wrong!", layout: 'topRight', type: 'error',timeout:5000  });
             }
         });
     }

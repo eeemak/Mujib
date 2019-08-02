@@ -102,8 +102,6 @@ class NewsPostController extends Controller
     $post->title = $newsPostOb['Title'];
     $post->post_detail = $newsPostOb['PostDetail'];
     $post->short_post = $newsPostOb['ShortPost'];
-    $post->post_type_id = 1;
-    $post->user_id = Auth::id();
     $post->update();
     $post->post_categories()->sync($postCategory);
     return response()->json($post);
