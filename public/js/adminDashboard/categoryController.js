@@ -29,20 +29,16 @@ category();
         $scope.pagecategoryChangeHandler();
     }
     $scope.saveCategory = function () {
-        if ($scope.adminPhotoAlbum.$valid) {
-            var formData = new FormData();
-                formData.append('title', $scope.adminUploadFileOb.Title);
-                formData.append('file', $scope.filedata);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: "POST",
-                    url: "/api/UploadCategory",
+                    url: "/api/SaveCategory",
                     contentType: false,
                     processData: false,
-                    data: formData,
-                    success: function (imgSrc) {
+                    data: $scope.categoryOb,
+                    success: function () {
                         noty({ text: "category added!", layout: 'topRight', type: 'success',timeout:5000 });
                         category();
                         $scope.getcategoryById();
@@ -51,7 +47,6 @@ category();
                     }
                 });
            
-        }
     }
   
     $scope.deleteCategory = function (data) {

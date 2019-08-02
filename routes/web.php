@@ -75,6 +75,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/SaveMotamot', 'MotamotPostController@SaveMotamot');
         Route::post('/UpdateMotamot', 'MotamotPostController@UpdateMotamot');
         Route::post('/CommentInsert', 'MotamotPostController@CommentInsert');
+        Route::post('/SaveCategory', 'AdminDashboardHomeController@CategoryCreate');
+
 
 
     });

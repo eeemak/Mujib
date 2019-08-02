@@ -158,9 +158,8 @@ public function DeleteGallary(Request $request){
   }
   public function CategoryCreate(Request $request) {
 
-      $uploadfile = new FileUpload();
-      $uploadfile->file_title = $request->title;
-      $uploadfile->user_id = Auth::id();
+      $uploadfile = new PostCategory();
+      $uploadfile->name = $request->Name;
       $uploadfile->save();
       return response()->json($uploadfile);
   }
