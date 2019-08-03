@@ -12,9 +12,8 @@
                 Advertise
             </h5>
             <div class="form-horizontal" style="padding: 15px 0;">
-                <div class="row">
-                    <img src="{{URL::asset('assets/assets/images/addvertise/add1.jpg')}}" alt="" style="width:94%" />
-                    <img src="{{URL::asset('assets/assets/images/addvertise/add2.jpg')}}" alt="" style="width:94%" />
+                <div class="row" ng-repeat="x in advertisementList">
+                    <img src="/@{{x.file_path}}" alt="" style="width:94%" />
                 </div>
             </div>
         </div>
@@ -325,11 +324,6 @@
                 display: block !important
             }
         </style>
-        <div class="column block">
-            <h5 class="bk-org title">Title </h5>
-    
-        </div>
-    
         <div class="clearfix"></div>
         <style>
             .share-buttons img {

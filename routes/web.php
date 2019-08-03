@@ -30,6 +30,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/GetMotamotPostById/{id}', 'MotamotPostController@GetMotamotPostById');
     Route::get('/GetMotamotPostByCategoryId/{id}/{take}', 'MotamotPostController@GetMotamotPostByCategoryId');
     Route::get('/GetMotamotCommentListWithPostId', 'MotamotPostController@GetCommentListWithPostId');
+    Route::get('/GetPublicAdvertise/{take}', 'HomeController@GetPublicAdvertise');
 
 
 

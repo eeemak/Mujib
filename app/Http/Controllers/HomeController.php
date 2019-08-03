@@ -12,6 +12,8 @@ use App\Model\PoliceStation;
 use App\User;
 use App\Model\ProfessionType;
 use App\Model\Gallary;
+use App\Model\Advertisement;
+use App\Http\Resources\AdvertisementResource;
 use App\Model\UserInstitutions;
 
 class HomeController extends Controller
@@ -172,6 +174,9 @@ class HomeController extends Controller
     public function GetPublicGallary(){
         $gallaries = Gallary::orderBy('id', 'desc')->get();
         return response()->json($gallaries);
+    }
+    public function GetPublicAdvertise($take){
+        return AdvertisementResource::collection(Advertisement::orderBy('id', 'desc')->paginate($take ?? 10));
     }
     public function CheckUserExist(Request $request){
         $user_exist = User::where('phone', $request->phone)->exists();
