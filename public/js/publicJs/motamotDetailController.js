@@ -35,29 +35,24 @@ function MotamotDetailController($scope, $rootScope, $http, $location, $routePar
         })
     }
     $scope.SaveComment = function () {
-        // $scope.commentOb.CommentCount = 1;
-        // $scope.commentOb.Id = null;
         $scope.commentOb.PostId = $scope.motamotPostOb.Id;
-        // $scope.commentOb.CategoryId = $scope.blogPostOb.CategoryId;
         $rootScope.showPageLoading = false;
-        // console.log('comment', $scope.commentOb);
-        $http({
-            method: "post",
-            url: '/api/CommentInsert/',
-            data: $scope.commentOb,
-            dataType: "json"
-        }).then(function successCallback(response) {
-            // console.log(response);
-            if (response.data.Error === true) {
-                noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
-            }
-            else {
-                $scope.getCommentListWithPostId($scope.commentOb.PostId);
+        $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: "POST",
+                    url: "/api/MotamotCommentInsert",
+                    dataType: "json",
+                    data: $scope.commentOb,
+                    success: function (response) {
+                                $scope.getCommentListWithPostId($scope.commentOb.PostId);
                 clearComment();
-            }
-        }), function errorCallBack(response) {
-            showResult(response.data.Message, 'failure');
-        }
+            
+                    },
+                    error: function () {
+                    }
+                });
     }
     $scope.commentList = [];
     $scope.getCommentListWithPostId = function (postId) {

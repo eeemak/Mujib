@@ -73,10 +73,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/UpdateNews/{id}', 'NewsPostController@UpdateNews');
         Route::post('/DeletePost/{id}', 'NewsPostController@DeletePost');
         Route::post('/DeleteMotamotPost/{id}', 'NewsPostController@DeletePost');
-        Route::post('/CommentInsert', 'NewsPostController@CommentInsert');
         Route::post('/SaveMotamot', 'MotamotPostController@SaveMotamot');
         Route::post('/UpdateMotamot/{id}', 'MotamotPostController@UpdateMotamot');
-        Route::post('/CommentInsert', 'MotamotPostController@CommentInsert');
+        Route::post('MotamotCommentInsert', ['as' => 'MotamotCommentInsert', 'uses' => 'MotamotPostController@CommentInsert']);
+        Route::post('NewsCommentInsert', ['as' => 'NewsCommentInsert', 'uses' => 'NewsPostController@CommentInsert']);
         Route::post('/SaveCategory', 'AdminDashboardHomeController@CategoryCreate');
 
 

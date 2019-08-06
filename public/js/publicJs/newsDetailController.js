@@ -7,18 +7,18 @@ function NewsDetailController($scope, $rootScope, $http, $location, $routeParams
     $scope.IsShowCommentBox = true;
     $scope.newsPostList = [];
     $scope.newsPostOb = {
-       Id : null,
-       Title :null,
-       PostDetail : null,
-       UserFullName : null,
-       FilePath : null,
-       CategoryName : null,
-       CreatedAt : null,
+        Id: null,
+        Title: null,
+        PostDetail: null,
+        UserFullName: null,
+        FilePath: null,
+        CategoryName: null,
+        CreatedAt: null,
     }
     $scope.getPostDetailList = function (id) {
         $http({
             method: 'GET',
-            url: '/api/GetNewsPostById/'+id,
+            url: '/api/GetNewsPostById/' + id,
         }).then(function successCallback(response) {
             console.log('response', response.data);
             if (response.data !== '') {
@@ -35,29 +35,24 @@ function NewsDetailController($scope, $rootScope, $http, $location, $routeParams
         })
     }
     $scope.SaveComment = function () {
-        // $scope.commentOb.CommentCount = 1;
-        // $scope.commentOb.Id = null;
         $scope.commentOb.PostId = $scope.newsPostOb.Id;
-        // $scope.commentOb.CategoryId = $scope.blogPostOb.CategoryId;
         $rootScope.showPageLoading = false;
-        // console.log('comment', $scope.commentOb);
-        $http({
-            method: "post",
-            url: '/api/CommentInsert/',
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: "POST",
+            url: "/api/NewsCommentInsert",
+            dataType: "json",
             data: $scope.commentOb,
-            dataType: "json"
-        }).then(function successCallback(response) {
-            // console.log(response);
-            if (response.data.Error === true) {
-                noty({ text: response.data.Message, layout: 'topRight', type: 'error' });
-            }
-            else {
+            success: function (response) {
                 $scope.getCommentListWithPostId($scope.commentOb.PostId);
                 clearComment();
+
+            },
+            error: function () {
             }
-        }), function errorCallBack(response) {
-            showResult(response.data.Message, 'failure');
-        }
+        });
     }
     $scope.commentList = [];
     $scope.getCommentListWithPostId = function (postId) {
@@ -119,7 +114,7 @@ function NewsDetailController($scope, $rootScope, $http, $location, $routeParams
         })
     }
 
-   function clearComment() {
+    function clearComment() {
         $scope.commentOb = {
             Id: null,
             PostId: null,
