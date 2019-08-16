@@ -15,7 +15,13 @@ class PostCategoryTableSeeder extends Seeder
     {
         PostCategory::insert([
             ['name'=> 'general'],
-            ['name'=> 'dhaka']
+            ['name'=> 'header_news'],
+            ['name'=> 'header_news_right'],
+            ['name'=> 'header_news_bottom'],
+            ['name'=> 'world'],
+            ['name'=> 'science'],
+            ['name'=> 'health'],
+            ['name'=> 'sports'],
          ]);
     }
 }

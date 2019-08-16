@@ -3,6 +3,8 @@ NewsController.$inject = ['$scope', '$rootScope', '$http', '$location', '$routeP
 function NewsController($scope, $rootScope, $http, $location, $routeParams, $cookies, $cookieStore,$compile,  $window) {
     $rootScope.title = "News";
     $scope.newsList=[];
+    $scope.newsTitleOb={};
+    $scope.newsRightList=[];
     $scope.showPane = function() {
         $scope.isPaneShown = true;
       };
@@ -24,14 +26,15 @@ function NewsController($scope, $rootScope, $http, $location, $routeParams, $coo
                 method: 'GET',
                 url: 'api/GetAllPublicNewsPosts/'+ $scope.PostListSearchParameters.PageSize + '?page=' + $scope.PostListSearchParameters.PageNo
             }).then(function successCallback(result) {
-                // if (result.data.Items.length > 0) {
-                //     angular.forEach(result.data.Items, function (item) {
-                //         item.TempSrc = getFileUrl(item.FileId, item.FileName);
-                //     });
-                // }
-
                 $scope.getAllPersonalnewsPostList = result.data.data;
                 $scope.PostListSearchParameters.Total_Count = result.data.meta.total;
+                var ob= $scope.getAllPersonalnewsPostList.filter(function(ob) {
+                    return ob.post_categories[0].name =="header_news";
+                  });
+                  $scope.newsTitleOb=ob[0];
+                  $scope.newsRightList=$scope.getAllPersonalnewsPostList.filter(function(ob) {
+                    return ob.post_categories[0].name =="header_news_right";
+                  });
             })
         };
         $scope.pageChangeHandler();
