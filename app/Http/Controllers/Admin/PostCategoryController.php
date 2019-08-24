@@ -37,7 +37,7 @@ class PostCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        return new PostCategoryResource(PostCategory::create($request->all()));
+        return new PostCategoryResource(PostCategory::create($request->input()));
     }
 
     /**
