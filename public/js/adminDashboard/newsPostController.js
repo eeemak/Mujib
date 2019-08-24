@@ -41,7 +41,9 @@ function NewsPostController($scope, $rootScope, $http, $location, $routeParams, 
             method: 'GET',
             url: 'api/GetPostCategory'
         }).then(function successCallback(response) {
-            $scope.postCategoryList = response.data;
+            $scope.postCategoryList = response.data.filter(function(ob) {
+                return ob.type =="news" || ob.type =="general";
+              });;
         })
     }
     $scope.getPostCategory();

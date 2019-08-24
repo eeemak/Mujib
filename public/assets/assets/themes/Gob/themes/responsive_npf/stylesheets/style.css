@@ -92,7 +92,28 @@
 .post-title{
 	font-size: 20px;
     font-weight: 600;
-    padding-left: 0px;
+	padding-left: 0px;
+
+}
+.blog-post-title{
+	font-size: 25px;
+    font-weight: 600;
+	padding-left: 0px;
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+.blog-post-title a{
+	color: #84154d !important;
+}
+.blog-post-text{
+	padding-top: 10px;
+}
+.blog-read-more-btn{
+	background-color: #a94442;
+    padding: 7px;
+    color: #fff;
+	font-size: 16px;
+	margin-top: 10px;
 }
 .post-date{
 	font-size: 11px;

@@ -12,7 +12,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <input class="form-control" type="hidden" ng-model="categoryOb.Id" id="example-tel-input">
+                        <input class="form-control" type="hidden" ng-model="categoryOb.id" id="example-tel-input">
                         <label class="col-md-3 col-xs-12 control-label">Name</label>
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">
@@ -21,6 +21,22 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Type</label>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="fa fa-edit"></span></span>
+                                <select class="form-control select" ng-model="categoryOb.type"
+                                                   id="typeId"
+                                                    name="Type">
+                                                    <option ng-repeat="x in typeList" value="@{{x.Value}}">@{{x.Text}}</option>
+                                                <option value="">Select One</option>
+                                            </select>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label"></label>
                         <div class="col-md-6 col-xs-12">
@@ -51,12 +67,14 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
+                                <th>Type</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="x in categoryList">
                                 <td><p>@{{x.name}}</p></td>
+                                <td><p>@{{x.type}}</p></td>
                                 <td style="width:50px" class="text-center"><button class="btn single-small-btn btn-danger" ng-click="delete(x.id)"><i class="fa fa-trash-o"></i></button></td>
                             </tr>
                         </tbody>

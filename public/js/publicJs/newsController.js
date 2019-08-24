@@ -5,6 +5,7 @@ function NewsController($scope, $rootScope, $http, $location, $routeParams, $coo
     $scope.newsList=[];
     $scope.newsTitleOb={};
     $scope.newsRightList=[];
+    $scope.headerNewsBottomList=[];
     $scope.showPane = function() {
         $scope.isPaneShown = true;
       };
@@ -18,7 +19,7 @@ function NewsController($scope, $rootScope, $http, $location, $routeParams, $coo
         CurrentPage: 1,
         PageNo: 1
     }
-    $scope.getAllPersonalnewsPostList = [];
+    $scope.getAllGeneralNewsPostList = [];
     $scope.getPersonalList = function () {
         $scope.pageChangeHandler = function (num) {
             $scope.PostListSearchParameters.PageNo = num != undefined ? num : 1;
@@ -26,14 +27,19 @@ function NewsController($scope, $rootScope, $http, $location, $routeParams, $coo
                 method: 'GET',
                 url: 'api/GetAllPublicNewsPosts/'+ $scope.PostListSearchParameters.PageSize + '?page=' + $scope.PostListSearchParameters.PageNo
             }).then(function successCallback(result) {
-                $scope.getAllPersonalnewsPostList = result.data.data;
                 $scope.PostListSearchParameters.Total_Count = result.data.meta.total;
-                var ob= $scope.getAllPersonalnewsPostList.filter(function(ob) {
+                $scope.getAllGeneralNewsPostList=result.data.data.filter(function(ob) {
+                    return ob.post_categories[0].name =="general_news";
+                  });
+                var ob= result.data.data.filter(function(ob) {
                     return ob.post_categories[0].name =="header_news";
                   });
                   $scope.newsTitleOb=ob[0];
-                  $scope.newsRightList=$scope.getAllPersonalnewsPostList.filter(function(ob) {
+                  $scope.newsRightList=result.data.data.filter(function(ob) {
                     return ob.post_categories[0].name =="header_news_right";
+                  });
+                  $scope.headerNewsBottomList=result.data.data.filter(function(ob) {
+                    return ob.post_categories[0].name =="header_news_bottom";
                   });
             })
         };

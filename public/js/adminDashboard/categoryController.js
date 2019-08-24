@@ -3,10 +3,25 @@ CategoryController.$inject = ['$scope', '$rootScope', '$http', '$location', '$ro
 function CategoryController($scope, $rootScope, $http, $location, $routeParams, $cookies, $cookieStore, $filter, fileReader) {
     $scope.title = "Category";
     $scope.categoryList = [];
+    $scope.typeList = [
+        {
+            'Text':'General',
+            'Value':'general'
+        },
+        {
+            'Text':'Blog',
+            'Value':'blog'
+        },
+        {
+            'Text':'News',
+            'Value':'news'
+        }
+    ];
 function category() {
     $scope.categoryOb ={
         id:null,
-        name:null
+        name:null,
+        type:null
     }
 }
 category();

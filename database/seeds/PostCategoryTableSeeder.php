@@ -14,14 +14,16 @@ class PostCategoryTableSeeder extends Seeder
     public function run()
     {
         PostCategory::insert([
-            ['name'=> 'general'],
-            ['name'=> 'header_news'],
-            ['name'=> 'header_news_right'],
-            ['name'=> 'header_news_bottom'],
-            ['name'=> 'world'],
-            ['name'=> 'science'],
-            ['name'=> 'health'],
-            ['name'=> 'sports'],
+            ['name'=> 'general','type'=>'general'],
+            ['name'=> 'blog','type'=>'blog'],
+            ['name'=> 'header_news','type'=>'news'],
+            ['name'=> 'header_news_right','type'=>'news'],
+            ['name'=> 'header_news_bottom','type'=>'news'],
+            ['name'=> 'general_news','type'=>'news'],
+            ['name'=> 'world','type'=>'general'],
+            ['name'=> 'science','type'=>'general'],
+            ['name'=> 'health','type'=>'general'],
+            ['name'=> 'sports','type'=>'general'],
          ]);
     }
 }

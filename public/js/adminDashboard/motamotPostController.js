@@ -41,7 +41,9 @@ function MotamotPostController($scope, $rootScope, $http, $location, $routeParam
             method: 'GET',
             url: 'api/GetPostCategory'
         }).then(function successCallback(response) {
-            $scope.postCategoryList = response.data;
+            $scope.postCategoryList = response.data.filter(function(ob) {
+                return ob.type =="blog" || ob.type =="general";
+              });;
         })
     }
     $scope.getPostCategory();
